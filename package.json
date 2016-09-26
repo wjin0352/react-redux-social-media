@@ -1,0 +1,11 @@
+{
+  "name": "react-blog",
+  "version": "1.0.0",
+  "description": "react redux blog social media app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "won",
+  "license": "ISC"
+}
