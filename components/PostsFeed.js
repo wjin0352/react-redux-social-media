@@ -3,9 +3,9 @@ import Post from './Post';
 
 const PostsFeed = () => {
   return (
-    <div>
+    <container className='posts-feed-container'>
       <Post />
-    </div>
+    </container>
   )
 }
 

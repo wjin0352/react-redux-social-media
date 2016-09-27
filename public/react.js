@@ -56,15 +56,15 @@
 	
 	var _MainPage2 = _interopRequireDefault(_MainPage);
 	
-	var _Header = __webpack_require__(174);
+	var _Header = __webpack_require__(173);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _PostsFeed = __webpack_require__(175);
+	var _PostsFeed = __webpack_require__(177);
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(177);
+	var _VideosFeed = __webpack_require__(175);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
@@ -21470,17 +21470,17 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Header = __webpack_require__(174);
+	var _Header = __webpack_require__(173);
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _VideosFeed = __webpack_require__(177);
+	var _VideosFeed = __webpack_require__(175);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _Post = __webpack_require__(176);
+	var _PostsFeed = __webpack_require__(177);
 	
-	var _Post2 = _interopRequireDefault(_Post);
+	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21489,8 +21489,7 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(_Header2.default, null),
-	    _react2.default.createElement(_VideosFeed2.default, null),
-	    _react2.default.createElement(_Post2.default, null)
+	    _react2.default.createElement(_PostsFeed2.default, null)
 	  );
 	};
 	
@@ -21498,6 +21497,36 @@
 
 /***/ },
 /* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Navigation = __webpack_require__(174);
+	
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Header = function Header() {
+	  return _react2.default.createElement(
+	    'header',
+	    null,
+	    _react2.default.createElement(_Navigation2.default, null)
+	  );
+	};
+	
+	exports.default = Header;
+
+/***/ },
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21520,40 +21549,36 @@
 	  handleClickLogin: function handleClickLogin() {},
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'div',
+	      'nav',
 	      null,
 	      _react2.default.createElement(
-	        'nav',
+	        'ul',
 	        null,
 	        _react2.default.createElement(
-	          'ul',
+	          'li',
 	          null,
 	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'videos_link', href: '#', onClick: this.handleClickVideos },
-	              'Videos'
-	            )
-	          ),
+	            'a',
+	            { className: 'videos_link', href: '#', onClick: this.handleClickVideos },
+	            'Videos'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
 	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'register_link', href: '#', onClick: this.handleClickRegister },
-	              'Register'
-	            )
-	          ),
+	            'a',
+	            { className: 'register_link', href: '#', onClick: this.handleClickRegister },
+	            'Register'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
 	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'login_link', href: '#', onClick: this.handleClickLogin },
-	              'Login'
-	            )
+	            'a',
+	            { className: 'login_link', href: '#', onClick: this.handleClickLogin },
+	            'Login'
 	          )
 	        )
 	      )
@@ -21562,36 +21587,6 @@
 	});
 	
 	exports.default = Navigation;
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Navigation = __webpack_require__(173);
-	
-	var _Navigation2 = _interopRequireDefault(_Navigation);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Header = function Header() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_Navigation2.default, null)
-	  );
-	};
-	
-	exports.default = Header;
 
 /***/ },
 /* 175 */
@@ -21607,72 +21602,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Post = __webpack_require__(176);
-	
-	var _Post2 = _interopRequireDefault(_Post);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var PostsFeed = function PostsFeed() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_Post2.default, null)
-	  );
-	};
-	
-	exports.default = PostsFeed;
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Post = function Post() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'form',
-	      null,
-	      _react2.default.createElement('textarea', { rows: '50', cols: '150' }),
-	      _react2.default.createElement(
-	        'button',
-	        null,
-	        'Submit'
-	      )
-	    )
-	  );
-	};
-	
-	exports.default = Post;
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Video = __webpack_require__(178);
+	var _Video = __webpack_require__(176);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -21681,7 +21611,7 @@
 	var VideosFeed = function VideosFeed() {
 	  return _react2.default.createElement(
 	    'container',
-	    { className: 'videos-feed' },
+	    { className: 'videos-feed-container' },
 	    _react2.default.createElement(_Video2.default, null)
 	  );
 	};
@@ -21689,7 +21619,7 @@
 	exports.default = VideosFeed;
 
 /***/ },
-/* 178 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21714,6 +21644,71 @@
 	};
 	
 	exports.default = Video;
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Post = __webpack_require__(178);
+	
+	var _Post2 = _interopRequireDefault(_Post);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var PostsFeed = function PostsFeed() {
+	  return _react2.default.createElement(
+	    'container',
+	    { className: 'posts-feed-container' },
+	    _react2.default.createElement(_Post2.default, null)
+	  );
+	};
+	
+	exports.default = PostsFeed;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Post = function Post() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'post-form' },
+	    _react2.default.createElement(
+	      'form',
+	      null,
+	      _react2.default.createElement('textarea', { rows: '30', cols: '100' }),
+	      _react2.default.createElement(
+	        'button',
+	        null,
+	        'Submit'
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = Post;
 
 /***/ },
 /* 179 */
@@ -28864,7 +28859,7 @@
 	
 	var _redux = __webpack_require__(249);
 	
-	var _video = __webpack_require__(267);
+	var _video = __webpack_require__(265);
 	
 	var _video2 = _interopRequireDefault(_video);
 	
@@ -28877,31 +28872,7 @@
 	exports.default = allReducers;
 
 /***/ },
-/* 265 */,
-/* 266 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.video = video;
-	exports.post = post;
-	function video(video) {
-	  return {
-	    type: 'VIDEO'
-	  };
-	};
-	
-	function post(post) {
-	  return {
-	    type: 'POST'
-	  };
-	};
-
-/***/ },
-/* 267 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28931,6 +28902,29 @@
 	};
 	
 	exports.default = video;
+
+/***/ },
+/* 266 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.video = video;
+	exports.post = post;
+	function video(video) {
+	  return {
+	    type: 'VIDEO'
+	  };
+	};
+	
+	function post(post) {
+	  return {
+	    type: 'POST'
+	  };
+	};
 
 /***/ }
 /******/ ]);

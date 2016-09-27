@@ -1,0 +1,56 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/* Header and NavBar */
+  header {
+    /*position: fixed;*/
+    width: 100%;
+    border: .01em solid red;
+    z-index: 9999;
+    height: 7em;
+  }
+
+  nav li{
+    display: inline-block;
+    margin-right: 2em;
+    margin-top: 2em;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+/* Videos feed container */
+
+
+/* Video */
+  .video {
+    text-align: center;
+    margin: 5em;
+  }
+
+/* Video Form */
+
+
+
+/* Posts feed container */
+
+
+
+
+/* Post Form */
+  .post-form {
+    border: .01em solid black;
+  }
+
+   .post-form form {
+    width: 40%;
+    margin: 5em auto;
+  }
+

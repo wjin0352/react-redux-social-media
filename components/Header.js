@@ -3,9 +3,9 @@ import Navigation from './Navigation';
 
 const Header = () => {
   return (
-    <div>
+    <header>
       <Navigation />
-    </div>
+    </header>
   )
 }
 
