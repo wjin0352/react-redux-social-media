@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const packageData = require('./package.json');
 
 module.exports = {
   entry: {
@@ -8,7 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].js',
+    filename: "[name].js",
   },
   watch: true,
   devtool: 'source-map',
