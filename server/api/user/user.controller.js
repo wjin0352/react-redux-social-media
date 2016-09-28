@@ -8,7 +8,7 @@ const UserController = () => {}
   // ref_posts: { type: Array }
 
 UserController.prototype.getUsers = (req, res) => {
-  return new Promise (function(resolve, reject) {
+  return new Promise (function (resolve, reject) {
     User.find({}, function(error, users) {
       if (error) {
         reject(error);
@@ -16,15 +16,15 @@ UserController.prototype.getUsers = (req, res) => {
         resolve(users);
       }
     });
-  }).then(function(users) {
+  }).then(function (users) {
     res.status(200).json(users);
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.log(error);
   });
 }
 
 UserController.prototype.createUser = (req, res) => {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     User.create({
       username: req.body.userName,
       password: req.body.password,
@@ -37,19 +37,48 @@ UserController.prototype.createUser = (req, res) => {
         resolve(user);
       }
     });
-  }).then(function(user) {
+  }).then(function (user) {
     res.status(200).json(user);
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.log(error);
   });
 }
 
 UserController.prototype.editUser = (req, res) => {
-
+  return new Promise(function (resolve, reject) {
+    User.update( { _id: id },
+      {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }, function (error, user) {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(user);
+        }
+      });
+  }).then(function (user) {
+    res.status(200).json(user);
+  }).catch(function (error) {
+    console.log(error);
+  });
 }
 
 UserController.prototype.deleteUser = (req, res) => {
-
+  return new Promise(function (resolve, reject) {
+    User.remove( {_id: id}, function (error, user) {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(user);
+      }
+    });
+  }).then((user) => {
+    res.status(200).json(user);
+  }).catch((error) => {
+    console.log(error);
+  });
 }
 
 export default UserController.prototype;
