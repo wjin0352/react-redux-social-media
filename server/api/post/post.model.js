@@ -1,11 +1,10 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const postSchema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   likes: { type: Number },
-  ref_comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-  _creator: { type: Number, ref: 'User'}
+  userid: { type: mongoose.Schema.Types.ObjectId },
 });
 
 export default mongoose.model('Post', postSchema);

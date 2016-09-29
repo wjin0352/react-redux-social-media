@@ -1,0 +1,1 @@
+mongod --dbpath=/Users/won/src/thinkful/FINALCAPSTONE/server/mongo_data --nojournal --rest "$@"

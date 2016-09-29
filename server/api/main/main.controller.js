@@ -1,6 +1,6 @@
-import path from 'path';
+const path = require('path');
 
-const MainController = () => {}
+const MainController = function () {};
 
 MainController.prototype.getRoot = (req, res) => {
   res.sendFile(path.join(__dirname, '../../../public/index.html'));

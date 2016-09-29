@@ -1,6 +1,6 @@
-import User from './user.model';
+const User = require('./user.model');
 
-const UserController = () => {}
+const UserController = function () {};
 
   // username: { type: String, required: true, index: { unique: true }  },
   // password: { type: String, required: true },
@@ -23,13 +23,12 @@ UserController.prototype.getUsers = (req, res) => {
   });
 }
 
-UserController.prototype.createUser = (req, res) => {
+UserController.prototype.createUser = function (req, res) {
   return new Promise(function (resolve, reject) {
     User.create({
-      username: req.body.userName,
+      username: req.body.username,
       password: req.body.password,
-      email: req.body.email,
-      ref_posts: req.body.posts
+      email: req.body.email
     }, function(error, user) {
       if (error) {
         reject(error);
@@ -39,14 +38,16 @@ UserController.prototype.createUser = (req, res) => {
     });
   }).then(function (user) {
     res.status(200).json(user);
+    mongoose.disconnect();
   }).catch(function (error) {
     console.log(error);
+    mongoose.disconnect();
   });
 }
 
 UserController.prototype.editUser = (req, res) => {
   return new Promise(function (resolve, reject) {
-    User.update( { _id: id },
+    User.update( { id: req.params.id },
       {
         username: req.body.username,
         email: req.body.email,
@@ -67,7 +68,7 @@ UserController.prototype.editUser = (req, res) => {
 
 UserController.prototype.deleteUser = (req, res) => {
   return new Promise(function (resolve, reject) {
-    User.remove( {_id: id}, function (error, user) {
+    User.remove( { id: req.params.id}, function (error, user) {
       if (error) {
         reject(error);
       } else {
@@ -81,4 +82,4 @@ UserController.prototype.deleteUser = (req, res) => {
   });
 }
 
-export default UserController.prototype;
+module.exports = UserController.prototype;
