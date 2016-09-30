@@ -10,7 +10,7 @@ module.exports = function (app) {
     extended: false
   }));
   app.use(function(req, res, next) {
-    console.log(`This is the req.body ${req}`);
+    // console.log(`This is the req.body ${req.body}`);
     next();
   });
 }
