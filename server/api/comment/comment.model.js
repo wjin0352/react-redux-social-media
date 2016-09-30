@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose require('mongoose');
 
 const commentSchema({
   content: { type: String, required: true },
-  creatorid: { type: mongoose.Schema.Types.ObjectId }
+  userid: { type: mongoose.Schema.Types.ObjectId }
 });
 
-export default mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('Comment', commentSchema);

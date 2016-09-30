@@ -4,7 +4,7 @@ const UserController = function () {};
 
 UserController.prototype.getUsers = function (req, res) {
   return new Promise (function (resolve, reject) {
-    User.find({}, function(error, users) {
+    User.find({}, function (error, users) {
       if (error) {
         reject(error);
       } else {
@@ -24,7 +24,7 @@ UserController.prototype.createUser = function (req, res) {
       username: req.body.username,
       password: req.body.password,
       email: req.body.email
-    }, function(error, user) {
+    }, function (error, user) {
       if (error) {
         reject(error);
       } else {
