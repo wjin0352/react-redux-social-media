@@ -3,11 +3,16 @@ import React from 'react';
 const Login = () => {
   return (
     <div className='login'>
-      <h3>Log in:</h3>
+      <h3>Log please</h3>
       <form className='login-form'>
-        <input></input>
-        <input></input>
-        <input></input>
+        <fieldset>
+          <legend>Login: </legend>
+          <li>username</li>
+            <input type='text' name='username'/><br/>
+          <li>password</li>
+            <input type='text' name='password'/><br/>
+          <input type="submit" value="done"/>
+        </fieldset>
       </form>
     </div>
   )

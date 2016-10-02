@@ -4,6 +4,8 @@ import MainPage from './components/MainPage';
 import Header from './components/Header';
 import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
+import Registration from './components/Registration';
+import Login from './components/Login';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -13,6 +15,9 @@ const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={MainPage}>
+        <Route path='/videos' component={VideosFeed}></Route>
+        <Route path='/registration' component={Registration}></Route>
+        <Route path='/login' component={Login}></Route>
       </Route>
     </Router>
   </Provider>
