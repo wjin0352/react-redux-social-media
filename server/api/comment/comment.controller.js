@@ -71,4 +71,4 @@ CommentController.prototype.deleteComment = function(req, res) {
   });
 }
 
-module.exports CommentController.prototype;
+module.exports = CommentController.prototype;
