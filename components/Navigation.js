@@ -1,27 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Navigation = React.createClass({
-  handleClickVideos: function () {
-
-  },
-  handleClickRegister: function () {
-
-  },
-  handleClickLogin: function () {
-
-  },
   render: function () {
     return (
       <nav>
         <ul>
           <li>
-            <a className='videos_link' href='#' onClick={this.handleClickVideos}>Videos</a>
+            <Link className='videos_link' to='/videos' >Videos</Link>
           </li>
           <li>
-            <a className='register_link' href='#' onClick={this.handleClickRegister}>Register</a>
+            <Link className='register_link' to='/registration' >Register</Link>
           </li>
           <li>
-            <a className='login_link' href='#' onClick={this.handleClickLogin}>Login</a>
+            <Link className='login_link' to='/login' >Login</Link>
           </li>
         </ul>
       </nav>

@@ -68,6 +68,14 @@
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
+	var _Registration = __webpack_require__(242);
+	
+	var _Registration2 = _interopRequireDefault(_Registration);
+	
+	var _Login = __webpack_require__(243);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
 	var _reactRouter = __webpack_require__(175);
 	
 	var _reactRedux = __webpack_require__(244);
@@ -84,7 +92,14 @@
 	  _react2.default.createElement(
 	    _reactRouter.Router,
 	    { history: _reactRouter.browserHistory },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _MainPage2.default })
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/', component: _MainPage2.default },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/videos', component: _VideosFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _Registration2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
+	    )
 	  )
 	);
 	
@@ -21474,26 +21489,24 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _VideosFeed = __webpack_require__(240);
-	
-	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
-	
-	var _PostsFeed = __webpack_require__(238);
-	
-	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var MainPage = function MainPage() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_Header2.default, null),
-	    _react2.default.createElement(_PostsFeed2.default, null)
-	  );
-	};
+	var MainPage = _react2.default.createClass({
+	  displayName: 'MainPage',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      this.props.children
+	    );
+	  }
+	});
 	
 	exports.default = MainPage;
+	// <Header />
+	// <PostsFeed />
 
 /***/ },
 /* 173 */
@@ -21539,14 +21552,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(175);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Navigation = _react2.default.createClass({
 	  displayName: 'Navigation',
 	
-	  handleClickVideos: function handleClickVideos() {},
-	  handleClickRegister: function handleClickRegister() {},
-	  handleClickLogin: function handleClickLogin() {},
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'nav',
@@ -21558,8 +21570,8 @@
 	          'li',
 	          null,
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'videos_link', href: '#', onClick: this.handleClickVideos },
+	            _reactRouter.Link,
+	            { className: 'videos_link', to: '/videos' },
 	            'Videos'
 	          )
 	        ),
@@ -21567,8 +21579,8 @@
 	          'li',
 	          null,
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'register_link', href: '#', onClick: this.handleClickRegister },
+	            _reactRouter.Link,
+	            { className: 'register_link', to: '/registration' },
 	            'Register'
 	          )
 	        ),
@@ -21576,8 +21588,8 @@
 	          'li',
 	          null,
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'login_link', href: '#', onClick: this.handleClickLogin },
+	            _reactRouter.Link,
+	            { className: 'login_link', to: '/login' },
 	            'Login'
 	          )
 	        )
@@ -27363,8 +27375,129 @@
 	exports.default = Video;
 
 /***/ },
-/* 242 */,
-/* 243 */,
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Registration = function Registration() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'registration' },
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      'Please register with us'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { className: 'register-form' },
+	      _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Registration'
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'user name: '
+	        ),
+	        _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'email: '
+	        ),
+	        _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'password: '
+	        ),
+	        _react2.default.createElement('input', { type: 'text', name: 'password' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = Registration;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Login = function Login() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'login' },
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      'Log please'
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { className: 'login-form' },
+	      _react2.default.createElement(
+	        'fieldset',
+	        null,
+	        _react2.default.createElement(
+	          'legend',
+	          null,
+	          'Login: '
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'username'
+	        ),
+	        _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'password'
+	        ),
+	        _react2.default.createElement('input', { type: 'text', name: 'password' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	      )
+	    )
+	  );
+	};
+	
+	exports.default = Login;
+
+/***/ },
 /* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
