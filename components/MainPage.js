@@ -1,15 +1,17 @@
 import React from 'react';
 import Header from './Header';
-import VideosFeed from './VideosFeed';
-import PostsFeed from './PostsFeed';
 
-const MainPage = () => {
-  return (
-    <div>
-      <Header />
-      <PostsFeed />
-    </div>
-  )
-};
+const MainPage = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <Header/>
+        {this.props.children}
+      </div>
+    )
+}
+});
 
 export default MainPage;
+// <Header />
+// <PostsFeed />

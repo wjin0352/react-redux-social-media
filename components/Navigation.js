@@ -13,7 +13,7 @@ const Navigation = React.createClass({
             <Link className='register_link' to='/registration' >Register</Link>
           </li>
           <li>
-            <Link className='login_link' to='login' >Login</Link>
+            <Link className='login_link' to='/login' >Login</Link>
           </li>
         </ul>
       </nav>

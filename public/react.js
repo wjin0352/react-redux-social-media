@@ -95,6 +95,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPage2.default },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _Registration2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
@@ -21488,26 +21489,24 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _VideosFeed = __webpack_require__(238);
-	
-	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
-	
-	var _PostsFeed = __webpack_require__(240);
-	
-	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var MainPage = function MainPage() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(_Header2.default, null),
-	    _react2.default.createElement(_PostsFeed2.default, null)
-	  );
-	};
+	var MainPage = _react2.default.createClass({
+	  displayName: 'MainPage',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      this.props.children
+	    );
+	  }
+	});
 	
 	exports.default = MainPage;
+	// <Header />
+	// <PostsFeed />
 
 /***/ },
 /* 173 */
@@ -21590,7 +21589,7 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { className: 'login_link', to: 'login' },
+	            { className: 'login_link', to: '/login' },
 	            'Login'
 	          )
 	        )
