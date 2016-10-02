@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 const Navigation = React.createClass({
   render: function () {
     return (
       <nav>
         <ul>
+          <li>
+            <IndexLink className='home_link' to="/">Home</IndexLink>
+          </li>
           <li>
             <Link className='videos_link' to='/videos' >Videos</Link>
           </li>

@@ -21505,8 +21505,6 @@
 	});
 	
 	exports.default = MainPage;
-	// <Header />
-	// <PostsFeed />
 
 /***/ },
 /* 173 */
@@ -21566,6 +21564,15 @@
 	      _react2.default.createElement(
 	        'ul',
 	        null,
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            { className: 'home_link', to: '/' },
+	            'Home'
+	          )
+	        ),
 	        _react2.default.createElement(
 	          'li',
 	          null,
@@ -27300,17 +27307,12 @@
 	
 	var Post = function Post() {
 	  return _react2.default.createElement(
-	    'div',
-	    { className: 'post-form' },
+	    'container',
+	    { className: 'post-container' },
 	    _react2.default.createElement(
-	      'form',
+	      'p',
 	      null,
-	      _react2.default.createElement('textarea', { rows: '30', cols: '100' }),
-	      _react2.default.createElement(
-	        'button',
-	        null,
-	        'Submit'
-	      )
+	      'some post!'
 	    )
 	  );
 	};
@@ -27366,8 +27368,8 @@
 	var Video = function Video() {
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'video' },
-	    _react2.default.createElement('iframe', { width: '420', height: '315',
+	    { className: 'video embed-responsive embed-responsive-16by9' },
+	    _react2.default.createElement('iframe', { width: '420', height: '315', className: 'embed-responsive-item',
 	      src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
 	  );
 	};
