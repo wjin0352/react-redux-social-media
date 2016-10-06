@@ -44,7 +44,6 @@ PostController.prototype.editPost = function(req, res) {
     Post.update({ _id: req.user.id }, {
       title: req.body.title,
       content: req.body.content,
-      likes: req.body.likes
     }, function (error, post) {
       if (error) {
         reject(error);

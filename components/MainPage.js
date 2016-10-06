@@ -13,5 +13,4 @@ const MainPage = React.createClass({
 });
 
 export default MainPage;
-// <Header />
-// <PostsFeed />
+

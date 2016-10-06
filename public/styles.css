@@ -43,14 +43,45 @@ html {
 
 
 
-
-/* Post Form */
-  .post-form {
-    border: .01em solid black;
+/* Post */
+  .post-container {
   }
 
-   .post-form form {
-    width: 40%;
+  .post-div {
+    border: .01em solid orange;
+    width: 50%;
+    margin: 3em auto;
+    /*height: 500px;*/
+    padding: 4em;
+  }
+
+/* Post Form */
+  .post-form-div {
+    border: .01em solid black;
+    width: 80%;
     margin: 5em auto;
+
+  }
+
+  .post-form {
+    border: .01em solid blue;
+    width: 90%;
+    margin: 3em auto;
+  }
+
+  .post-form-div form {
+    /*border: .01em solid red;*/
+    width: 90%;
+  }
+
+  .post-form textarea {
+    display: block;
+    margin: 2em auto;
+    padding: 2em;
+  }
+
+  .post-form input {
+    display: block;
+    margin: 0em auto 2em auto;
   }
 

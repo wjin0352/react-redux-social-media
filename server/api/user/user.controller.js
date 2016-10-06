@@ -1,4 +1,5 @@
 const User = require('./user.model');
+var passport = require('passport');
 
 const UserController = function () {};
 
@@ -18,7 +19,24 @@ UserController.prototype.getUsers = function (req, res) {
   });
 }
 
-UserController.prototype.createUser = function (req, res) {
+// UserController.prototype.loginUser = function(req, res) {
+//   // If this function gets called, authentication was successful.
+//   // `req.user` contains the authenticated user.
+//   // res.redirect('/users' + req.user.username);
+//   // If authentication succeeds, the next handler will be invoked and the req.user property will be set to the authenticated user.
+//   // res.redirect('/');
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/login',
+//                                    failureFlash: true }),
+
+// };
+
+UserController.prototype.renderLoginPage = function (req, res) {
+  res.redirect('/login');
+};
+
+UserController.prototype.registerUser = function (req, res) {
+  console.log(req.body)
   return new Promise(function (resolve, reject) {
     User.create({
       username: req.body.username,
@@ -36,6 +54,17 @@ UserController.prototype.createUser = function (req, res) {
   }).catch(function (error) {
     console.log(error);
   });
+}
+
+UserController.prototype.me = function(req, res) {
+  if (req.user) {
+    res.status(200).json(req.user);
+  }
+};
+
+UserController.prototype.logout = function(req, res){
+  req.logout();
+  res.redirect('/');
 }
 
 UserController.prototype.editUser = function (req, res) {
