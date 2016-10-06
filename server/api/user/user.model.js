@@ -5,5 +5,9 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   email: { type: String, required: true }
 });
-
+userSchema.methods.validPassword = function (password) {
+  if (password === this.password) {
+    return true;
+  }
+}
 module.exports = mongoose.model('User', userSchema);

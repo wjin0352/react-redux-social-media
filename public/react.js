@@ -27310,9 +27310,13 @@
 	    'container',
 	    { className: 'post-container' },
 	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'some post!'
+	      'div',
+	      { className: 'post-div' },
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        'Open hello-react.html in a web browser and type your name into the text field. Notice that React is only changing the time string in the UI — any input you put in the text field remains, even though you haven\'t written any code to manage this behavior. React figures it out for you and does the right thing. The way we are able to figure this out is that React does not manipulate the DOM unless it needs to. It uses a fast, internal mock DOM to perform diffs and computes the most efficient DOM mutation for you. The inputs to this component are called props — short for "properties". They\'re passed as attributes in JSX syntax. You should think of these as immutable within the component, that is, never write to this.props.'
+	      )
 	    )
 	  );
 	};
@@ -27394,46 +27398,50 @@
 	
 	var Registration = function Registration() {
 	  return _react2.default.createElement(
-	    'div',
-	    { className: 'registration' },
+	    'container',
+	    { className: 'registration-container' },
 	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'Please register with us'
-	    ),
-	    _react2.default.createElement(
-	      'form',
-	      { className: 'register-form' },
+	      'div',
+	      { className: 'registration' },
 	      _react2.default.createElement(
-	        'fieldset',
+	        'h3',
 	        null,
+	        'Please join us'
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        { className: 'register-form' },
 	        _react2.default.createElement(
-	          'legend',
+	          'fieldset',
 	          null,
-	          'Registration'
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'user name: '
-	        ),
-	        _react2.default.createElement('input', { type: 'text', name: 'username' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'email: '
-	        ),
-	        _react2.default.createElement('input', { type: 'text', name: 'email' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'password: '
-	        ),
-	        _react2.default.createElement('input', { type: 'text', name: 'password' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	          _react2.default.createElement(
+	            'legend',
+	            null,
+	            'Registration'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'user name: '
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'email: '
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'email' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'password: '
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'password' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	        )
 	      )
 	    )
 	  );
@@ -27459,39 +27467,43 @@
 	
 	var Login = function Login() {
 	  return _react2.default.createElement(
-	    'div',
-	    { className: 'login' },
+	    'container',
+	    { className: 'login-container' },
 	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'Log please'
-	    ),
-	    _react2.default.createElement(
-	      'form',
-	      { className: 'login-form' },
+	      'div',
+	      { className: 'login' },
 	      _react2.default.createElement(
-	        'fieldset',
+	        'h3',
 	        null,
+	        'Sign in first'
+	      ),
+	      _react2.default.createElement(
+	        'form',
+	        { className: 'login-form' },
 	        _react2.default.createElement(
-	          'legend',
+	          'fieldset',
 	          null,
-	          'Login: '
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'username'
-	        ),
-	        _react2.default.createElement('input', { type: 'text', name: 'username' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'password'
-	        ),
-	        _react2.default.createElement('input', { type: 'text', name: 'password' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	          _react2.default.createElement(
+	            'legend',
+	            null,
+	            'Login: '
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'username'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'password'
+	          ),
+	          _react2.default.createElement('input', { type: 'text', name: 'password' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	        )
 	      )
 	    )
 	  );
