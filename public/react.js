@@ -60,11 +60,11 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _PostsFeed = __webpack_require__(240);
+	var _PostsFeed = __webpack_require__(238);
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(238);
+	var _VideosFeed = __webpack_require__(240);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
@@ -27266,64 +27266,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Video = __webpack_require__(239);
-	
-	var _Video2 = _interopRequireDefault(_Video);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var VideosFeed = function VideosFeed() {
-	  return _react2.default.createElement(
-	    'container',
-	    { className: 'videos-feed-container' },
-	    _react2.default.createElement(_Video2.default, null)
-	  );
-	};
-	
-	exports.default = VideosFeed;
-
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Video = function Video() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'video' },
-	    _react2.default.createElement('iframe', { width: '420', height: '315',
-	      src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
-	  );
-	};
-	
-	exports.default = Video;
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Post = __webpack_require__(241);
+	var _Post = __webpack_require__(239);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -27340,7 +27283,7 @@
 	exports.default = PostsFeed;
 
 /***/ },
-/* 241 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27373,6 +27316,63 @@
 	};
 	
 	exports.default = Post;
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Video = __webpack_require__(241);
+	
+	var _Video2 = _interopRequireDefault(_Video);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var VideosFeed = function VideosFeed() {
+	  return _react2.default.createElement(
+	    'container',
+	    { className: 'videos-feed-container' },
+	    _react2.default.createElement(_Video2.default, null)
+	  );
+	};
+	
+	exports.default = VideosFeed;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Video = function Video() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'video' },
+	    _react2.default.createElement('iframe', { width: '420', height: '315',
+	      src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
+	  );
+	};
+	
+	exports.default = Video;
 
 /***/ },
 /* 242 */
