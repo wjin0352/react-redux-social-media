@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const videoSchema = mongoose.Schema({
-  videolink: String,
+  videolink: { type: String, required: true, unique: true },
   description: String,
   comments: [{ type: mongoose.Schema.Types.ObjectId }],
   userid: { type: mongoose.Schema.Types.ObjectId }
