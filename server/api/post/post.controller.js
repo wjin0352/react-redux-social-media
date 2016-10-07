@@ -41,7 +41,7 @@ PostController.prototype.createPost = function(req, res) {
 
 PostController.prototype.editPost = function(req, res) {
   return new Promise (function (resolve, reject) {
-    Post.update({ _id: req.user.id }, {
+    Post.update({ _id: req.params.id }, {
       title: req.body.title,
       content: req.body.content,
     }, function (error, post) {
@@ -59,8 +59,9 @@ PostController.prototype.editPost = function(req, res) {
 }
 
 PostController.prototype.deletePost = function(req, res) {
+  console.log(req.params.id);
   return new Promise (function (resolve, reject) {
-    Post.remove({ _id: req.user.id }, function (error, post) {
+    Post.remove({ _id: req.params.id }, function (error, post) {
       if (error) {
         reject(error);
       } else {

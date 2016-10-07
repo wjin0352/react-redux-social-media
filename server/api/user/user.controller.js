@@ -56,11 +56,11 @@ UserController.prototype.registerUser = function (req, res) {
   });
 }
 
-UserController.prototype.me = function(req, res) {
-  if (req.user) {
-    res.status(200).json(req.user);
-  }
-};
+// UserController.prototype.me = function(req, res) {
+//   if (req.user) {
+//     res.status(200).json(req.user);
+//   }
+// };
 
 UserController.prototype.logout = function(req, res){
   req.logout();
@@ -103,49 +103,5 @@ UserController.prototype.deleteUser = function (req, res) {
     console.log(error);
   });
 }
-
-// var arr = [{username: "user1", password: "spagetti", email: "haha"}];
-
-// const sendUsers = function (callback) {
-//   return arr;
-// };
-
-// UserController.prototype.getUsers = function (req, res) {
-  // var results = sendUsers();
-  // res.status(200).json(results);
-// }
-
-// UserController.prototype.createUser = function(req, res) {
-//   console.log(req.body);
-//   arr.push(req.body);
-//   res.status(200).json(arr);
-// };
-
-// UserController.prototype.editUser = function(req, res) {
-//   console.log(req.params)
-//   console.log(req.body)
-//   var id = req.params.id;
-//   arr.forEach(function(obj, idx){
-//     if (arr[idx].username === id ) {
-//       // obj.forEach(function(i, attribute) {
-//       //   if (obj[i] != attribute) {
-//       //     obj[i] = attribute
-//       //   }
-//       // })
-//       Object.assign(obj, req.body)
-//     }
-//   })
-//   res.status(200).json(arr);
-// }
-
-// UserController.prototype.deleteUser = function (req, res) {
-//   var id = req.params.id;
-//   arr.forEach(function(obj, idx) {
-//     if (arr[idx].username === id) {
-//       arr.splice(idx, 1);
-//     }
-//   })
-//   res.status(200).json(arr);
-// }
 
 module.exports = UserController.prototype;
