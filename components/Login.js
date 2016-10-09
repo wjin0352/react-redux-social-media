@@ -1,21 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 const Login = React.createClass({
   getInitialState () {
-    return { showModal: false };
-  },
-  close () {
-    this.setState({ showModal: false });
-  },
-  open () {
-    this.setState({ showModal: true });
+    return { showModal: true };
   },
   render: function() {
     return (
-      <container className='login-container'>
-        <Modal.Dialog>
-        <div className='login'>
+      <Modal show={this.state.showModal} >
           <Modal.Header>
             <Modal.Title>
               <h3>Sign in first</h3>
@@ -33,12 +26,12 @@ const Login = React.createClass({
               </fieldset>
             </form>
           </Modal.Body>
-        </div>
         <Modal.Footer>
-          <Button onClick={this.close}>Close</Button>
+          <Link className='login_modal_close_redirect' to='/'>
+            <Button>Close</Button>
+          </Link>
         </Modal.Footer>
-        </Modal.Dialog>
-      </container>
+      </Modal>
     )
   }
 });
