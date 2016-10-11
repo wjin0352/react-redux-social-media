@@ -16,7 +16,7 @@ const router = (
     <Router history={browserHistory}>
       <Route path='/' component={MainPage}>
         <IndexRoute component={PostsFeed}/>
-        <Route path='/videos' component={VideosFeed}/>
+        <Route path='/show_videos' component={VideosFeed}/>
         <Route path='/registration' component={Registration}/>
         <Route path='/login' component={Login}/>
       </Route>

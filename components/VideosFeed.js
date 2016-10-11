@@ -1,12 +1,13 @@
 import React from 'react';
 import Video from './Video';
 
-const VideosFeed = () => {
-  return (
-    <container className='videos-feed-container'>
+const VideosFeed = React.createClass({
+  // var videos =
+  render: function () {
+    return (
       <Video />
-    </container>
-  )
-}
+    )
+  }
+})
 
 export default VideosFeed;

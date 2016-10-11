@@ -10,29 +10,30 @@ html {
 /* Header and NavBar */
   header {
     /*position: fixed;*/
-    width: 100%;
-    border: .01em solid red;
-    z-index: 9999;
-    height: 7em;
-  }
-
-  nav li{
-    display: inline-block;
-    margin-right: 2em;
-    margin-top: 2em;
+    /*width: 100%;*/
+    /*border: .01em solid red;*/
   }
 
   nav {
     text-align: center;
-  }
+  }*/
 
 /* Videos feed container */
-
+  .videosfeed {
+    height: 800px;
+  }
 
 /* Video */
-  .video {
-    text-align: center;
-    margin: 5em;
+  .videos {
+    height: 800px;
+    display: block;
+    width: 25%;
+    margin:3em auto;
+  }
+
+  .iframe-video {
+    width: 420px;
+    height: 315px;
   }
 
 /* Video Form */
@@ -40,8 +41,9 @@ html {
 
 
 /* Posts feed container */
-
-
+  .postsfeed {
+    height: 800px;
+  }
 
 /* Post */
   .post-container {
@@ -70,7 +72,6 @@ html {
   }
 
   .post-form-div form {
-    /*border: .01em solid red;*/
     width: 90%;
   }
 

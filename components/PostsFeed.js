@@ -1,11 +1,12 @@
 import React from 'react';
 import Post from './Post';
+import { Jumbotron } from 'react-bootstrap';
 
 const PostsFeed = () => {
   return (
-    <container className='posts-feed-container'>
+    <Jumbotron className='postsfeed' >
       <Post />
-    </container>
+    </Jumbotron>
   )
 }
 

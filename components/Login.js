@@ -28,7 +28,7 @@ const Login = React.createClass({
           </Modal.Body>
         <Modal.Footer>
           <Link className='login_modal_close_redirect' to='/'>
-            <Button>Close</Button>
+            <Button bsStyle='warning'>Close</Button>
           </Link>
         </Modal.Footer>
       </Modal>

@@ -96,7 +96,7 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPage2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/videos', component: _VideosFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _Registration2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
 	    )
@@ -21561,45 +21561,58 @@
 	
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'nav',
-	      null,
+	      _reactBootstrap.Navbar,
+	      { bsStyle: 'inverse' },
 	      _react2.default.createElement(
-	        _reactBootstrap.ButtonGroup,
+	        _reactBootstrap.Navbar.Header,
 	        null,
 	        _react2.default.createElement(
-	          _reactRouter.IndexLink,
-	          { className: 'home_link', to: '/' },
+	          _reactBootstrap.Navbar.Brand,
+	          null,
+	          'Social Media Blog'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Nav,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.NavItem,
+	          { eventKey: 1 },
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { bsStyle: 'default' },
+	            _reactRouter.IndexLink,
+	            { className: 'home_link', to: '/' },
 	            'Home'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'videos_link', to: '/videos' },
+	          _reactBootstrap.NavItem,
+	          { eventKey: 2 },
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            null,
+	            _reactRouter.Link,
+	            { className: 'videos_link', to: '/show_videos' },
 	            'Videos'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'register_link', to: '/registration' },
+	          _reactBootstrap.NavDropdown,
+	          { eventKey: 3, title: 'Sign in', id: 'basic-nav-dropdown' },
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            null,
-	            'Register'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'login_link', to: '/login' },
+	            _reactBootstrap.MenuItem,
+	            { eventKey: 3.1 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'register_link', to: '/registration' },
+	              'Register'
+	            )
+	          ),
 	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            null,
-	            'Login'
+	            _reactBootstrap.MenuItem,
+	            { eventKey: 3.2 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'login_link', to: '/login' },
+	              'Login'
+	            )
 	          )
 	        )
 	      )
@@ -21608,6 +21621,15 @@
 	});
 	
 	exports.default = Navigation;
+	
+	// <nav>
+	//         <ButtonGroup>
+	//           <IndexLink className='home_link' to="/"><Button bsStyle='link'>Home</Button></IndexLink>
+	//           <Link className='videos_link' to='/videos' ><Button bsStyle='link'>Videos</Button></Link>
+	//           <Link className='register_link' to='/registration' ><Button bsStyle='link'>Register</Button></Link>
+	//           <Link className='login_link' to='/login' ><Button bsStyle='link'>Login</Button></Link>
+	//         </ButtonGroup>
+	//       </nav>
 
 /***/ },
 /* 175 */
@@ -45933,12 +45955,14 @@
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
+	var _reactBootstrap = __webpack_require__(238);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var PostsFeed = function PostsFeed() {
 	  return _react2.default.createElement(
-	    'container',
-	    { className: 'posts-feed-container' },
+	    _reactBootstrap.Jumbotron,
+	    { className: 'postsfeed' },
 	    _react2.default.createElement(_Post2.default, null)
 	  );
 	};
@@ -45999,13 +46023,14 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var VideosFeed = function VideosFeed() {
-	  return _react2.default.createElement(
-	    'container',
-	    { className: 'videos-feed-container' },
-	    _react2.default.createElement(_Video2.default, null)
-	  );
-	};
+	var VideosFeed = _react2.default.createClass({
+	  displayName: 'VideosFeed',
+	
+	  // var videos =
+	  render: function render() {
+	    return _react2.default.createElement(_Video2.default, null);
+	  }
+	});
 	
 	exports.default = VideosFeed;
 
@@ -46025,16 +46050,26 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Video = function Video() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'video embed-responsive embed-responsive-16by9' },
-	    _react2.default.createElement('iframe', { width: '420', height: '315', className: 'embed-responsive-item',
-	      src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
-	  );
-	};
+	var Video = _react2.default.createClass({
+	  displayName: 'Video',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'videos' },
+	      _react2.default.createElement('iframe', { className: 'iframe-video',
+	        src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
+	    );
+	  }
+	});
 	
 	exports.default = Video;
+	
+	// <div style={{width: 660, height: 'auto'}}>
+	//     <ResponsiveEmbed a16by9>
+	//       <embed type="image/svg+xml" src="/assets/TheresaKnott_castle.svg" />
+	//     </ResponsiveEmbed>
+	//   </div>
 
 /***/ },
 /* 492 */
@@ -46056,10 +46091,36 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var fetch = __webpack_require__(519);
+	
 	var Registration = _react2.default.createClass({
 	  displayName: 'Registration',
 	  getInitialState: function getInitialState() {
 	    return { showModal: true };
+	  },
+	  handleRegistration: function handleRegistration(e) {
+	    e.preventDefault();
+	    // use fetch to make api call to backend then dispatch action creator if you need.
+	    return function (userInfo) {
+	      // .post('/register', controller.registerUser)
+	      var url = 'http://localhost/8000/users/register';
+	      return fetch(url, {
+	        method: 'post',
+	        headers: {
+	          'content-type': 'application/json'
+	        },
+	        body: JSON.stringify({ userInfo: userInfo })
+	      }).then(function (response) {
+	        if (response.status < 200 || response.status >= 300) {
+	          var error = new Error(response.statusText);
+	          error.response = response;
+	          throw error;
+	        }
+	        return response.json({});
+	      }).catch(function (error) {
+	        console.log(error);
+	      });
+	    };
 	  },
 	
 	  render: function render() {
@@ -46084,7 +46145,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'form',
-	          { className: 'register-form' },
+	          { className: 'register-form', onClick: this.handleRegistration },
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -46126,7 +46187,7 @@
 	          { className: 'register_modal_close_redirect', to: '/' },
 	          _react2.default.createElement(
 	            _reactBootstrap.Button,
-	            null,
+	            { bsStyle: 'warning' },
 	            'Main Page'
 	          )
 	        )
@@ -46220,7 +46281,7 @@
 	          { className: 'login_modal_close_redirect', to: '/' },
 	          _react2.default.createElement(
 	            _reactBootstrap.Button,
-	            null,
+	            { bsStyle: 'warning' },
 	            'Close'
 	          )
 	        )
@@ -47704,15 +47765,18 @@
 	
 	var _redux = __webpack_require__(501);
 	
-	var _redux2 = _interopRequireDefault(_redux);
-	
 	var _index = __webpack_require__(516);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_index2.default);
+	var redux = __webpack_require__(501);
+	
+	var applyMiddleware = redux.applyMiddleware;
+	var thunk = __webpack_require__(522).default;
+	// added thunk middleware for async calls to database
+	var store = (0, _redux.createStore)(_index2.default, applyMiddleware(thunk));
 	
 	exports.default = store;
 
@@ -47732,10 +47796,15 @@
 	
 	var _video2 = _interopRequireDefault(_video);
 	
+	var _register = __webpack_require__(521);
+	
+	var _register2 = _interopRequireDefault(_register);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var allReducers = (0, _redux.combineReducers)({
-	  video: _video2.default
+	  video: _video2.default,
+	  register: _register2.default
 	});
 	
 	exports.default = allReducers;
@@ -47783,17 +47852,542 @@
 	});
 	exports.video = video;
 	exports.post = post;
+	exports.register = register;
 	function video(video) {
 	  return {
-	    type: 'VIDEO'
+	    type: 'VIDEO',
+	    video: video
 	  };
 	};
 	
 	function post(post) {
 	  return {
-	    type: 'POST'
+	    type: 'POST',
+	    post: post
 	  };
 	};
+	
+	function register(userInfo) {
+	  return {
+	    type: 'REGISTER_USER',
+	    userInfo: userInfo
+	  };
+	}
+
+/***/ },
+/* 519 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// the whatwg-fetch polyfill installs the fetch() function
+	// on the global object (window or self)
+	//
+	// Return that as the export for use in Webpack, Browserify etc.
+	__webpack_require__(520);
+	module.exports = self.fetch.bind(self);
+
+
+/***/ },
+/* 520 */
+/***/ function(module, exports) {
+
+	(function(self) {
+	  'use strict';
+	
+	  if (self.fetch) {
+	    return
+	  }
+	
+	  var support = {
+	    searchParams: 'URLSearchParams' in self,
+	    iterable: 'Symbol' in self && 'iterator' in Symbol,
+	    blob: 'FileReader' in self && 'Blob' in self && (function() {
+	      try {
+	        new Blob()
+	        return true
+	      } catch(e) {
+	        return false
+	      }
+	    })(),
+	    formData: 'FormData' in self,
+	    arrayBuffer: 'ArrayBuffer' in self
+	  }
+	
+	  function normalizeName(name) {
+	    if (typeof name !== 'string') {
+	      name = String(name)
+	    }
+	    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+	      throw new TypeError('Invalid character in header field name')
+	    }
+	    return name.toLowerCase()
+	  }
+	
+	  function normalizeValue(value) {
+	    if (typeof value !== 'string') {
+	      value = String(value)
+	    }
+	    return value
+	  }
+	
+	  // Build a destructive iterator for the value list
+	  function iteratorFor(items) {
+	    var iterator = {
+	      next: function() {
+	        var value = items.shift()
+	        return {done: value === undefined, value: value}
+	      }
+	    }
+	
+	    if (support.iterable) {
+	      iterator[Symbol.iterator] = function() {
+	        return iterator
+	      }
+	    }
+	
+	    return iterator
+	  }
+	
+	  function Headers(headers) {
+	    this.map = {}
+	
+	    if (headers instanceof Headers) {
+	      headers.forEach(function(value, name) {
+	        this.append(name, value)
+	      }, this)
+	
+	    } else if (headers) {
+	      Object.getOwnPropertyNames(headers).forEach(function(name) {
+	        this.append(name, headers[name])
+	      }, this)
+	    }
+	  }
+	
+	  Headers.prototype.append = function(name, value) {
+	    name = normalizeName(name)
+	    value = normalizeValue(value)
+	    var list = this.map[name]
+	    if (!list) {
+	      list = []
+	      this.map[name] = list
+	    }
+	    list.push(value)
+	  }
+	
+	  Headers.prototype['delete'] = function(name) {
+	    delete this.map[normalizeName(name)]
+	  }
+	
+	  Headers.prototype.get = function(name) {
+	    var values = this.map[normalizeName(name)]
+	    return values ? values[0] : null
+	  }
+	
+	  Headers.prototype.getAll = function(name) {
+	    return this.map[normalizeName(name)] || []
+	  }
+	
+	  Headers.prototype.has = function(name) {
+	    return this.map.hasOwnProperty(normalizeName(name))
+	  }
+	
+	  Headers.prototype.set = function(name, value) {
+	    this.map[normalizeName(name)] = [normalizeValue(value)]
+	  }
+	
+	  Headers.prototype.forEach = function(callback, thisArg) {
+	    Object.getOwnPropertyNames(this.map).forEach(function(name) {
+	      this.map[name].forEach(function(value) {
+	        callback.call(thisArg, value, name, this)
+	      }, this)
+	    }, this)
+	  }
+	
+	  Headers.prototype.keys = function() {
+	    var items = []
+	    this.forEach(function(value, name) { items.push(name) })
+	    return iteratorFor(items)
+	  }
+	
+	  Headers.prototype.values = function() {
+	    var items = []
+	    this.forEach(function(value) { items.push(value) })
+	    return iteratorFor(items)
+	  }
+	
+	  Headers.prototype.entries = function() {
+	    var items = []
+	    this.forEach(function(value, name) { items.push([name, value]) })
+	    return iteratorFor(items)
+	  }
+	
+	  if (support.iterable) {
+	    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+	  }
+	
+	  function consumed(body) {
+	    if (body.bodyUsed) {
+	      return Promise.reject(new TypeError('Already read'))
+	    }
+	    body.bodyUsed = true
+	  }
+	
+	  function fileReaderReady(reader) {
+	    return new Promise(function(resolve, reject) {
+	      reader.onload = function() {
+	        resolve(reader.result)
+	      }
+	      reader.onerror = function() {
+	        reject(reader.error)
+	      }
+	    })
+	  }
+	
+	  function readBlobAsArrayBuffer(blob) {
+	    var reader = new FileReader()
+	    reader.readAsArrayBuffer(blob)
+	    return fileReaderReady(reader)
+	  }
+	
+	  function readBlobAsText(blob) {
+	    var reader = new FileReader()
+	    reader.readAsText(blob)
+	    return fileReaderReady(reader)
+	  }
+	
+	  function Body() {
+	    this.bodyUsed = false
+	
+	    this._initBody = function(body) {
+	      this._bodyInit = body
+	      if (typeof body === 'string') {
+	        this._bodyText = body
+	      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+	        this._bodyBlob = body
+	      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+	        this._bodyFormData = body
+	      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	        this._bodyText = body.toString()
+	      } else if (!body) {
+	        this._bodyText = ''
+	      } else if (support.arrayBuffer && ArrayBuffer.prototype.isPrototypeOf(body)) {
+	        // Only support ArrayBuffers for POST method.
+	        // Receiving ArrayBuffers happens via Blobs, instead.
+	      } else {
+	        throw new Error('unsupported BodyInit type')
+	      }
+	
+	      if (!this.headers.get('content-type')) {
+	        if (typeof body === 'string') {
+	          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+	        } else if (this._bodyBlob && this._bodyBlob.type) {
+	          this.headers.set('content-type', this._bodyBlob.type)
+	        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+	          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+	        }
+	      }
+	    }
+	
+	    if (support.blob) {
+	      this.blob = function() {
+	        var rejected = consumed(this)
+	        if (rejected) {
+	          return rejected
+	        }
+	
+	        if (this._bodyBlob) {
+	          return Promise.resolve(this._bodyBlob)
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as blob')
+	        } else {
+	          return Promise.resolve(new Blob([this._bodyText]))
+	        }
+	      }
+	
+	      this.arrayBuffer = function() {
+	        return this.blob().then(readBlobAsArrayBuffer)
+	      }
+	
+	      this.text = function() {
+	        var rejected = consumed(this)
+	        if (rejected) {
+	          return rejected
+	        }
+	
+	        if (this._bodyBlob) {
+	          return readBlobAsText(this._bodyBlob)
+	        } else if (this._bodyFormData) {
+	          throw new Error('could not read FormData body as text')
+	        } else {
+	          return Promise.resolve(this._bodyText)
+	        }
+	      }
+	    } else {
+	      this.text = function() {
+	        var rejected = consumed(this)
+	        return rejected ? rejected : Promise.resolve(this._bodyText)
+	      }
+	    }
+	
+	    if (support.formData) {
+	      this.formData = function() {
+	        return this.text().then(decode)
+	      }
+	    }
+	
+	    this.json = function() {
+	      return this.text().then(JSON.parse)
+	    }
+	
+	    return this
+	  }
+	
+	  // HTTP methods whose capitalization should be normalized
+	  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+	
+	  function normalizeMethod(method) {
+	    var upcased = method.toUpperCase()
+	    return (methods.indexOf(upcased) > -1) ? upcased : method
+	  }
+	
+	  function Request(input, options) {
+	    options = options || {}
+	    var body = options.body
+	    if (Request.prototype.isPrototypeOf(input)) {
+	      if (input.bodyUsed) {
+	        throw new TypeError('Already read')
+	      }
+	      this.url = input.url
+	      this.credentials = input.credentials
+	      if (!options.headers) {
+	        this.headers = new Headers(input.headers)
+	      }
+	      this.method = input.method
+	      this.mode = input.mode
+	      if (!body) {
+	        body = input._bodyInit
+	        input.bodyUsed = true
+	      }
+	    } else {
+	      this.url = input
+	    }
+	
+	    this.credentials = options.credentials || this.credentials || 'omit'
+	    if (options.headers || !this.headers) {
+	      this.headers = new Headers(options.headers)
+	    }
+	    this.method = normalizeMethod(options.method || this.method || 'GET')
+	    this.mode = options.mode || this.mode || null
+	    this.referrer = null
+	
+	    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+	      throw new TypeError('Body not allowed for GET or HEAD requests')
+	    }
+	    this._initBody(body)
+	  }
+	
+	  Request.prototype.clone = function() {
+	    return new Request(this)
+	  }
+	
+	  function decode(body) {
+	    var form = new FormData()
+	    body.trim().split('&').forEach(function(bytes) {
+	      if (bytes) {
+	        var split = bytes.split('=')
+	        var name = split.shift().replace(/\+/g, ' ')
+	        var value = split.join('=').replace(/\+/g, ' ')
+	        form.append(decodeURIComponent(name), decodeURIComponent(value))
+	      }
+	    })
+	    return form
+	  }
+	
+	  function headers(xhr) {
+	    var head = new Headers()
+	    var pairs = (xhr.getAllResponseHeaders() || '').trim().split('\n')
+	    pairs.forEach(function(header) {
+	      var split = header.trim().split(':')
+	      var key = split.shift().trim()
+	      var value = split.join(':').trim()
+	      head.append(key, value)
+	    })
+	    return head
+	  }
+	
+	  Body.call(Request.prototype)
+	
+	  function Response(bodyInit, options) {
+	    if (!options) {
+	      options = {}
+	    }
+	
+	    this.type = 'default'
+	    this.status = options.status
+	    this.ok = this.status >= 200 && this.status < 300
+	    this.statusText = options.statusText
+	    this.headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers)
+	    this.url = options.url || ''
+	    this._initBody(bodyInit)
+	  }
+	
+	  Body.call(Response.prototype)
+	
+	  Response.prototype.clone = function() {
+	    return new Response(this._bodyInit, {
+	      status: this.status,
+	      statusText: this.statusText,
+	      headers: new Headers(this.headers),
+	      url: this.url
+	    })
+	  }
+	
+	  Response.error = function() {
+	    var response = new Response(null, {status: 0, statusText: ''})
+	    response.type = 'error'
+	    return response
+	  }
+	
+	  var redirectStatuses = [301, 302, 303, 307, 308]
+	
+	  Response.redirect = function(url, status) {
+	    if (redirectStatuses.indexOf(status) === -1) {
+	      throw new RangeError('Invalid status code')
+	    }
+	
+	    return new Response(null, {status: status, headers: {location: url}})
+	  }
+	
+	  self.Headers = Headers
+	  self.Request = Request
+	  self.Response = Response
+	
+	  self.fetch = function(input, init) {
+	    return new Promise(function(resolve, reject) {
+	      var request
+	      if (Request.prototype.isPrototypeOf(input) && !init) {
+	        request = input
+	      } else {
+	        request = new Request(input, init)
+	      }
+	
+	      var xhr = new XMLHttpRequest()
+	
+	      function responseURL() {
+	        if ('responseURL' in xhr) {
+	          return xhr.responseURL
+	        }
+	
+	        // Avoid security warnings on getResponseHeader when not allowed by CORS
+	        if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+	          return xhr.getResponseHeader('X-Request-URL')
+	        }
+	
+	        return
+	      }
+	
+	      xhr.onload = function() {
+	        var options = {
+	          status: xhr.status,
+	          statusText: xhr.statusText,
+	          headers: headers(xhr),
+	          url: responseURL()
+	        }
+	        var body = 'response' in xhr ? xhr.response : xhr.responseText
+	        resolve(new Response(body, options))
+	      }
+	
+	      xhr.onerror = function() {
+	        reject(new TypeError('Network request failed'))
+	      }
+	
+	      xhr.ontimeout = function() {
+	        reject(new TypeError('Network request failed'))
+	      }
+	
+	      xhr.open(request.method, request.url, true)
+	
+	      if (request.credentials === 'include') {
+	        xhr.withCredentials = true
+	      }
+	
+	      if ('responseType' in xhr && support.blob) {
+	        xhr.responseType = 'blob'
+	      }
+	
+	      request.headers.forEach(function(value, name) {
+	        xhr.setRequestHeader(name, value)
+	      })
+	
+	      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+	    })
+	  }
+	  self.fetch.polyfill = true
+	})(typeof self !== 'undefined' ? self : this);
+
+
+/***/ },
+/* 521 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _actions = __webpack_require__(518);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {
+	  username: '',
+	  password: '',
+	  email: ''
+	};
+	
+	var register = function register() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'REGISTER_USER':
+	      return state;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = register;
+
+/***/ },
+/* 522 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);
