@@ -9,28 +9,40 @@ const Registration = React.createClass({
   },
   handleRegistration (e) {
     e.preventDefault();
+
     // use fetch to make api call to backend then dispatch action creator if you need.
-    return function (userInfo) {
+    // return function (formData) {
       // .post('/register', controller.registerUser)
-      var url = 'http://localhost/8000/users/register';
+      // console.log(this.refs.username.value);
+      // console.log(this.refs.password.value);
+      // console.log(this.refs.email.value);
+      var formInput = {
+        username: this.refs.username.value,
+        password: this.refs.password.value,
+        email: this.refs.email.value
+      };
+            console.log(formInput)
+
+      var url = "http://localhost:8000/users/register";
       return fetch (url, {
-        method: 'post',
+        method: 'POST',
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify({userInfo})
+        body: JSON.stringify(formInput)
       }).then(function (response) {
         if (response.status < 200 || response.status >= 300) {
           var error = new Error (response.statusText)
           error.response = response
           throw error;
         }
-        return response.json({});
+        return response.json({data});
+      }).then( (data) => {
+        console.log(data);
       })
       .catch(function (error) {
         console.log(error);
       });
-    }
   },
   render: function () {
   return (
@@ -41,16 +53,16 @@ const Registration = React.createClass({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className='register-form' onClick={this.handleRegistration}>
+          <form className='register-form' onSubmit={this.handleRegistration}>
             <fieldset>
               <legend>Registration</legend>
               <li>user name: </li>
-                <input type='text' name='username'/><br/>
+                <input type='text' name='username' ref='username'/><br/>
               <li>email: </li>
-                <input type='text' name='email'/><br/>
+                <input type='text' name='email' ref='email'/><br/>
               <li>password: </li>
-                <input type='text' name='password'/><br/>
-              <input type="submit" value="done"/>
+                <input type='text' name='password' ref='password'/><br/>
+              <button type="submit">submit</button>
             </fieldset>
           </form>
         </Modal.Body>
