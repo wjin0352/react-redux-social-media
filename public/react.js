@@ -46093,6 +46093,7 @@
 	
 	var fetch = __webpack_require__(493);
 	
+	
 	var Registration = _react2.default.createClass({
 	  displayName: 'Registration',
 	  getInitialState: function getInitialState() {
@@ -46100,21 +46101,19 @@
 	  },
 	  handleRegistration: function handleRegistration(e) {
 	    e.preventDefault();
-	
-	    // use fetch to make api call to backend then dispatch action creator if you need.
-	    // return function (formData) {
-	    // .post('/register', controller.registerUser)
-	    // console.log(this.refs.username.value);
-	    // console.log(this.refs.password.value);
-	    // console.log(this.refs.email.value);
+	    // grab form input values
+	    var form = e.target;
+	    var user = form.querySelector('[name="username"]').value;
+	    var pass = form.querySelector('[name="password"]').value;
+	    var email = form.querySelector('[name="email"]').value;
 	    var formInput = {
-	      username: this.refs.username.value,
-	      password: this.refs.password.value,
-	      email: this.refs.email.value
+	      username: user,
+	      password: pass,
+	      email: email
 	    };
-	    console.log(formInput);
-	
 	    var url = "http://localhost:8000/users/register";
+	
+	    // use fetch to make api call to backend then dispatch an action creator if you need.
 	    return fetch(url, {
 	      method: 'POST',
 	      headers: {
@@ -46127,9 +46126,11 @@
 	        error.response = response;
 	        throw error;
 	      }
-	      return response.json({ data: data });
-	    }).then(function (data) {
-	      console.log(data);
+	      return response.json();
+	    }).then(function (results) {
+	      console.log(results);
+	      // clientside redirect to home
+	      _reactRouter.browserHistory.push('/');
 	    }).catch(function (error) {
 	      console.log(error);
 	    });
@@ -46171,21 +46172,21 @@
 	              null,
 	              'user name: '
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username' }),
+	            _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
 	              'li',
 	              null,
 	              'email: '
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'email', ref: 'email' }),
+	            _react2.default.createElement('input', { type: 'text', name: 'email', ref: 'email', required: true }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
 	              'li',
 	              null,
 	              'password: '
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'password', ref: 'password' }),
+	            _react2.default.createElement('input', { type: 'text', name: 'password', ref: 'password', required: true }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
 	              'button',

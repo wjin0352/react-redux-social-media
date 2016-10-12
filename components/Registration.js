@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 const fetch = require('isomorphic-fetch');
+import { browserHistory } from 'react-router';
 
 const Registration = React.createClass({
   getInitialState () {
@@ -9,40 +10,40 @@ const Registration = React.createClass({
   },
   handleRegistration (e) {
     e.preventDefault();
+    // grab form input values
+    var form = e.target;
+    var user = form.querySelector('[name="username"]').value;
+    var pass = form.querySelector('[name="password"]').value;
+    var email = form.querySelector('[name="email"]').value;
+    var formInput = {
+      username: user,
+      password: pass,
+      email: email
+    };
+    var url = "http://localhost:8000/users/register";
 
-    // use fetch to make api call to backend then dispatch action creator if you need.
-    // return function (formData) {
-      // .post('/register', controller.registerUser)
-      // console.log(this.refs.username.value);
-      // console.log(this.refs.password.value);
-      // console.log(this.refs.email.value);
-      var formInput = {
-        username: this.refs.username.value,
-        password: this.refs.password.value,
-        email: this.refs.email.value
-      };
-            console.log(formInput)
-
-      var url = "http://localhost:8000/users/register";
-      return fetch (url, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(formInput)
-      }).then(function (response) {
-        if (response.status < 200 || response.status >= 300) {
-          var error = new Error (response.statusText)
-          error.response = response
-          throw error;
-        }
-        return response.json({data});
-      }).then( (data) => {
-        console.log(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // use fetch to make api call to backend then dispatch an action creator if you need.
+    return fetch (url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(formInput)
+    }).then(function (response) {
+      if (response.status < 200 || response.status >= 300) {
+        var error = new Error (response.statusText)
+        error.response = response
+        throw error;
+      }
+      return response.json();
+    }).then( (results) => {
+      console.log(results);
+      // clientside redirect to home
+      browserHistory.push( '/');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   },
   render: function () {
   return (
@@ -57,11 +58,11 @@ const Registration = React.createClass({
             <fieldset>
               <legend>Registration</legend>
               <li>user name: </li>
-                <input type='text' name='username' ref='username'/><br/>
+                <input type='text' name='username' ref='username' required /><br/>
               <li>email: </li>
-                <input type='text' name='email' ref='email'/><br/>
+                <input type='text' name='email' ref='email' required /><br/>
               <li>password: </li>
-                <input type='text' name='password' ref='password'/><br/>
+                <input type='text' name='password' ref='password' required /><br/>
               <button type="submit">submit</button>
             </fieldset>
           </form>
