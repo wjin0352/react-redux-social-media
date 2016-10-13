@@ -1,10 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
+const fetch = require('isomorphic-fetch');
 
 const Login = React.createClass({
   getInitialState () {
     return { showModal: true };
+  },
+  handleLogin (e) {
+    e.preventDefault();
+    // grab input values
+    var form = e.target;
+    var name = form.querySelector('[name="username"]').value;
+    var pass = form.querySelector('[name="password"]').value;
+
+    var userCred = {
+      username: name,
+      password: pass
+    }
+    var url = "http://localhost:8000/users/login";
+    console.log(userCred);
+    this.props.loginUserAsync(userCred, url);
   },
   render: function() {
     return (
@@ -15,14 +31,14 @@ const Login = React.createClass({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='login-form'>
+            <form className='login-form' onSubmit={this.handleLogin}>
               <fieldset>
                 <legend>Login: </legend>
                 <li>username</li>
-                  <input type='text' name='username'/><br/>
+                  <input type='text' name='username' required /><br/>
                 <li>password</li>
-                  <input type='text' name='password'/><br/>
-                <input type="submit" value="done"/>
+                  <input type='password' name='password' required /><br/>
+                <button type="submit" value="done">Login</button>
               </fieldset>
             </form>
           </Modal.Body>

@@ -72,13 +72,13 @@
 	
 	var _RegistrationContainer2 = _interopRequireDefault(_RegistrationContainer);
 	
-	var _Login = __webpack_require__(523);
+	var _LoginContainer = __webpack_require__(525);
 	
-	var _Login2 = _interopRequireDefault(_Login);
+	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
 	var _reactRouter = __webpack_require__(175);
 	
-	var _reactRedux = __webpack_require__(515);
+	var _reactRedux = __webpack_require__(516);
 	
 	var _store = __webpack_require__(496);
 	
@@ -98,7 +98,7 @@
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default })
 	    )
 	  )
 	);
@@ -21621,15 +21621,6 @@
 	});
 	
 	exports.default = Navigation;
-	
-	// <nav>
-	//         <ButtonGroup>
-	//           <IndexLink className='home_link' to="/"><Button bsStyle='link'>Home</Button></IndexLink>
-	//           <Link className='videos_link' to='/videos' ><Button bsStyle='link'>Videos</Button></Link>
-	//           <Link className='register_link' to='/registration' ><Button bsStyle='link'>Register</Button></Link>
-	//           <Link className='login_link' to='/login' ><Button bsStyle='link'>Login</Button></Link>
-	//         </ButtonGroup>
-	//       </nav>
 
 /***/ },
 /* 175 */
@@ -46093,9 +46084,9 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(515);
+	var _reactRedux = __webpack_require__(516);
 	
-	var _Registration = __webpack_require__(522);
+	var _Registration = __webpack_require__(523);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
@@ -46135,10 +46126,16 @@
 	exports.registerUserAsync = registerUserAsync;
 	exports.registerSuccess = registerSuccess;
 	exports.registerError = registerError;
+	exports.loginUserAsync = loginUserAsync;
+	exports.loginSuccess = loginSuccess;
+	exports.loginError = loginError;
 	
 	var _reactRouter = __webpack_require__(175);
 	
 	var fetch = __webpack_require__(494);
+	
+	
+	/* VIDEO ACTIONS */
 	function video(video) {
 	  return {
 	    type: 'VIDEO',
@@ -46146,6 +46143,7 @@
 	  };
 	};
 	
+	/* POST ACTIONS */
 	function post(post) {
 	  return {
 	    type: 'POST',
@@ -46153,6 +46151,7 @@
 	  };
 	};
 	
+	/* REGISTRATION ACTIONS */
 	function registerUserAsync(formInput, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
@@ -46189,7 +46188,28 @@
 	  };
 	};
 	
-	// export { registerUserAsync };
+	/* LOGIN ACTIONS */
+	function loginUserAsync(userCred, url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: ''
+	    });
+	  };
+	}
+	
+	function loginSuccess(user) {
+	  return {
+	    type: 'LOGIN_SUCCESS',
+	    user: user
+	  };
+	}
+	
+	function loginError(error) {
+	  return {
+	    type: 'LOGIN_ERROR',
+	    error: error
+	  };
+	}
 
 /***/ },
 /* 494 */
@@ -46663,7 +46683,7 @@
 	var redux = __webpack_require__(497);
 	
 	var applyMiddleware = redux.applyMiddleware;
-	var thunk = __webpack_require__(514).default;
+	var thunk = __webpack_require__(515).default;
 	// added thunk middleware for async calls to database
 	var store = (0, _redux.createStore)(_index2.default, applyMiddleware(thunk));
 	
@@ -47552,11 +47572,16 @@
 	
 	var _register2 = _interopRequireDefault(_register);
 	
+	var _login = __webpack_require__(514);
+	
+	var _login2 = _interopRequireDefault(_login);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var allReducers = (0, _redux.combineReducers)({
 	  video: _video2.default,
-	  register: _register2.default
+	  register: _register2.default,
+	  login: _login2.default
 	});
 	
 	exports.default = allReducers;
@@ -47642,6 +47667,42 @@
 
 /***/ },
 /* 514 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {};
+	
+	var login = function login() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'LOGIN_SUCCESS':
+	      return _extends({}, state);
+	    case 'LOGIN_ERROR':
+	      return _extends({}, state);
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = login;
+
+/***/ },
+/* 515 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47669,7 +47730,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 515 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47677,11 +47738,11 @@
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(516);
+	var _Provider = __webpack_require__(517);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(519);
+	var _connect = __webpack_require__(520);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -47691,7 +47752,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 516 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47701,11 +47762,11 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(517);
+	var _storeShape = __webpack_require__(518);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(518);
+	var _warning = __webpack_require__(519);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -47775,7 +47836,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 517 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47791,7 +47852,7 @@
 	});
 
 /***/ },
-/* 518 */
+/* 519 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47820,7 +47881,7 @@
 	}
 
 /***/ },
-/* 519 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47832,19 +47893,19 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(517);
+	var _storeShape = __webpack_require__(518);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(520);
+	var _shallowEqual = __webpack_require__(521);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(521);
+	var _wrapActionCreators = __webpack_require__(522);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(518);
+	var _warning = __webpack_require__(519);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -48219,7 +48280,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 520 */
+/* 521 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48250,7 +48311,7 @@
 	}
 
 /***/ },
-/* 521 */
+/* 522 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48267,7 +48328,7 @@
 	}
 
 /***/ },
-/* 522 */
+/* 523 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48285,9 +48346,6 @@
 	var _reactBootstrap = __webpack_require__(238);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var fetch = __webpack_require__(494);
-	
 	
 	var Registration = _react2.default.createClass({
 	  displayName: 'Registration',
@@ -48392,7 +48450,7 @@
 	exports.default = Registration;
 
 /***/ },
-/* 523 */
+/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48411,10 +48469,27 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var fetch = __webpack_require__(494);
+	
 	var Login = _react2.default.createClass({
 	  displayName: 'Login',
 	  getInitialState: function getInitialState() {
 	    return { showModal: true };
+	  },
+	  handleLogin: function handleLogin(e) {
+	    e.preventDefault();
+	    // grab input values
+	    var form = e.target;
+	    var name = form.querySelector('[name="username"]').value;
+	    var pass = form.querySelector('[name="password"]').value;
+	
+	    var userCred = {
+	      username: name,
+	      password: pass
+	    };
+	    var url = "http://localhost:8000/users/login";
+	    console.log(userCred);
+	    this.props.loginUserAsync(userCred, url);
 	  },
 	
 	  render: function render() {
@@ -48439,7 +48514,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'form',
-	          { className: 'login-form' },
+	          { className: 'login-form', onSubmit: this.handleLogin },
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -48453,16 +48528,20 @@
 	              null,
 	              'username'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'username' }),
+	            _react2.default.createElement('input', { type: 'text', name: 'username', required: true }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
 	              'li',
 	              null,
 	              'password'
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'password' }),
+	            _react2.default.createElement('input', { type: 'password', name: 'password', required: true }),
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('input', { type: 'submit', value: 'done' })
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', value: 'done' },
+	              'Login'
+	            )
 	          )
 	        )
 	      ),
@@ -48484,6 +48563,56 @@
 	});
 	
 	exports.default = Login;
+
+/***/ },
+/* 525 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(516);
+	
+	var _Login = __webpack_require__(524);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    login_user: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    loginUserAsync: function loginUserAsync(userCred, url) {
+	      dispatch(actions.loginUserAsync(userCred, url));
+	    }
+	  };
+	};
+	
+	var LoginContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
+	
+	exports.default = LoginContainer;
 
 /***/ }
 /******/ ]);

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
-const fetch = require('isomorphic-fetch');
-import { browserHistory } from 'react-router';
 
 const Registration = React.createClass({
   getInitialState () {

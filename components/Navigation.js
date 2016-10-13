@@ -33,12 +33,3 @@ const Navigation = React.createClass({
 });
 
 export default Navigation;
-
-// <nav>
-//         <ButtonGroup>
-//           <IndexLink className='home_link' to="/"><Button bsStyle='link'>Home</Button></IndexLink>
-//           <Link className='videos_link' to='/videos' ><Button bsStyle='link'>Videos</Button></Link>
-//           <Link className='register_link' to='/registration' ><Button bsStyle='link'>Register</Button></Link>
-//           <Link className='login_link' to='/login' ><Button bsStyle='link'>Login</Button></Link>
-//         </ButtonGroup>
-//       </nav>

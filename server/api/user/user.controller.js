@@ -56,12 +56,6 @@ UserController.prototype.registerUser = function (req, res) {
   });
 }
 
-// UserController.prototype.me = function(req, res) {
-//   if (req.user) {
-//     res.status(200).json(req.user);
-//   }
-// };
-
 UserController.prototype.logout = function(req, res){
   req.logout();
   res.redirect('/');
