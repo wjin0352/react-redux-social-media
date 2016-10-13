@@ -15,35 +15,15 @@ const Registration = React.createClass({
     var user = form.querySelector('[name="username"]').value;
     var pass = form.querySelector('[name="password"]').value;
     var email = form.querySelector('[name="email"]').value;
+
     var formInput = {
       username: user,
       password: pass,
       email: email
     };
     var url = "http://localhost:8000/users/register";
-
-    // use fetch to make api call to backend then dispatch an action creator if you need.
-    return fetch (url, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(formInput)
-    }).then(function (response) {
-      if (response.status < 200 || response.status >= 300) {
-        var error = new Error (response.statusText)
-        error.response = response
-        throw error;
-      }
-      return response.json();
-    }).then( (results) => {
-      console.log(results);
-      // clientside redirect to home
-      browserHistory.push( '/');
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    // this.props.dispatch(actions.registerUserAsync (formInput, url));
+    this.props.registerUserAsync(formInput, url);
   },
   render: function () {
   return (
@@ -60,9 +40,9 @@ const Registration = React.createClass({
               <li>user name: </li>
                 <input type='text' name='username' ref='username' required /><br/>
               <li>email: </li>
-                <input type='text' name='email' ref='email' required /><br/>
+                <input type='email' name='email' ref='email' required /><br/>
               <li>password: </li>
-                <input type='text' name='password' ref='password' required /><br/>
+                <input type='password' name='password' ref='password' required /><br/>
               <button type="submit">submit</button>
             </fieldset>
           </form>
