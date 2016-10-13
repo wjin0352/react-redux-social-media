@@ -19,21 +19,9 @@ UserController.prototype.getUsers = function (req, res) {
   });
 }
 
-// UserController.prototype.loginUser = function(req, res) {
-//   // If this function gets called, authentication was successful.
-//   // `req.user` contains the authenticated user.
-//   // res.redirect('/users' + req.user.username);
-//   // If authentication succeeds, the next handler will be invoked and the req.user property will be set to the authenticated user.
-//   // res.redirect('/');
-//   passport.authenticate('local', { successRedirect: '/',
-//                                    failureRedirect: '/login',
-//                                    failureFlash: true }),
-
+// UserController.prototype.renderLoginPage = function (req, res) {
+//   res.redirect('/login');
 // };
-
-UserController.prototype.renderLoginPage = function (req, res) {
-  res.redirect('/login');
-};
 
 UserController.prototype.registerUser = function (req, res) {
   console.log(req.body)

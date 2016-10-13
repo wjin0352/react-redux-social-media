@@ -59,10 +59,21 @@ import { browserHistory } from 'react-router';
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
       return fetch(url, {
-        method: ''
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(userCred)
       })
-    }
-  }
+      .then(user => user.json())
+      .then(jsonData => {
+        dispatch(loginSuccess(jsonData))
+        console.log(jsonData);
+        browserHistory.push('/')
+      })
+      .catch(err => dispatch(loginError(err.message)));
+    };
+  };
 
   export function loginSuccess (user) {
     return {

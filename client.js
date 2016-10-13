@@ -6,6 +6,8 @@ import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
 import RegistrationContainer from './containers/RegistrationContainer';
 import LoginContainer from './containers/LoginContainer';
+import NewPost from './components/NewPost';
+import NewVideo from './components/NewVideo';
 
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -17,6 +19,8 @@ const router = (
       <Route path='/' component={MainPage}>
         <IndexRoute component={PostsFeed}/>
         <Route path='/show_videos' component={VideosFeed}/>
+        <Route path='/new_post' component={NewPost}/>
+        <Route path='/new_video' component={NewVideo}/>
         <Route path='/registration' component={RegistrationContainer}/>
         <Route path='/login' component={LoginContainer}/>
       </Route>

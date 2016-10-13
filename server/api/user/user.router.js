@@ -8,7 +8,7 @@ router.get('/', controller.getUsers)
   .delete('/:id', controller.deleteUser)
   .post('/register', controller.registerUser)
   // login route for redirect if bad login
-  .get('/login', controller.renderLoginPage)
+  // .get('/login', controller.renderLoginPage)
   .post('/login', passport.authenticate('local', {successRedirect: '/users', failureRedirect:'/login'}))
   .get('/logout', controller.logout)
 module.exports = router;

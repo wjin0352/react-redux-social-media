@@ -72,9 +72,17 @@
 	
 	var _RegistrationContainer2 = _interopRequireDefault(_RegistrationContainer);
 	
-	var _LoginContainer = __webpack_require__(525);
+	var _LoginContainer = __webpack_require__(524);
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
+	
+	var _NewPost = __webpack_require__(526);
+	
+	var _NewPost2 = _interopRequireDefault(_NewPost);
+	
+	var _NewVideo = __webpack_require__(527);
+	
+	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
 	var _reactRouter = __webpack_require__(175);
 	
@@ -97,6 +105,8 @@
 	      { path: '/', component: _MainPage2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPost2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _NewVideo2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default })
 	    )
@@ -21594,11 +21604,29 @@
 	          )
 	        ),
 	        _react2.default.createElement(
+	          _reactBootstrap.NavItem,
+	          { eventKey: 3 },
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            { className: 'new_post_link', to: '/new_post' },
+	            'New Post'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.NavItem,
+	          { eventKey: 4 },
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            { className: 'new_video_link', to: '/new_video' },
+	            'New Video'
+	          )
+	        ),
+	        _react2.default.createElement(
 	          _reactBootstrap.NavDropdown,
-	          { eventKey: 3, title: 'Sign in', id: 'basic-nav-dropdown' },
+	          { eventKey: 5, title: 'Sign in', id: 'basic-nav-dropdown' },
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.1 },
+	            { eventKey: 5.1 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'register_link', to: '/registration' },
@@ -21607,7 +21635,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 3.2 },
+	            { eventKey: 5.2 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'login_link', to: '/login' },
@@ -46192,10 +46220,22 @@
 	function loginUserAsync(userCred, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
-	      method: ''
+	      method: 'POST',
+	      headers: {
+	        'content-type': 'application/json'
+	      },
+	      body: JSON.stringify(userCred)
+	    }).then(function (user) {
+	      return user.json();
+	    }).then(function (jsonData) {
+	      dispatch(loginSuccess(jsonData));
+	      console.log(jsonData);
+	      _reactRouter.browserHistory.push('/');
+	    }).catch(function (err) {
+	      return dispatch(loginError(err.message));
 	    });
 	  };
-	}
+	};
 	
 	function loginSuccess(user) {
 	  return {
@@ -47683,7 +47723,12 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	var initialState = {};
+	var initialState = {
+	  user: {
+	    username: ''
+	  },
+	  error: ''
+	};
 	
 	var login = function login() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
@@ -47691,9 +47736,13 @@
 	
 	  switch (action.type) {
 	    case 'LOGIN_SUCCESS':
-	      return _extends({}, state);
+	      return _extends({}, state, {
+	        user: action.jsonData
+	      });
 	    case 'LOGIN_ERROR':
-	      return _extends({}, state);
+	      return _extends({}, state, {
+	        error: action.err
+	      });
 	    default:
 	      return state;
 	  }
@@ -48463,6 +48512,56 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(516);
+	
+	var _Login = __webpack_require__(525);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    login_user: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    loginUserAsync: function loginUserAsync(userCred, url) {
+	      dispatch(actions.loginUserAsync(userCred, url));
+	    }
+	  };
+	};
+	
+	var LoginContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
+	
+	exports.default = LoginContainer;
+
+/***/ },
+/* 525 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactRouter = __webpack_require__(175);
 	
 	var _reactBootstrap = __webpack_require__(238);
@@ -48565,54 +48664,16 @@
 	exports.default = Login;
 
 /***/ },
-/* 525 */
-/***/ function(module, exports, __webpack_require__) {
+/* 526 */
+/***/ function(module, exports) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(493);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(496);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(516);
-	
-	var _Login = __webpack_require__(524);
-	
-	var _Login2 = _interopRequireDefault(_Login);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    login_user: state
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    loginUserAsync: function loginUserAsync(userCred, url) {
-	      dispatch(actions.loginUserAsync(userCred, url));
-	    }
-	  };
-	};
-	
-	var LoginContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Login2.default);
-	
-	exports.default = LoginContainer;
+	"use strict";
+
+/***/ },
+/* 527 */
+/***/ function(module, exports) {
+
+	"use strict";
 
 /***/ }
 /******/ ]);
