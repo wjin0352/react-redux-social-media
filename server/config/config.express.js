@@ -26,6 +26,8 @@ module.exports = function (app) {
         if (!user.validPassword(password)) {
           return done(null, false, { message: 'Incorrect password.' });
         }
+        // console.log(`from serverside express config file user: ${user}, user.id: ${user.id}`);
+        // return done(null, user);
         return done(null, user);
       });
     }

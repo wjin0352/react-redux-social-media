@@ -9,6 +9,6 @@ router.get('/', controller.getUsers)
   .post('/register', controller.registerUser)
   // login route for redirect if bad login
   // .get('/login', controller.renderLoginPage)
-  .post('/login', passport.authenticate('local', {successRedirect: '/users', failureRedirect:'/login'}))
+  .post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect:'/login'}))
   .get('/logout', controller.logout)
 module.exports = router;

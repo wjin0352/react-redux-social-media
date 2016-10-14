@@ -18,7 +18,6 @@ const Login = React.createClass({
       password: pass
     }
     var url = "http://localhost:8000/users/login";
-    console.log(userCred);
     this.props.loginUserAsync(userCred, url);
   },
   render: function() {

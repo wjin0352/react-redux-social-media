@@ -13,10 +13,11 @@ const NewPost = React.createClass({
     var post = form.querySelector('[name="blog_post"]').value;
     var postData = {
       title,
-      post
+      content: post,
+      // userid: user
     }
+    // console.log(user.id)
     var url = "http://localhost:8000/posts";
-    console.log(postData);
     this.props.newPostAsync(postData, url);
   },
   render: function () {

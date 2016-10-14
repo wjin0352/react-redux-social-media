@@ -5,7 +5,7 @@ const initialState = {
     title: '',
     content: '',
     likes: 0,
-    userid: null
+    userid: ''
   },
   error: ''
 };

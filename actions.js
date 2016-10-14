@@ -124,7 +124,7 @@ import { browserHistory } from 'react-router';
       .then(user => user.json())
       .then(jsonData => {
         dispatch(loginSuccess(jsonData))
-        console.log(jsonData);
+        console.log('jsondata:', jsonData);
         browserHistory.push('/')
       })
       .catch(err => dispatch(loginError(err.message)));
