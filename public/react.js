@@ -76,13 +76,13 @@
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _NewPost = __webpack_require__(526);
+	var _PostContainer = __webpack_require__(528);
 	
-	var _NewPost2 = _interopRequireDefault(_NewPost);
+	var _PostContainer2 = _interopRequireDefault(_PostContainer);
 	
-	var _NewVideo = __webpack_require__(527);
+	var _VideoContainer = __webpack_require__(529);
 	
-	var _NewVideo2 = _interopRequireDefault(_NewVideo);
+	var _VideoContainer2 = _interopRequireDefault(_VideoContainer);
 	
 	var _reactRouter = __webpack_require__(175);
 	
@@ -105,8 +105,9 @@
 	      { path: '/', component: _MainPage2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPost2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _NewVideo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _PostContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _VideoContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default })
 	    )
@@ -21599,13 +21600,22 @@
 	          { eventKey: 2 },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
+	            { className: 'posts_link', to: '/show_posts' },
+	            'Posts'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.NavItem,
+	          { eventKey: 3 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
 	            { className: 'videos_link', to: '/show_videos' },
 	            'Videos'
 	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          { eventKey: 3 },
+	          { eventKey: 4 },
 	          _react2.default.createElement(
 	            _reactRouter.IndexLink,
 	            { className: 'new_post_link', to: '/new_post' },
@@ -21614,7 +21624,7 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavItem,
-	          { eventKey: 4 },
+	          { eventKey: 5 },
 	          _react2.default.createElement(
 	            _reactRouter.IndexLink,
 	            { className: 'new_video_link', to: '/new_video' },
@@ -21623,10 +21633,10 @@
 	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.NavDropdown,
-	          { eventKey: 5, title: 'Sign in', id: 'basic-nav-dropdown' },
+	          { eventKey: 6, title: 'Sign in', id: 'basic-nav-dropdown' },
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 5.1 },
+	            { eventKey: 6.1 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'register_link', to: '/registration' },
@@ -21635,7 +21645,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.MenuItem,
-	            { eventKey: 5.2 },
+	            { eventKey: 6.2 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'login_link', to: '/login' },
@@ -46083,12 +46093,6 @@
 	});
 	
 	exports.default = Video;
-	
-	// <div style={{width: 660, height: 'auto'}}>
-	//     <ResponsiveEmbed a16by9>
-	//       <embed type="image/svg+xml" src="/assets/TheresaKnott_castle.svg" />
-	//     </ResponsiveEmbed>
-	//   </div>
 
 /***/ },
 /* 492 */
@@ -46149,8 +46153,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.video = video;
-	exports.post = post;
+	exports.newVideoAsync = newVideoAsync;
+	exports.videoSuccess = videoSuccess;
+	exports.videoError = videoError;
+	exports.newPostAsync = newPostAsync;
+	exports.postSuccess = postSuccess;
+	exports.postError = postError;
 	exports.registerUserAsync = registerUserAsync;
 	exports.registerSuccess = registerSuccess;
 	exports.registerError = registerError;
@@ -46164,18 +46172,76 @@
 	
 	
 	/* VIDEO ACTIONS */
-	function video(video) {
-	  return {
-	    type: 'VIDEO',
-	    video: video
+	function newVideoAsync(videoData, url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: 'POST',
+	      headers: {
+	        'content-type': 'application/json'
+	      },
+	      body: JSON.stringify(videoData)
+	    }).then(function (data) {
+	      return data.json();
+	    }).then(function (jsonData) {
+	      dispatch(videoSuccess(jsonData));
+	      console.log(jsonData);
+	      // find video id to redirect to that video
+	      // client side redirect to '/video/:id'
+	      // browserHistory.push('/')
+	    }).catch(function (err) {
+	      return dispatch(videoError(err.message));
+	    });
 	  };
 	};
 	
-	/* POST ACTIONS */
-	function post(post) {
+	function videoSuccess(video) {
 	  return {
-	    type: 'POST',
+	    type: 'VIDEO_SUCCESS',
+	    video: video
+	  };
+	}
+	
+	function videoError(error) {
+	  return {
+	    type: 'VIDEO_ERROR',
+	    error: error
+	  };
+	}
+	
+	/* NEW POST ACTIONS */
+	function newPostAsync(postData, url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: 'POST',
+	      headers: {
+	        'content-type': 'application/json'
+	      },
+	      body: JSON.stringify(postData)
+	    }).then(function (data) {
+	      return data.json();
+	    }).then(function (jsonData) {
+	      dispatch(postSuccess(jsonData));
+	      console.log(jsonData);
+	      // find post id to redirect to that post
+	      // client side redirect to 'post/:id'
+	      // browserHistory.push('/')
+	    }).catch(function (err) {
+	      return dispatch(postError(err.message));
+	    });
+	  };
+	};
+	
+	function postSuccess(post) {
+	  return {
+	    type: 'POST_SUCCESS',
 	    post: post
+	  };
+	};
+	
+	function postError(error) {
+	  return {
+	    type: 'POST_ERROR',
+	    error: error
 	  };
 	};
 	
@@ -46202,10 +46268,10 @@
 	  };
 	};
 	
-	function registerSuccess(userData) {
+	function registerSuccess(jsonData) {
 	  return {
 	    type: 'REGISTER_SUCCESS',
-	    userData: userData
+	    jsonData: jsonData
 	  };
 	};
 	
@@ -47608,6 +47674,10 @@
 	
 	var _video2 = _interopRequireDefault(_video);
 	
+	var _post = __webpack_require__(530);
+	
+	var _post2 = _interopRequireDefault(_post);
+	
 	var _register = __webpack_require__(513);
 	
 	var _register2 = _interopRequireDefault(_register);
@@ -47620,6 +47690,7 @@
 	
 	var allReducers = (0, _redux.combineReducers)({
 	  video: _video2.default,
+	  post: _post2.default,
 	  register: _register2.default,
 	  login: _login2.default
 	});
@@ -47636,27 +47707,43 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _actions = __webpack_require__(493);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	var initialState = {};
+	var initialState = {
+	  userVideo: {
+	    videolink: '',
+	    description: '',
+	    comments: [],
+	    userid: null
+	  },
+	  error: ''
+	};
 	
-	var video = function video() {
+	var newVideo = function newVideo() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case 'VIDEO':
-	      return 'state';
+	    case 'VIDEO_SUCCESS':
+	      return _extends({}, state, {
+	        userVideo: action.jsonData
+	      });
+	    case 'VIDEO_ERROR':
+	      return _extends({}, state, {
+	        error: action.err.message
+	      });
 	    default:
 	      return state;
 	  }
 	};
 	
-	exports.default = video;
+	exports.default = newVideo;
 
 /***/ },
 /* 513 */
@@ -47741,7 +47828,7 @@
 	      });
 	    case 'LOGIN_ERROR':
 	      return _extends({}, state, {
-	        error: action.err
+	        error: action.err.message
 	      });
 	    default:
 	      return state;
@@ -48568,8 +48655,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var fetch = __webpack_require__(494);
-	
 	var Login = _react2.default.createClass({
 	  displayName: 'Login',
 	  getInitialState: function getInitialState() {
@@ -48665,15 +48750,365 @@
 
 /***/ },
 /* 526 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(175);
+	
+	var _reactBootstrap = __webpack_require__(238);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NewPost = _react2.default.createClass({
+	  displayName: 'NewPost',
+	  getInitialState: function getInitialState() {
+	    return { showModal: true };
+	  },
+	  createPost: function createPost(e) {
+	    e.preventDefault();
+	    var form = e.target;
+	    var title = form.querySelector('[name="title"]').value;
+	    var post = form.querySelector('[name="blog_post"]').value;
+	    var postData = {
+	      title: title,
+	      post: post
+	    };
+	    var url = "http://localhost:8000/posts";
+	    console.log(postData);
+	    this.props.newPostAsync(postData, url);
+	  },
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      _reactBootstrap.Modal,
+	      { show: this.state.showModal, bsSize: 'large' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Header,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Title,
+	          null,
+	          'Add a post'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Body,
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'new-post-form', onSubmit: this.createPost },
+	          _react2.default.createElement(
+	            'fieldset',
+	            null,
+	            _react2.default.createElement(
+	              'legend',
+	              null,
+	              'New Post: '
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'title'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', name: 'title', required: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'Blog Post'
+	            ),
+	            _react2.default.createElement('textarea', { rows: '30', cols: '100', type: 'text', name: 'blog_post', required: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', value: 'done' },
+	              'Finished'
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Footer,
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { className: 'new_post_close_redirect', to: '/' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { bsStyle: 'warning' },
+	            'Home'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	exports.default = NewPost;
 
 /***/ },
 /* 527 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(175);
+	
+	var _reactBootstrap = __webpack_require__(238);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var NewVideo = _react2.default.createClass({
+	  displayName: 'NewVideo',
+	  getInitialState: function getInitialState() {
+	    return { showModal: true };
+	  },
+	  createVideo: function createVideo(e) {
+	    e.preventDefault();
+	    var form = e.target;
+	    var link_url = form.querySelector('[name="url"]').value;
+	    var description = form.querySelector('[name="description"]').value;
+	    var videoData = {
+	      link_url: link_url,
+	      description: description
+	    };
+	    var url = "http://localhost:8000/videos";
+	    console.log(videoData);
+	    this.props.newVideoAsync(videoData, url);
+	  },
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      _reactBootstrap.Modal,
+	      { show: this.state.showModal, bsSize: 'large' },
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Header,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Title,
+	          null,
+	          'Add a link'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Body,
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'new-video-form', onSubmit: this.createVideo },
+	          _react2.default.createElement(
+	            'fieldset',
+	            null,
+	            _react2.default.createElement(
+	              'legend',
+	              null,
+	              'New Video: '
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'add url:'
+	            ),
+	            _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'description'
+	            ),
+	            _react2.default.createElement('textarea', { rows: '10', cols: '60', type: 'text', name: 'description', required: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit' },
+	              'Create'
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Footer,
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { className: 'new_video_close_redirect', to: '/' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Button,
+	            { bsStyle: 'warning' },
+	            'Home'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	exports.default = NewVideo;
+
+/***/ },
+/* 528 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(516);
+	
+	var _NewPost = __webpack_require__(526);
+	
+	var _NewPost2 = _interopRequireDefault(_NewPost);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    post: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    newPostAsync: function newPostAsync(postData, url) {
+	      dispatch(actions.newPostAsync(postData, url));
+	    }
+	  };
+	};
+	
+	var PostContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewPost2.default);
+	
+	exports.default = PostContainer;
+
+/***/ },
+/* 529 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(516);
+	
+	var _NewVideo = __webpack_require__(527);
+	
+	var _NewVideo2 = _interopRequireDefault(_NewVideo);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    video: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    newVideoAsync: function newVideoAsync(videoData, url) {
+	      dispatch(actions.newVideoAsync(videoData, url));
+	    }
+	  };
+	};
+	
+	var VideoContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewVideo2.default);
+	
+	exports.default = VideoContainer;
+
+/***/ },
+/* 530 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {
+	  userPost: {
+	    title: '',
+	    content: '',
+	    likes: 0,
+	    userid: null
+	  },
+	  error: ''
+	};
+	
+	var newPost = function newPost() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'POST_SUCCESS':
+	      return _extends({}, state, {
+	        userPost: action.jsonData
+	      });
+	    case 'POST_ERROR':
+	      return _extends({}, state, {
+	        error: action.err.message
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = newPost;
 
 /***/ }
 /******/ ]);

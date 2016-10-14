@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
-const fetch = require('isomorphic-fetch');
 
 const Login = React.createClass({
   getInitialState () {

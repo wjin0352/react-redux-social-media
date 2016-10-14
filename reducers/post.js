@@ -1,23 +1,23 @@
 import * as actions from '../actions';
 
 const initialState = {
-  userVideo: {
-    videolink: '',
-    description: '',
-    comments: [],
+  userPost: {
+    title: '',
+    content: '',
+    likes: 0,
     userid: null
   },
   error: ''
 };
 
-const newVideo = (state = initialState, action) => {
+const newPost = (state = initialState, action) => {
   switch (action.type) {
-    case 'VIDEO_SUCCESS':
+    case 'POST_SUCCESS':
       return {
         ...state,
-        userVideo: action.jsonData
+        userPost: action.jsonData
       }
-    case 'VIDEO_ERROR':
+    case 'POST_ERROR':
       return {
         ...state,
         error: action.err.message
@@ -27,4 +27,4 @@ const newVideo = (state = initialState, action) => {
   }
 }
 
-export default newVideo;
+export default newPost;

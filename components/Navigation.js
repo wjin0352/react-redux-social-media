@@ -16,19 +16,22 @@ const Navigation = React.createClass({
             <IndexLink className='home_link' to="/">Home</IndexLink>
           </NavItem>
           <NavItem eventKey={2}>
-            <Link className='videos_link' to='/show_videos' >Videos</Link>
+            <Link className='posts_link' to='/show_posts' >Posts</Link>
           </NavItem>
           <NavItem eventKey={3}>
-            <IndexLink className='new_post_link' to="/new_post">New Post</IndexLink>
+            <Link className='videos_link' to='/show_videos' >Videos</Link>
           </NavItem>
           <NavItem eventKey={4}>
+            <IndexLink className='new_post_link' to="/new_post">New Post</IndexLink>
+          </NavItem>
+          <NavItem eventKey={5}>
             <IndexLink className='new_video_link' to="/new_video">New Video</IndexLink>
           </NavItem>
-          <NavDropdown eventKey={5} title="Sign in" id="basic-nav-dropdown">
-            <MenuItem eventKey={5.1}>
+          <NavDropdown eventKey={6} title="Sign in" id="basic-nav-dropdown">
+            <MenuItem eventKey={6.1}>
               <Link className='register_link' to='/registration' >Register</Link>
               </MenuItem>
-            <MenuItem eventKey={5.2}>
+            <MenuItem eventKey={6.2}>
               <Link className='login_link' to='/login' >Login</Link>
             </MenuItem>
           </NavDropdown>
