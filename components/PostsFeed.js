@@ -1,13 +1,50 @@
 import React from 'react';
 import Post from './Post';
-import { Jumbotron } from 'react-bootstrap';
+import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 
-const PostsFeed = () => {
-  return (
-    <Jumbotron className='postsfeed' >
-      <Post />
-    </Jumbotron>
-  )
-}
+// NO LOGGED IN USER .. All Posts Random feed
+const PostsFeed = React.createClass({
+  render: function () {
+    return (
+      <div className='user_posts_feed'>
+        <h3>Posts Feed in the laskdfj;sdafkj</h3>
+        <Grid>
+          <Row>
+          <Col xs={6} md={4}>
+            <Thumbnail src="" alt="242x200">
+              <h3>Thumbnail label</h3>
+              <p>with pic</p>
+              <p>
+                <Button bsStyle="primary">Button</Button>&nbsp;
+                <Button bsStyle="default">Button</Button>
+              </p>
+            </Thumbnail>
+          </Col>
+          <Col xs={6} md={4}>
+            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
+              <h3>Thumbnail label</h3>
+              <p>Description</p>
+              <p>
+                <Button bsStyle="primary">Button</Button>&nbsp;
+                <Button bsStyle="default">Button</Button>
+              </p>
+            </Thumbnail>
+          </Col>
+          <Col xs={6} md={4}>
+            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
+              <h3>Thumbnail label</h3>
+              <p>Description</p>
+              <p>
+                <Button bsStyle="primary">Button</Button>&nbsp;
+                <Button bsStyle="default">Button</Button>
+              </p>
+            </Thumbnail>
+          </Col>
+          </Row>
+        </Grid>
+      </div>
+    )
+  }
+});
 
 export default PostsFeed;

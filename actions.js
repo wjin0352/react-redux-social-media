@@ -17,7 +17,7 @@ import { browserHistory } from 'react-router';
           console.log(jsonData)
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
-          // browserHistory.push('/')
+          browserHistory.push('/')
       })
         .catch(err => dispatch(videoError(err.message)));
     };
@@ -48,13 +48,18 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(postData)
       })
-        .then(data => data.json())
+        .then(data => {
+          // console.log(data)
+          // console.log(JSON.parse(data));
+          // JSON.parse(data)=
+          data
+        })
         .then(jsonData => {
+          // console.log(jsonData)
           dispatch(postSuccess(jsonData))
-          console.log(jsonData)
           // find post id to redirect to that post
           // client side redirect to 'post/:id'
-          // browserHistory.push('/')
+          browserHistory.push('/')
       })
         .catch(err => dispatch(postError(err.message)));
     };
@@ -121,7 +126,18 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(userCred)
       })
-      .then(user => user.json())
+      .then(user => {
+        // user.json();
+        console.log(user)
+        user
+      })
+      // .then(browserHistory.push('/'))
+
+      // .then( user => {
+      //   console.log(user)
+      //   browserHistory.push('/')
+      // })
+
       .then(jsonData => {
         dispatch(loginSuccess(jsonData))
         console.log('jsondata:', jsonData);

@@ -21,7 +21,7 @@ PostController.prototype.getPosts = function(req, res) {
 PostController.prototype.createPost = function(req, res) {
   return new Promise (function (resolve, reject) {
     Post.create({
-      userid: req.user.id,
+      userid: req.user,
       title: req.body.title,
       content: req.body.content,
       likes: req.body.likes

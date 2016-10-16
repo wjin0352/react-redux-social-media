@@ -20,7 +20,7 @@ const newPost = (state = initialState, action) => {
     case 'POST_ERROR':
       return {
         ...state,
-        error: action.err.message
+        error: action.err
       }
   default:
     return state;

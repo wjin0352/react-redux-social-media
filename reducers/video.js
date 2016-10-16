@@ -20,7 +20,7 @@ const newVideo = (state = initialState, action) => {
     case 'VIDEO_ERROR':
       return {
         ...state,
-        error: action.err.message
+        error: action.err
       }
   default:
     return state;

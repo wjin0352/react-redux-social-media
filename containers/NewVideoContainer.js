@@ -18,6 +18,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const VideoContainer = connect(mapStateToProps, mapDispatchToProps)(NewVideo);
+const NewVideoContainer = connect(mapStateToProps, mapDispatchToProps)(NewVideo);
 
-export default VideoContainer;
+export default NewVideoContainer;

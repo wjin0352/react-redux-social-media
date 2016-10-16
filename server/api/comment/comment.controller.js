@@ -22,7 +22,7 @@ CommentController.prototype.createComment = function(req, res) {
   return new Promise (function (resolve, reject) {
     Comment.create({
       content: req.body.content,
-      userid: req.user.id
+      userid: req.user
     }, function (error, comment) {
       if (error) {
         reject(error);

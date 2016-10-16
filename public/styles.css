@@ -19,9 +19,7 @@ html {
   }*/
 
 /* Videos feed container */
-  .videosfeed {
-    height: 800px;
-  }
+
 
 /* Video */
   .videos {
@@ -41,9 +39,7 @@ html {
 
 
 /* Posts feed container */
-  .postsfeed {
-    height: 800px;
-  }
+
 
 /* Post */
   .post-container {

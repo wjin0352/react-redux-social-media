@@ -76,13 +76,13 @@
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _PostContainer = __webpack_require__(527);
+	var _NewPostContainer = __webpack_require__(532);
 	
-	var _PostContainer2 = _interopRequireDefault(_PostContainer);
+	var _NewPostContainer2 = _interopRequireDefault(_NewPostContainer);
 	
-	var _VideoContainer = __webpack_require__(529);
+	var _NewVideoContainer = __webpack_require__(531);
 	
-	var _VideoContainer2 = _interopRequireDefault(_VideoContainer);
+	var _NewVideoContainer2 = _interopRequireDefault(_NewVideoContainer);
 	
 	var _reactRouter = __webpack_require__(175);
 	
@@ -106,8 +106,8 @@
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeed2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _PostContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _VideoContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPostContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _NewVideoContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default })
 	    )
@@ -45988,13 +45988,129 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var PostsFeed = function PostsFeed() {
-	  return _react2.default.createElement(
-	    _reactBootstrap.Jumbotron,
-	    { className: 'postsfeed' },
-	    _react2.default.createElement(_Post2.default, null)
-	  );
-	};
+	// NO LOGGED IN USER .. All Posts Random feed
+	var PostsFeed = _react2.default.createClass({
+	  displayName: 'PostsFeed',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'user_posts_feed' },
+	      _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Posts Feed in the laskdfj;sdafkj'
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Grid,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'with pic'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Description'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Description'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
 	
 	exports.default = PostsFeed;
 
@@ -46024,7 +46140,7 @@
 	      _react2.default.createElement(
 	        'p',
 	        null,
-	        'Open hello-react.html in a web browser and type your name into the text field. Notice that React is only changing the time string in the UI — any input you put in the text field remains, even though you haven\'t written any code to manage this behavior. React figures it out for you and does the right thing. The way we are able to figure this out is that React does not manipulate the DOM unless it needs to. It uses a fast, internal mock DOM to perform diffs and computes the most efficient DOM mutation for you. The inputs to this component are called props — short for "properties". They\'re passed as attributes in JSX syntax. You should think of these as immutable within the component, that is, never write to this.props.'
+	        'sa;lfdklsakdfjas this is a post'
 	      )
 	    )
 	  );
@@ -46052,6 +46168,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// NO LOGGED IN USER .. All Videos random feed
 	var VideosFeed = _react2.default.createClass({
 	  displayName: 'VideosFeed',
 	
@@ -46077,6 +46194,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactBootstrap = __webpack_require__(238);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Video = _react2.default.createClass({
@@ -46086,6 +46205,7 @@
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'videos' },
+	      _react2.default.createElement('h3', null),
 	      _react2.default.createElement('iframe', { className: 'iframe-video',
 	        src: 'https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB' })
 	    );
@@ -46187,7 +46307,7 @@
 	      console.log(jsonData);
 	      // find video id to redirect to that video
 	      // client side redirect to '/video/:id'
-	      // browserHistory.push('/')
+	      _reactRouter.browserHistory.push('/');
 	    }).catch(function (err) {
 	      return dispatch(videoError(err.message));
 	    });
@@ -46218,13 +46338,16 @@
 	      },
 	      body: JSON.stringify(postData)
 	    }).then(function (data) {
-	      return data.json();
+	      // console.log(data)
+	      // console.log(JSON.parse(data));
+	      // JSON.parse(data)=
+	      data;
 	    }).then(function (jsonData) {
+	      // console.log(jsonData)
 	      dispatch(postSuccess(jsonData));
-	      console.log(jsonData);
 	      // find post id to redirect to that post
 	      // client side redirect to 'post/:id'
-	      // browserHistory.push('/')
+	      _reactRouter.browserHistory.push('/');
 	    }).catch(function (err) {
 	      return dispatch(postError(err.message));
 	    });
@@ -46292,8 +46415,18 @@
 	      },
 	      body: JSON.stringify(userCred)
 	    }).then(function (user) {
-	      return user.json();
-	    }).then(function (jsonData) {
+	      // user.json();
+	      console.log(user);
+	      user;
+	    })
+	    // .then(browserHistory.push('/'))
+	
+	    // .then( user => {
+	    //   console.log(user)
+	    //   browserHistory.push('/')
+	    // })
+	
+	    .then(function (jsonData) {
 	      dispatch(loginSuccess(jsonData));
 	      console.log('jsondata:', jsonData);
 	      _reactRouter.browserHistory.push('/');
@@ -47736,7 +47869,7 @@
 	      });
 	    case 'VIDEO_ERROR':
 	      return _extends({}, state, {
-	        error: action.err.message
+	        error: action.err
 	      });
 	    default:
 	      return state;
@@ -47784,7 +47917,7 @@
 	      });
 	    case 'POST_ERROR':
 	      return _extends({}, state, {
-	        error: action.err.message
+	        error: action.err
 	      });
 	    default:
 	      return state;
@@ -48796,56 +48929,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 527 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(493);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(496);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(517);
-	
-	var _NewPost = __webpack_require__(528);
-	
-	var _NewPost2 = _interopRequireDefault(_NewPost);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    post: state
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    newPostAsync: function newPostAsync(postData, url) {
-	      dispatch(actions.newPostAsync(postData, url));
-	    }
-	  };
-	};
-	
-	var PostContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewPost2.default);
-	
-	exports.default = PostContainer;
-
-/***/ },
+/* 527 */,
 /* 528 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -48953,56 +49037,7 @@
 	exports.default = NewPost;
 
 /***/ },
-/* 529 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(493);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(496);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(517);
-	
-	var _NewVideo = __webpack_require__(530);
-	
-	var _NewVideo2 = _interopRequireDefault(_NewVideo);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    video: state
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    newVideoAsync: function newVideoAsync(videoData, url) {
-	      dispatch(actions.newVideoAsync(videoData, url));
-	    }
-	  };
-	};
-	
-	var VideoContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewVideo2.default);
-	
-	exports.default = VideoContainer;
-
-/***/ },
+/* 529 */,
 /* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49030,14 +49065,14 @@
 	  createVideo: function createVideo(e) {
 	    e.preventDefault();
 	    var form = e.target;
-	    var link_url = form.querySelector('[name="url"]').value;
+	    var videolink = form.querySelector('[name="url"]').value;
 	    var description = form.querySelector('[name="description"]').value;
 	    var videoData = {
-	      link_url: link_url,
+	      videolink: videolink,
 	      description: description
 	    };
-	    var url = "http://localhost:8000/videos";
 	    console.log(videoData);
+	    var url = "http://localhost:8000/videos";
 	    this.props.newVideoAsync(videoData, url);
 	  },
 	
@@ -49108,6 +49143,106 @@
 	});
 	
 	exports.default = NewVideo;
+
+/***/ },
+/* 531 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(517);
+	
+	var _NewVideo = __webpack_require__(530);
+	
+	var _NewVideo2 = _interopRequireDefault(_NewVideo);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    video: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    newVideoAsync: function newVideoAsync(videoData, url) {
+	      dispatch(actions.newVideoAsync(videoData, url));
+	    }
+	  };
+	};
+	
+	var NewVideoContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewVideo2.default);
+	
+	exports.default = NewVideoContainer;
+
+/***/ },
+/* 532 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(517);
+	
+	var _NewPost = __webpack_require__(528);
+	
+	var _NewPost2 = _interopRequireDefault(_NewPost);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    post: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    newPostAsync: function newPostAsync(postData, url) {
+	      dispatch(actions.newPostAsync(postData, url));
+	    }
+	  };
+	};
+	
+	var NewPostContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewPost2.default);
+	
+	exports.default = NewPostContainer;
 
 /***/ }
 /******/ ]);

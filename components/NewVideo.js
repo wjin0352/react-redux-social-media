@@ -9,14 +9,14 @@ const NewVideo = React.createClass({
   createVideo (e) {
     e.preventDefault();
     var form = e.target;
-    var link_url = form.querySelector('[name="url"]').value;
+    var videolink = form.querySelector('[name="url"]').value;
     var description = form.querySelector('[name="description"]').value;
     var videoData = {
-      link_url,
+      videolink,
       description
     }
-    var url = "http://localhost:8000/videos";
     console.log(videoData)
+    var url = "http://localhost:8000/videos";
     this.props.newVideoAsync(videoData, url);
   },
   render: function () {
