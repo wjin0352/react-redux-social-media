@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import MainPage from './components/MainPage';
 import Header from './components/Header';
+import PostsFeedContainer from './containers/PostsFeedContainer';
 import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
 import RegistrationContainer from './containers/RegistrationContainer';
@@ -17,9 +18,9 @@ const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={MainPage}>
-        <IndexRoute component={PostsFeed}/>
+        <IndexRoute component={PostsFeedContainer}/>
         <Route path='/show_videos' component={VideosFeed}/>
-        <Route path='/show_posts' component={PostsFeed}/>
+        <Route path='/show_posts' component={PostsFeedContainer}/>
         <Route path='/new_post' component={NewPostContainer}/>
         <Route path='/new_video' component={NewVideoContainer}/>
         <Route path='/registration' component={RegistrationContainer}/>

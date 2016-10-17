@@ -12,6 +12,7 @@ PostController.prototype.getPosts = function(req, res) {
       }
     });
   }).then(function (posts) {
+    // console.log(posts);
     res.status(200).json(posts);
   }).catch(function (error) {
     console.log(error);

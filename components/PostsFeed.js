@@ -4,10 +4,15 @@ import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 
 // NO LOGGED IN USER .. All Posts Random feed
 const PostsFeed = React.createClass({
+  componentWillMount () {
+    var url = "http://localhost:8000/posts"
+    this.props.allPostsAsync(url);
+  },
   render: function () {
     return (
       <div className='user_posts_feed'>
-        <h3>Posts Feed in the laskdfj;sdafkj</h3>
+        <h3>Posts Feed</h3>
+        {console.log(this.props.posts)}
         <Grid>
           <Row>
           <Col xs={6} md={4}>

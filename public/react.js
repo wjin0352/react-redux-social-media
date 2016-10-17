@@ -60,6 +60,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _PostsFeedContainer = __webpack_require__(533);
+	
+	var _PostsFeedContainer2 = _interopRequireDefault(_PostsFeedContainer);
+	
 	var _PostsFeed = __webpack_require__(488);
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
@@ -103,9 +107,9 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPage2.default },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeedContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeedContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPostContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _NewVideoContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
@@ -45991,6 +45995,10 @@
 	// NO LOGGED IN USER .. All Posts Random feed
 	var PostsFeed = _react2.default.createClass({
 	  displayName: 'PostsFeed',
+	  componentWillMount: function componentWillMount() {
+	    var url = "http://localhost:8000/posts";
+	    this.props.allPostsAsync(url);
+	  },
 	
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -45999,8 +46007,9 @@
 	      _react2.default.createElement(
 	        'h3',
 	        null,
-	        'Posts Feed in the laskdfj;sdafkj'
+	        'Posts Feed'
 	      ),
+	      console.log(this.props.posts),
 	      _react2.default.createElement(
 	        _reactBootstrap.Grid,
 	        null,
@@ -46137,11 +46146,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'post-div' },
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'sa;lfdklsakdfjas this is a post'
-	      )
+	      _react2.default.createElement('p', null)
 	    )
 	  );
 	};
@@ -46279,6 +46284,9 @@
 	exports.newPostAsync = newPostAsync;
 	exports.postSuccess = postSuccess;
 	exports.postError = postError;
+	exports.allPostsAsync = allPostsAsync;
+	exports.allPostsSuccess = allPostsSuccess;
+	exports.allPostsError = allPostsError;
 	exports.registerUserAsync = registerUserAsync;
 	exports.registerSuccess = registerSuccess;
 	exports.registerError = registerError;
@@ -46364,6 +46372,40 @@
 	function postError(error) {
 	  return {
 	    type: 'POST_ERROR',
+	    error: error
+	  };
+	};
+	
+	/* GET ALL POSTS ACTIONS */
+	function allPostsAsync(url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: 'GET',
+	      headers: {
+	        'content-type': 'application/json'
+	      }
+	    }).then(function (response) {
+	      return response.json();
+	    }).then(function (posts) {
+	      dispatch(allPostsSuccess(posts));
+	      _reactRouter.browserHistory.push('/');
+	      console.log(posts);
+	    }).catch(function (err) {
+	      return dispatch(allPostsError(err.message));
+	    });
+	  };
+	};
+	
+	function allPostsSuccess(posts) {
+	  return {
+	    type: 'ALL_POSTS_SUCCESS',
+	    posts: posts
+	  };
+	};
+	
+	function allPostsError(error) {
+	  return {
+	    type: 'ALL_POSTS_ERROR',
 	    error: error
 	  };
 	};
@@ -49243,6 +49285,56 @@
 	var NewPostContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewPost2.default);
 	
 	exports.default = NewPostContainer;
+
+/***/ },
+/* 533 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(493);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(496);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(517);
+	
+	var _PostsFeed = __webpack_require__(488);
+	
+	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    posts: state
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    allPostsAsync: function allPostsAsync(url) {
+	      dispatch(actions.allPostsAsync(url));
+	    }
+	  };
+	};
+	
+	var PostsFeedContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_PostsFeed2.default);
+	
+	exports.default = PostsFeedContainer;
 
 /***/ }
 /******/ ]);

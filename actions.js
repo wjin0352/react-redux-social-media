@@ -53,7 +53,7 @@ import { browserHistory } from 'react-router';
           // console.log(JSON.parse(data));
           // JSON.parse(data)=
           data
-        })
+      })
         .then(jsonData => {
           // console.log(jsonData)
           dispatch(postSuccess(jsonData))
@@ -79,6 +79,39 @@ import { browserHistory } from 'react-router';
     }
   };
 
+
+/* GET ALL POSTS ACTIONS */
+  export function allPostsAsync (url) {
+    return (dispatch) => {
+      return fetch (url, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(posts => {
+          dispatch(allPostsSuccess(posts))
+          browserHistory.push('/')
+          console.log(posts)
+      })
+        .catch(err => dispatch(allPostsError(err.message)));
+    };
+  };
+
+  export function allPostsSuccess (posts) {
+    return {
+      type: 'ALL_POSTS_SUCCESS',
+      posts
+    }
+  };
+
+  export function allPostsError (error) {
+    return {
+      type: 'ALL_POSTS_ERROR',
+      error
+    }
+  };
 
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {
