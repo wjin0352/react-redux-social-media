@@ -4,7 +4,8 @@ const morgan = require('morgan');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 const User = require('../api/user/user.model');
-const session = require('express-session');
+var session = require('express-session');
+var userController = require('../api/user/user.controller');
 
 module.exports = function (app) {
   app.use(morgan('dev'));
@@ -17,23 +18,27 @@ module.exports = function (app) {
   app.use(passport.session());
   // passport strategy
   passport.use(new LocalStrategy(
-    function(username, password, done) {
+    function(username, password, callback) {
       User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
+        if (err) { return callback(err); }
         if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
+          return callback(null, false, { message: 'Incorrect username.' });
         }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        // console.log(`from serverside express config file user: ${user}, user.id: ${user.id}`);
-        return done(null, user);
+        user.validatePassword(password, function(err, isValid) {
+          if (err) {
+            return callback(err);
+          }
+          if (!isValid) {
+            return callback(null, false, {message: 'Incorrect Password'});
+          }
+          return callback(null, user);
+        });
       });
     }
   ));
   // passport sessions support
   passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
   });
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
@@ -41,6 +46,8 @@ module.exports = function (app) {
     });
   });
 };
+
+
 
 // However, the path that you provide to the express.static function is relative to the directory from where you launch your node process. If you run the express app from another directory, it’s safer to use the absolute path of the directory that you want to serve:
 

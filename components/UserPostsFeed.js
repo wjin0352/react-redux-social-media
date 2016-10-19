@@ -7,6 +7,7 @@ const UserPostsFeed = React.createClass({
     return (
       <div className='user_posts_feed'>
         <h3>Posts Feed </h3>
+
         <Grid>
             <Row>
             <Col xs={6} md={4}>

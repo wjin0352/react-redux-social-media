@@ -9,36 +9,16 @@ const PostsFeed = React.createClass({
     this.props.allPostsAsync(url);
   },
   render: function () {
+
     return (
       <div className='user_posts_feed'>
-        <h3>Posts Feed</h3>
-        {console.log(this.props.posts)}
+        <h3>Posts Feed </h3>
         <Grid>
           <Row>
           <Col xs={6} md={4}>
             <Thumbnail src="" alt="242x200">
               <h3>Thumbnail label</h3>
               <p>with pic</p>
-              <p>
-                <Button bsStyle="primary">Button</Button>&nbsp;
-                <Button bsStyle="default">Button</Button>
-              </p>
-            </Thumbnail>
-          </Col>
-          <Col xs={6} md={4}>
-            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-              <h3>Thumbnail label</h3>
-              <p>Description</p>
-              <p>
-                <Button bsStyle="primary">Button</Button>&nbsp;
-                <Button bsStyle="default">Button</Button>
-              </p>
-            </Thumbnail>
-          </Col>
-          <Col xs={6} md={4}>
-            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-              <h3>Thumbnail label</h3>
-              <p>Description</p>
               <p>
                 <Button bsStyle="primary">Button</Button>&nbsp;
                 <Button bsStyle="default">Button</Button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 const NewPost = React.createClass({
   getInitialState () {
@@ -19,6 +20,15 @@ const NewPost = React.createClass({
     // console.log(user.id)
     var url = "http://localhost:8000/posts";
     this.props.newPostAsync(postData, url);
+  },
+  componentWillMount () {
+    if (this.props.user) {
+      console.log(user)
+      browserHistory.push('/new_post')
+    } else {
+      alert('please login first')
+      browserHistory.push('/login')
+    }
   },
   render: function () {
     return (

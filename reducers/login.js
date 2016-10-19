@@ -1,9 +1,7 @@
 import * as actions from '../actions';
 
 const initialState = {
-  user: {
-    username: ''
-  },
+  user: null,
   error: ''
 };
 
@@ -12,7 +10,7 @@ const login = function (state = initialState, action) {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        user: action.jsonData
+        user: action.user
       }
     case 'LOGIN_ERROR':
       return {

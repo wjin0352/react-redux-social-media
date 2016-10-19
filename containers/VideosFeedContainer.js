@@ -2,18 +2,18 @@ import React from 'react';
 import * as actions from '../actions';
 import store from '../store';
 import { connect } from 'react-redux';
-import PostsFeed from '../components/PostsFeed';
+import VideosFeed from '../components/VideosFeed';
 
 const mapStateToProps = (state) => {
   return {
-    results: state
+    // results: state
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     allPostsAsync: (url) => {
-      dispatch(actions.allPostsAsync(url))
+      // dispatch(actions.allVideosAsync(url))
     }
   }
 }

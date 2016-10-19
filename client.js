@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import MainPage from './components/MainPage';
+import MainPageContainer from './containers/MainPageContainer';
 import Header from './components/Header';
 import PostsFeedContainer from './containers/PostsFeedContainer';
 import PostsFeed from './components/PostsFeed';
@@ -9,6 +9,7 @@ import RegistrationContainer from './containers/RegistrationContainer';
 import LoginContainer from './containers/LoginContainer';
 import NewPostContainer from './containers/NewPostContainer';
 import NewVideoContainer from './containers/NewVideoContainer';
+import UserPostsFeed from './components/UserPostsFeed';
 
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
@@ -17,7 +18,7 @@ import store from './store';
 const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={MainPage}>
+      <Route path='/' component={MainPageContainer}>
         <IndexRoute component={PostsFeedContainer}/>
         <Route path='/show_videos' component={VideosFeed}/>
         <Route path='/show_posts' component={PostsFeedContainer}/>

@@ -11,13 +11,14 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(videoData)
       })
-        .then(data => data.json())
+        .then(response => response.json())
         .then(jsonData => {
           dispatch(videoSuccess(jsonData))
           console.log(jsonData)
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
-          browserHistory.push('/')
+          browserHistory.push('/show_videos')
+
       })
         .catch(err => dispatch(videoError(err.message)));
     };
@@ -48,18 +49,13 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(postData)
       })
-        .then(data => {
-          // console.log(data)
-          // console.log(JSON.parse(data));
-          // JSON.parse(data)=
-          data
-      })
+        .then(response => response.json())
         .then(jsonData => {
-          // console.log(jsonData)
+          console.log(jsonData)
           dispatch(postSuccess(jsonData))
           // find post id to redirect to that post
           // client side redirect to 'post/:id'
-          browserHistory.push('/')
+          browserHistory.push('/show_posts')
       })
         .catch(err => dispatch(postError(err.message)));
     };
@@ -92,8 +88,7 @@ import { browserHistory } from 'react-router';
         .then(response => response.json())
         .then(posts => {
           dispatch(allPostsSuccess(posts))
-          browserHistory.push('/')
-          console.log(posts)
+          browserHistory.push('/show_posts')
       })
         .catch(err => dispatch(allPostsError(err.message)));
     };
@@ -123,11 +118,10 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(formInput)
       })
-        .then(data => data.json())  // converts data to json
+        .then(response => response.json())  // converts data to json and returns another promise
         .then(jsonData => {
-          dispatch(registerSuccess(jsonData))
-          console.log(jsonData)
-          // client side redirect to '/'
+          dispatch(registerSuccess(jsonData.email))
+          // console.log(jsonData)
           browserHistory.push('/')
       })
         .catch(err => dispatch(registerError(err.message)));
@@ -159,32 +153,48 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(userCred)
       })
-      .then(user => {
-        // user.json();
-        console.log(user)
-        user
-      })
-      // .then(browserHistory.push('/'))
-
-      // .then( user => {
-      //   console.log(user)
-      //   browserHistory.push('/')
-      // })
-
+      .then(response => response.json())
       .then(jsonData => {
-        dispatch(loginSuccess(jsonData))
-        console.log('jsondata:', jsonData);
+        loginSuccess(jsonData.email, dispatch)
         browserHistory.push('/')
+        jsonData
       })
-      .catch(err => dispatch(loginError(err.message)));
-    };
-  };
+      .catch(err => {
+        dispatch(loginError(err.message))
+        alert('Opps password or username is incorrect')
+      }
+    )}
+    }
 
-  export function loginSuccess (user) {
-    return {
+   // .then(response => {
+   //      response.json();
+   //    })
+
+  // export function userSession (userSession, url) {
+  //   return (dispatch) => {
+  //     return fetch(url, {
+  //       method: 'GET',
+  //       headers: {
+  //         'content-type': 'application/json'
+  //       },
+  //       body: JSON.stringify(userSession)
+  //     })
+  //       .then(response => {
+  //         response.json()
+  //     })
+  //       .then(currentUser => {
+  //         console.log('this is from userSession action creator current user : ', currentUser)
+  //         currentUser
+  //       })
+  //       .catch(err => console.log(err))
+  //   };
+  // };
+
+  export function loginSuccess (user, dispatch) {
+    return dispatch({
       type: 'LOGIN_SUCCESS',
       user
-    }
+    })
   }
 
   export function loginError (error) {

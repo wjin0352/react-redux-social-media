@@ -4,11 +4,13 @@ const controller = require('./user.controller');
 var passport = require('passport');
 
 router.get('/', controller.getUsers)
-  .put('/:id', controller.editUser)
+  .put('/:id',  controller.editUser)
   .delete('/:id', controller.deleteUser)
-  .post('/register', controller.registerUser)
+  .post('/register',  controller.registerUser)
   // login route for redirect if bad login
-  // .get('/login', controller.renderLoginPage)
-  .post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect:'/'}))
+  .post('/login', passport.authenticate('local'), function (req, res) {
+    // console.log('from post /login  req.user: ', req.user)
+    res.status(200).json(req.user)
+  })
   .get('/logout', controller.logout)
 module.exports = router;

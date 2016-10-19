@@ -4,6 +4,7 @@ const initialState = {
   posts: [],
   error: ''
 }
+
 const allPosts = (state = initialState, action) => {
   switch (action.type) {
     case 'ALL_POSTS_SUCCESS':
