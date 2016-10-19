@@ -21,15 +21,6 @@ const NewPost = React.createClass({
     var url = "http://localhost:8000/posts";
     this.props.newPostAsync(postData, url);
   },
-  componentWillMount () {
-    if (this.props.user) {
-      console.log(user)
-      browserHistory.push('/new_post')
-    } else {
-      alert('please login first')
-      browserHistory.push('/login')
-    }
-  },
   render: function () {
     return (
       <Modal show={this.state.showModal} bsSize="large" >

@@ -49959,15 +49959,6 @@
 	    var url = "http://localhost:8000/posts";
 	    this.props.newPostAsync(postData, url);
 	  },
-	  componentWillMount: function componentWillMount() {
-	    if (this.props.user) {
-	      console.log(user);
-	      _reactRouter.browserHistory.push('/new_post');
-	    } else {
-	      alert('please login first');
-	      _reactRouter.browserHistory.push('/login');
-	    }
-	  },
 	
 	  render: function render() {
 	    return _react2.default.createElement(
