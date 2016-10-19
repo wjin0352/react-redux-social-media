@@ -14,11 +14,9 @@ import { browserHistory } from 'react-router';
         .then(response => response.json())
         .then(jsonData => {
           dispatch(videoSuccess(jsonData))
-          console.log(jsonData)
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
           browserHistory.push('/show_videos')
-
       })
         .catch(err => dispatch(videoError(err.message)));
     };
@@ -75,6 +73,37 @@ import { browserHistory } from 'react-router';
     }
   };
 
+/* GET ALL VIDEOS ACTIONS */
+  export function allVideosAsync(url) {
+    return (dispatch) => {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(videos => {
+          dispatch(allVideosSuccess(videos))
+          browserHistory.push('/show_videos')
+        })
+        .catch(err => dispatch(allVideosError(err.message)));
+    };
+  };
+
+  export function allVideosSuccess(videos) {
+    return {
+      type: 'ALL_VIDEOS_SUCCESS',
+      videos
+    }
+  };
+
+  export function allVideosError(error) {
+    return {
+      type: 'ALL_VIDEOS_ERROR',
+      error
+    }
+  };
 
 /* GET ALL POSTS ACTIONS */
   export function allPostsAsync (url) {
@@ -120,8 +149,7 @@ import { browserHistory } from 'react-router';
       })
         .then(response => response.json())  // converts data to json and returns another promise
         .then(jsonData => {
-          dispatch(registerSuccess(jsonData.email))
-          // console.log(jsonData)
+          dispatch(registerSuccess(jsonData))
           browserHistory.push('/')
       })
         .catch(err => dispatch(registerError(err.message)));
@@ -165,30 +193,6 @@ import { browserHistory } from 'react-router';
       }
     )}
     }
-
-   // .then(response => {
-   //      response.json();
-   //    })
-
-  // export function userSession (userSession, url) {
-  //   return (dispatch) => {
-  //     return fetch(url, {
-  //       method: 'GET',
-  //       headers: {
-  //         'content-type': 'application/json'
-  //       },
-  //       body: JSON.stringify(userSession)
-  //     })
-  //       .then(response => {
-  //         response.json()
-  //     })
-  //       .then(currentUser => {
-  //         console.log('this is from userSession action creator current user : ', currentUser)
-  //         currentUser
-  //       })
-  //       .catch(err => console.log(err))
-  //   };
-  // };
 
   export function loginSuccess (user, dispatch) {
     return dispatch({

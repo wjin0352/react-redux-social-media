@@ -15,12 +15,12 @@ const newVideo = (state = initialState, action) => {
     case 'VIDEO_SUCCESS':
       return {
         ...state,
-        userVideo: action.jsonData
+        userVideo: action.video
       }
     case 'VIDEO_ERROR':
       return {
         ...state,
-        error: action.err
+        error: action.error
       }
   default:
     return state;

@@ -6,7 +6,7 @@ import Registration from '../components/Registration';
 
 const mapStateToProps = (state) => {
   return {
-    register_user: state
+    register_user: state.register
   }
 }
 

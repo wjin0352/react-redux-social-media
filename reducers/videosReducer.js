@@ -1,18 +1,18 @@
 import * as actions from '../actions';
 
 const initialState = {
-  posts: [],
+  videos: [],
   error: ''
 }
 
-const allPosts = (state = initialState, action) => {
+const allVideos = (state = initialState, action) => {
   switch (action.type) {
-    case 'ALL_POSTS_SUCCESS':
+    case 'ALL_VIDEOS_SUCCESS':
       return {
         ...state,
-        posts: action.posts
+        videos: action.videos
       }
-    case 'ALL_POSTS_ERROR':
+    case 'ALL_VIDEOS_ERROR':
       return {
         ...state,
         error: action.error
@@ -22,4 +22,4 @@ const allPosts = (state = initialState, action) => {
   }
 }
 
-export default allPosts;
+export default allVideos;

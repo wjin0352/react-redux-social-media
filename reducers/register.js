@@ -19,7 +19,7 @@ const register = function (state = initialState, action) {
     case 'REGISTER_ERROR':
       return {
         ...state,
-        error: action.err
+        error: action.error
       }
     default:
       return state;

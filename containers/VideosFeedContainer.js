@@ -6,7 +6,7 @@ import VideosFeed from '../components/VideosFeed';
 
 const mapStateToProps = (state) => {
   return {
-    // results: state
+    videos: state.videosReducer
   }
 }
 

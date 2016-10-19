@@ -6,7 +6,7 @@ import Login from '../components/Login';
 
 const mapStateToProps = (state) => {
   return {
-    login_user: state
+    login_user: state.login
   }
 }
 

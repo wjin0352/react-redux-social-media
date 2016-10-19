@@ -6,7 +6,7 @@ import PostsFeed from '../components/PostsFeed';
 
 const mapStateToProps = (state) => {
   return {
-    results: state
+    results: state.postsReducer
   }
 }
 

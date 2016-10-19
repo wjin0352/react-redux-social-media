@@ -15,12 +15,12 @@ const newPost = (state = initialState, action) => {
     case 'POST_SUCCESS':
       return {
         ...state,
-        userPost: action.jsonData
+        userPost: action.post
       }
     case 'POST_ERROR':
       return {
         ...state,
-        error: action.err
+        error: action.error
       }
   default:
     return state;

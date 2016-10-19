@@ -6,7 +6,7 @@ import NewVideo from '../components/NewVideo';
 
 const mapStateToProps = (state) => {
   return {
-    video: state
+    video: state.video
   }
 }
 

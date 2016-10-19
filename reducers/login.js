@@ -15,7 +15,7 @@ const login = function (state = initialState, action) {
     case 'LOGIN_ERROR':
       return {
         ...state,
-        error: action.err
+        error: action.error
       }
   default:
     return state;

@@ -21547,6 +21547,9 @@
 	exports.newPostAsync = newPostAsync;
 	exports.postSuccess = postSuccess;
 	exports.postError = postError;
+	exports.allVideosAsync = allVideosAsync;
+	exports.allVideosSuccess = allVideosSuccess;
+	exports.allVideosError = allVideosError;
 	exports.allPostsAsync = allPostsAsync;
 	exports.allPostsSuccess = allPostsSuccess;
 	exports.allPostsError = allPostsError;
@@ -21575,7 +21578,6 @@
 	      return response.json();
 	    }).then(function (jsonData) {
 	      dispatch(videoSuccess(jsonData));
-	      console.log(jsonData);
 	      // find video id to redirect to that video
 	      // client side redirect to '/video/:id'
 	      _reactRouter.browserHistory.push('/show_videos');
@@ -21636,6 +21638,39 @@
 	  };
 	};
 	
+	/* GET ALL VIDEOS ACTIONS */
+	function allVideosAsync(url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: 'GET',
+	      headers: {
+	        'content-type': 'application/json'
+	      }
+	    }).then(function (response) {
+	      return response.json();
+	    }).then(function (videos) {
+	      dispatch(allVideosSuccess(videos));
+	      _reactRouter.browserHistory.push('/show_videos');
+	    }).catch(function (err) {
+	      return dispatch(allVideosError(err.message));
+	    });
+	  };
+	};
+	
+	function allVideosSuccess(videos) {
+	  return {
+	    type: 'ALL_VIDEOS_SUCCESS',
+	    videos: videos
+	  };
+	};
+	
+	function allVideosError(error) {
+	  return {
+	    type: 'ALL_VIDEOS_ERROR',
+	    error: error
+	  };
+	};
+	
 	/* GET ALL POSTS ACTIONS */
 	function allPostsAsync(url) {
 	  return function (dispatch) {
@@ -21682,8 +21717,7 @@
 	      return response.json();
 	    }) // converts data to json and returns another promise
 	    .then(function (jsonData) {
-	      dispatch(registerSuccess(jsonData.email));
-	      // console.log(jsonData)
+	      dispatch(registerSuccess(jsonData));
 	      _reactRouter.browserHistory.push('/');
 	    }).catch(function (err) {
 	      return dispatch(registerError(err.message));
@@ -21726,30 +21760,6 @@
 	    });
 	  };
 	}
-	
-	// .then(response => {
-	//      response.json();
-	//    })
-	
-	// export function userSession (userSession, url) {
-	//   return (dispatch) => {
-	//     return fetch(url, {
-	//       method: 'GET',
-	//       headers: {
-	//         'content-type': 'application/json'
-	//       },
-	//       body: JSON.stringify(userSession)
-	//     })
-	//       .then(response => {
-	//         response.json()
-	//     })
-	//       .then(currentUser => {
-	//         console.log('this is from userSession action creator current user : ', currentUser)
-	//         currentUser
-	//       })
-	//       .catch(err => console.log(err))
-	//   };
-	// };
 	
 	function loginSuccess(user, dispatch) {
 	  return dispatch({
@@ -28837,11 +28847,11 @@
 	  switch (action.type) {
 	    case 'VIDEO_SUCCESS':
 	      return _extends({}, state, {
-	        userVideo: action.jsonData
+	        userVideo: action.video
 	      });
 	    case 'VIDEO_ERROR':
 	      return _extends({}, state, {
-	        error: action.err
+	        error: action.error
 	      });
 	    default:
 	      return state;
@@ -28885,11 +28895,11 @@
 	  switch (action.type) {
 	    case 'POST_SUCCESS':
 	      return _extends({}, state, {
-	        userPost: action.jsonData
+	        userPost: action.post
 	      });
 	    case 'POST_ERROR':
 	      return _extends({}, state, {
-	        error: action.err
+	        error: action.error
 	      });
 	    default:
 	      return state;
@@ -28936,7 +28946,7 @@
 	      });
 	    case 'REGISTER_ERROR':
 	      return _extends({}, state, {
-	        error: action.err
+	        error: action.error
 	      });
 	    default:
 	      return state;
@@ -28979,7 +28989,7 @@
 	      });
 	    case 'LOGIN_ERROR':
 	      return _extends({}, state, {
-	        error: action.err
+	        error: action.error
 	      });
 	    default:
 	      return state;
@@ -49334,7 +49344,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    results: state
+	    results: state.postsReducer
 	  };
 	};
 	
@@ -49571,7 +49581,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    register_user: state
+	    register_user: state.register
 	  };
 	};
 	
@@ -49743,7 +49753,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    login_user: state
+	    login_user: state.login
 	  };
 	};
 	
@@ -49905,7 +49915,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    post: state
+	    post: state.post
 	  };
 	};
 	
@@ -50062,7 +50072,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    video: state
+	    video: state.video
 	  };
 	};
 	
@@ -50112,7 +50122,6 @@
 	      videolink: videolink,
 	      description: description
 	    };
-	    console.log(videoData);
 	    var url = "http://localhost:8000/videos";
 	    this.props.newVideoAsync(videoData, url);
 	  },

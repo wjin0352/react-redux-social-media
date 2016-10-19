@@ -15,7 +15,6 @@ const NewVideo = React.createClass({
       videolink,
       description
     }
-    console.log(videoData)
     var url = "http://localhost:8000/videos";
     this.props.newVideoAsync(videoData, url);
   },

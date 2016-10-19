@@ -6,7 +6,7 @@ import NewPost from '../components/NewPost';
 
 const mapStateToProps = (state) => {
   return {
-    post: state
+    post: state.post
   }
 }
 
