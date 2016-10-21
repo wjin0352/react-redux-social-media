@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
   export function newVideoAsync(videoData, url) {
     return (dispatch) => {
       return fetch(url, {
+        credentials: 'include',
         method: 'POST',
         headers: {
           'content-type': 'application/json'
@@ -36,28 +37,29 @@ import { browserHistory } from 'react-router';
     }
   }
 
-
 /* NEW POST ACTIONS */
   export function newPostAsync(postData, url) {
     return (dispatch) => {
       return fetch(url, {
+        credentials: 'include',
         method: 'POST',
         headers: {
-          'content-type': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(postData)
       })
         .then(response => response.json())
-        .then(jsonData => {
-          console.log(jsonData)
-          dispatch(postSuccess(jsonData))
-          // find post id to redirect to that post
-          // client side redirect to 'post/:id'
+        .then(data => {
+          dispatch(postSuccess(data))
           browserHistory.push('/show_posts')
-      })
-        .catch(err => dispatch(postError(err.message)));
+        })
+        .catch(err => {
+          dispatch(postError(err.message))
+          browserHistory.push('/login')
+        });
     };
-  };
+  }
 
   export function postSuccess (post) {
     return {
@@ -141,6 +143,7 @@ import { browserHistory } from 'react-router';
   export function registerUserAsync(formInput, url) {
     return (dispatch) => {
       return fetch(url, {
+        credentials: 'include',
         method: 'POST',
         headers: {
           'content-type': 'application/json'
@@ -175,6 +178,7 @@ import { browserHistory } from 'react-router';
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
       return fetch(url, {
+        credentials: 'include',
         method: 'POST',
         headers: {
           'content-type': 'application/json'

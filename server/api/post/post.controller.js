@@ -34,9 +34,11 @@ PostController.prototype.createPost = function(req, res) {
       }
     });
   }).then(function (post) {
+    console.log('success from post controller createpost method:', post);
     res.status(200).json(post);
   }).catch(function (error) {
-    console.log(error);
+    console.log('error from post controllers createPost method: ', error);
+    // res.redirect('/');
   })
 };
 

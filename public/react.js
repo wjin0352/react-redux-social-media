@@ -64,31 +64,35 @@
 	
 	var _PostsFeedContainer2 = _interopRequireDefault(_PostsFeedContainer);
 	
+	var _VideosFeedContainer = __webpack_require__(529);
+	
+	var _VideosFeedContainer2 = _interopRequireDefault(_VideosFeedContainer);
+	
 	var _PostsFeed = __webpack_require__(527);
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(529);
+	var _VideosFeed = __webpack_require__(530);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _RegistrationContainer = __webpack_require__(531);
+	var _RegistrationContainer = __webpack_require__(532);
 	
 	var _RegistrationContainer2 = _interopRequireDefault(_RegistrationContainer);
 	
-	var _LoginContainer = __webpack_require__(533);
+	var _LoginContainer = __webpack_require__(534);
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _NewPostContainer = __webpack_require__(535);
+	var _NewPostContainer = __webpack_require__(536);
 	
 	var _NewPostContainer2 = _interopRequireDefault(_NewPostContainer);
 	
-	var _NewVideoContainer = __webpack_require__(537);
+	var _NewVideoContainer = __webpack_require__(538);
 	
 	var _NewVideoContainer2 = _interopRequireDefault(_NewVideoContainer);
 	
-	var _UserPostsFeed = __webpack_require__(539);
+	var _UserPostsFeed = __webpack_require__(540);
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
@@ -111,7 +115,7 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPageContainer2.default },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeedContainer2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _VideosFeedContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeedContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPostContainer2.default }),
@@ -21569,6 +21573,7 @@
 	function newVideoAsync(videoData, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
+	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
 	        'content-type': 'application/json'
@@ -21605,24 +21610,24 @@
 	function newPostAsync(postData, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
+	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
-	        'content-type': 'application/json'
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
 	      },
 	      body: JSON.stringify(postData)
 	    }).then(function (response) {
 	      return response.json();
-	    }).then(function (jsonData) {
-	      console.log(jsonData);
-	      dispatch(postSuccess(jsonData));
-	      // find post id to redirect to that post
-	      // client side redirect to 'post/:id'
+	    }).then(function (data) {
+	      dispatch(postSuccess(data));
 	      _reactRouter.browserHistory.push('/show_posts');
 	    }).catch(function (err) {
-	      return dispatch(postError(err.message));
+	      dispatch(postError(err.message));
+	      _reactRouter.browserHistory.push('/login');
 	    });
 	  };
-	};
+	}
 	
 	function postSuccess(post) {
 	  return {
@@ -21708,6 +21713,7 @@
 	function registerUserAsync(formInput, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
+	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
 	        'content-type': 'application/json'
@@ -21743,6 +21749,7 @@
 	function loginUserAsync(userCred, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
+	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
 	        'content-type': 'application/json'
@@ -49495,7 +49502,57 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Video = __webpack_require__(530);
+	var _actions = __webpack_require__(173);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	var _store = __webpack_require__(239);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(266);
+	
+	var _VideosFeed = __webpack_require__(530);
+	
+	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    videos: state.videosReducer
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    allPostsAsync: function allPostsAsync(url) {
+	      // dispatch(actions.allVideosAsync(url))
+	    }
+	  };
+	};
+	
+	var VideosFeedContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_VideosFeed2.default);
+	
+	exports.default = VideosFeedContainer;
+
+/***/ },
+/* 530 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Video = __webpack_require__(531);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -49514,7 +49571,7 @@
 	exports.default = VideosFeed;
 
 /***/ },
-/* 530 */
+/* 531 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49548,7 +49605,7 @@
 	exports.default = Video;
 
 /***/ },
-/* 531 */
+/* 532 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49571,7 +49628,7 @@
 	
 	var _reactRedux = __webpack_require__(266);
 	
-	var _Registration = __webpack_require__(532);
+	var _Registration = __webpack_require__(533);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
@@ -49598,7 +49655,7 @@
 	exports.default = RegistrationContainer;
 
 /***/ },
-/* 532 */
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49720,7 +49777,7 @@
 	exports.default = Registration;
 
 /***/ },
-/* 533 */
+/* 534 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49743,7 +49800,7 @@
 	
 	var _reactRedux = __webpack_require__(266);
 	
-	var _Login = __webpack_require__(534);
+	var _Login = __webpack_require__(535);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -49770,7 +49827,7 @@
 	exports.default = LoginContainer;
 
 /***/ },
-/* 534 */
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49882,7 +49939,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 535 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49905,7 +49962,7 @@
 	
 	var _reactRedux = __webpack_require__(266);
 	
-	var _NewPost = __webpack_require__(536);
+	var _NewPost = __webpack_require__(537);
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
@@ -49932,7 +49989,7 @@
 	exports.default = NewPostContainer;
 
 /***/ },
-/* 536 */
+/* 537 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49967,6 +50024,8 @@
 	    };
 	    // console.log(user.id)
 	    var url = "http://localhost:8000/posts";
+	    console.log('form postdata', postData);
+	    console.log(url);
 	    this.props.newPostAsync(postData, url);
 	  },
 	
@@ -50039,7 +50098,7 @@
 	exports.default = NewPost;
 
 /***/ },
-/* 537 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50062,7 +50121,7 @@
 	
 	var _reactRedux = __webpack_require__(266);
 	
-	var _NewVideo = __webpack_require__(538);
+	var _NewVideo = __webpack_require__(539);
 	
 	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
@@ -50089,7 +50148,7 @@
 	exports.default = NewVideoContainer;
 
 /***/ },
-/* 538 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50195,7 +50254,7 @@
 	exports.default = NewVideo;
 
 /***/ },
-/* 539 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

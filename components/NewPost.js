@@ -19,6 +19,8 @@ const NewPost = React.createClass({
     }
     // console.log(user.id)
     var url = "http://localhost:8000/posts";
+    console.log('form postdata', postData)
+    console.log(url)
     this.props.newPostAsync(postData, url);
   },
   render: function () {

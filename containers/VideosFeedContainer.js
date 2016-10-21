@@ -18,6 +18,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const PostsFeedContainer = connect(mapStateToProps, mapDispatchToProps)(PostsFeed);
+const VideosFeedContainer = connect(mapStateToProps, mapDispatchToProps)(VideosFeed);
 
-export default PostsFeedContainer;
+export default VideosFeedContainer;
