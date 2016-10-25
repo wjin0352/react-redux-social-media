@@ -12,7 +12,6 @@ PostController.prototype.getPosts = function(req, res) {
       }
     });
   }).then(function (posts) {
-    // console.log(posts);
     res.status(200).json(posts);
   }).catch(function (error) {
     console.log(error);
@@ -38,6 +37,7 @@ PostController.prototype.createPost = function(req, res) {
     res.status(200).json(post);
   }).catch(function (error) {
     console.log('error from post controllers createPost method: ', error);
+    return error;
     // res.redirect('/');
   })
 };

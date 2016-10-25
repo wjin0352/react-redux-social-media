@@ -7,15 +7,20 @@ const initialState = {
 
 const allPosts = (state = initialState, action) => {
   switch (action.type) {
-    case 'ALL_POSTS_SUCCESS':
+    case 'FETCH_POSTS_SUCCESS':
       return {
         ...state,
         posts: action.posts
       }
-    case 'ALL_POSTS_ERROR':
+    case 'FETCH_POSTS_ERROR':
       return {
         ...state,
         error: action.error
+      }
+    case 'ADD_NEW_POST_TO_POSTS':
+      return {
+        ...state,
+        posts: action.post
       }
   default:
     return state;

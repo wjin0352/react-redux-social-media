@@ -6,13 +6,13 @@ import VideosFeed from '../components/VideosFeed';
 
 const mapStateToProps = (state) => {
   return {
-    videos: state.videosReducer
+    videos: state.allVideos
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    allPostsAsync: (url) => {
+    allVideosAsync: (url) => {
       // dispatch(actions.allVideosAsync(url))
     }
   }

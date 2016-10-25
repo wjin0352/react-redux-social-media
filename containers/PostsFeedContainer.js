@@ -4,16 +4,17 @@ import store from '../store';
 import { connect } from 'react-redux';
 import PostsFeed from '../components/PostsFeed';
 
+
 const mapStateToProps = (state) => {
   return {
-    results: state.postsReducer
+    posts: state.allPosts
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    allPostsAsync: (url) => {
-      dispatch(actions.allPostsAsync(url))
+    fetchPostsAsync: (url) => {
+      dispatch(actions.fetchPostsAsync(url))
     }
   }
 }

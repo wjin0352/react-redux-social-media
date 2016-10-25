@@ -49,9 +49,22 @@ import { browserHistory } from 'react-router';
         },
         body: JSON.stringify(postData)
       })
+        .then(response => {
+          if (response.status != 200) {
+            // fetch was giving me 401 when unlogged in user was making a post
+            // it wouldn't send an error
+            // instead postSuccess was being called.  so i threw an error if not 200
+            // to hit my catch
+            throw new Error(response.statusText);
+          } else {
+            return response;
+          }
+        })
         .then(response => response.json())
         .then(data => {
+
           dispatch(postSuccess(data))
+          dispatch(newPostToPosts(data.post))
           browserHistory.push('/show_posts')
         })
         .catch(err => {
@@ -108,7 +121,7 @@ import { browserHistory } from 'react-router';
   };
 
 /* GET ALL POSTS ACTIONS */
-  export function allPostsAsync (url) {
+  export function fetchPostsAsync (url) {
     return (dispatch) => {
       return fetch (url, {
         method: 'GET',
@@ -118,23 +131,30 @@ import { browserHistory } from 'react-router';
       })
         .then(response => response.json())
         .then(posts => {
-          dispatch(allPostsSuccess(posts))
+          dispatch(fetchPostsSuccess(posts))
           browserHistory.push('/show_posts')
       })
-        .catch(err => dispatch(allPostsError(err.message)));
+        .catch(err => dispatch(fetchPostsError(err.message)));
     };
   };
 
-  export function allPostsSuccess (posts) {
+  export function newPostToPosts(post) {
     return {
-      type: 'ALL_POSTS_SUCCESS',
+      type: 'ADD_NEW_POST_TO_POSTS',
+      posts: post
+    }
+  }
+
+  export function fetchPostsSuccess (posts) {
+    return {
+      type: 'FETCH_POSTS_SUCCESS',
       posts
     }
   };
 
-  export function allPostsError (error) {
+  export function fetchPostsError (error) {
     return {
-      type: 'ALL_POSTS_ERROR',
+      type: 'FETCH_POSTS_ERROR',
       error
     }
   };
@@ -187,6 +207,7 @@ import { browserHistory } from 'react-router';
       })
       .then(response => response.json())
       .then(jsonData => {
+
         loginSuccess(jsonData.email, dispatch)
         browserHistory.push('/')
         jsonData

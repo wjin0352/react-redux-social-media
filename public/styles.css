@@ -42,7 +42,11 @@ html {
 
 
 /* Post */
-  .post-container {
+  .jumbotron-post {
+    width: 80%;
+    margin: 2em auto;
+    padding: 5em;
+    height: 700px;
   }
 
   .post-div {
