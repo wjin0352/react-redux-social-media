@@ -49552,55 +49552,30 @@
 	    this.props.fetchPostsAsync(url);
 	  },
 	  renderPosts: function renderPosts(post) {
-	    console.log(post);
 	    return _react2.default.createElement(
-	      'div',
+	      _reactRouter.Link,
 	      null,
 	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        post.title
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        null,
+	        _reactBootstrap.Grid,
+	        { key: post._id, className: 'post_feed_item_grid' },
 	        _react2.default.createElement(
-	          _reactBootstrap.Grid,
+	          _reactBootstrap.Row,
 	          null,
 	          _react2.default.createElement(
-	            _reactBootstrap.Row,
-	            null,
+	            _reactBootstrap.Col,
+	            { xs: 4, md: 4, className: 'col-post-item' },
 	            _react2.default.createElement(
-	              _reactBootstrap.Col,
-	              { xs: 6, md: 4 },
+	              _reactBootstrap.Thumbnail,
+	              { src: '' },
 	              _react2.default.createElement(
-	                _reactBootstrap.Thumbnail,
-	                { src: '', alt: '242x200' },
-	                _react2.default.createElement(
-	                  'h3',
-	                  null,
-	                  post.title
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  post.content
-	                ),
-	                _react2.default.createElement(
-	                  'p',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { bsStyle: 'primary' },
-	                    'Button'
-	                  ),
-	                  ' ',
-	                  _react2.default.createElement(
-	                    _reactBootstrap.Button,
-	                    { bsStyle: 'default' },
-	                    'Button'
-	                  )
-	                )
+	                'h3',
+	                null,
+	                post.title
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { bsStyle: 'warning btn-sm' },
+	                'See Post'
 	              )
 	            )
 	          )
@@ -49620,11 +49595,15 @@
 	      _react2.default.createElement(
 	        'h3',
 	        null,
-	        'Posts Feed '
+	        'Posts Feed'
 	      ),
-	      posts.map(function (post) {
-	        return _this.renderPosts(post);
-	      })
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'feed_wrapper' },
+	        posts.map(function (post) {
+	          return _this.renderPosts(post);
+	        })
+	      )
 	    );
 	  }
 	});

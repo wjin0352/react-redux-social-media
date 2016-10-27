@@ -39,8 +39,33 @@ html {
 
 
 /* Posts feed container */
+  .post_feed_item_grid {
+    display: inline-block;
+    width: 25%;
+  }
 
+  .feed_wrapper {
+    border: .01em solid grey;
+    width: 80%;
+    margin: 2em auto;
+    padding: 4em 4em ;
+  }
 
+  .user_posts_feed h3 {
+    width: 200px;
+    margin: 2em auto;
+  }
+
+  .col-post-item {
+    width: 109.3333%;
+  }
+
+  .col-post-item h3 {
+    font-size: 1.3em;
+  }
+
+  .col-post-item p button {
+  }
 /* Post */
   .jumbotron-post {
     width: 80%;

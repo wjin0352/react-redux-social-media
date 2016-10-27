@@ -10,27 +10,19 @@ const PostsFeed = React.createClass({
     this.props.fetchPostsAsync(url);
   },
   renderPosts (post) {
-      console.log(post);
       return (
-        <div>
-          <h3>{post.title}</h3>
-          <Link>
-            <Grid>
-              <Row>
-              <Col xs={6} md={4}>
-                <Thumbnail src="" alt="242x200">
-                  <h3>{post.title}</h3>
-                  <p>{post.content}</p>
-                  <p>
-                    <Button bsStyle="primary">Button</Button>&nbsp;
-                    <Button bsStyle="default">Button</Button>
-                  </p>
-                </Thumbnail>
-              </Col>
-              </Row>
-            </Grid>
-          </Link>
-        </div>
+        <Link>
+          <Grid key={post._id} className="post_feed_item_grid">
+            <Row>
+            <Col xs={4} md={4} className="col-post-item">
+              <Thumbnail src="" >
+                <h3>{post.title}</h3>
+                  <Button bsStyle="warning btn-sm">See Post</Button>
+              </Thumbnail>
+            </Col>
+            </Row>
+          </Grid>
+        </Link>
       )
   // {this.props.posts ? this.renderPosts() : <h3>No posts: </h3>}
   },
@@ -38,8 +30,10 @@ const PostsFeed = React.createClass({
     const posts = this.props.posts.posts;
     return (
       <div className='user_posts_feed'>
-        <h3>Posts Feed </h3>
-        {posts.map(post => this.renderPosts(post))}
+        <h3>Posts Feed</h3>
+        <div className="feed_wrapper">
+          {posts.map(post => this.renderPosts(post))}
+        </div>
       </div>
     )
   }
