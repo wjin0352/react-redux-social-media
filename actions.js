@@ -88,6 +88,27 @@ import { browserHistory } from 'react-router';
     }
   };
 
+/* Post actions */
+  export function fetchPost (id, url) {
+    return (dispatch) => {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(post => {
+
+        })
+    }
+    return {
+      type: 'FETCH_POST',
+
+    }
+  }
+
+
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {
     return (dispatch) => {

@@ -60,53 +60,45 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _PostsFeedContainer = __webpack_require__(528);
-	
-	var _PostsFeedContainer2 = _interopRequireDefault(_PostsFeedContainer);
-	
-	var _VideosFeedContainer = __webpack_require__(531);
+	var _VideosFeedContainer = __webpack_require__(528);
 	
 	var _VideosFeedContainer2 = _interopRequireDefault(_VideosFeedContainer);
 	
-	var _PostsFeed = __webpack_require__(529);
+	var _PostsFeed = __webpack_require__(531);
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(532);
+	var _VideosFeed = __webpack_require__(529);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _RegistrationContainer = __webpack_require__(534);
+	var _RegistrationContainer = __webpack_require__(532);
 	
 	var _RegistrationContainer2 = _interopRequireDefault(_RegistrationContainer);
 	
-	var _LoginContainer = __webpack_require__(536);
+	var _LoginContainer = __webpack_require__(534);
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _NewPostContainer = __webpack_require__(538);
+	var _NewPostContainer = __webpack_require__(536);
 	
 	var _NewPostContainer2 = _interopRequireDefault(_NewPostContainer);
 	
-	var _NewVideoContainer = __webpack_require__(540);
+	var _NewVideoContainer = __webpack_require__(538);
 	
 	var _NewVideoContainer2 = _interopRequireDefault(_NewVideoContainer);
 	
-	var _UserPostsFeed = __webpack_require__(542);
+	var _UserPostsFeed = __webpack_require__(540);
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
-	var _Post = __webpack_require__(530);
+	var _Post = __webpack_require__(541);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
-	var _Video = __webpack_require__(533);
+	var _Video = __webpack_require__(530);
 	
 	var _Video2 = _interopRequireDefault(_Video);
-	
-	var _route_callbacks = __webpack_require__(543);
-	
-	var _route_callbacks2 = _interopRequireDefault(_route_callbacks);
 	
 	var _reactRouter = __webpack_require__(174);
 	
@@ -128,16 +120,17 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPageContainer2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _VideosFeedContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeedContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeedContainer2.default, onEnter: _route_callbacks2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPostContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/new_video', component: _NewVideoContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/registration', component: _RegistrationContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/posts/:id', component: _Post2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'show_videos', component: _VideosFeedContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'show_posts', component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new_post', component: _NewPostContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideoContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _RegistrationContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _LoginContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'post', component: _Post2.default })
 	    )
 	  )
 	);
+	// import onPostsEnter from './route_callbacks/route_callbacks';
 	
 	(0, _reactDom.render)(router, document.getElementById('app'));
 
@@ -21564,6 +21557,7 @@
 	exports.newPostAsync = newPostAsync;
 	exports.postSuccess = postSuccess;
 	exports.postError = postError;
+	exports.fetchPost = fetchPost;
 	exports.allVideosAsync = allVideosAsync;
 	exports.allVideosSuccess = allVideosSuccess;
 	exports.allVideosError = allVideosError;
@@ -21668,6 +21662,24 @@
 	    error: error
 	  };
 	};
+	
+	/* Post actions */
+	function fetchPost(id, url) {
+	  return function (dispatch) {
+	    return fetch(url, {
+	      method: 'GET',
+	      headers: {
+	        'content-type': 'application/json'
+	      }
+	    }).then(function (response) {
+	      return response.json();
+	    }).then(function (post) {});
+	  };
+	  return {
+	    type: 'FETCH_POST'
+	
+	  };
+	}
 	
 	/* GET ALL VIDEOS ACTIONS */
 	function allVideosAsync(url) {
@@ -49493,220 +49505,7 @@
 	
 	var _reactRedux = __webpack_require__(268);
 	
-	var _PostsFeed = __webpack_require__(529);
-	
-	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    posts: state.allPosts
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    fetchPostsAsync: function fetchPostsAsync(url) {
-	      dispatch(actions.fetchPostsAsync(url));
-	    }
-	  };
-	};
-	
-	var PostsFeedContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_PostsFeed2.default);
-	
-	exports.default = PostsFeedContainer;
-
-/***/ },
-/* 529 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _Post = __webpack_require__(530);
-	
-	var _Post2 = _interopRequireDefault(_Post);
-	
-	var _reactBootstrap = __webpack_require__(278);
-	
-	var _reactRouter = __webpack_require__(174);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// NO LOGGED IN USER .. All Posts Random feed
-	var PostsFeed = _react2.default.createClass({
-	  displayName: 'PostsFeed',
-	
-	  componentWillMount: function componentWillMount() {
-	    var url = 'http://localhost:8000/posts';
-	    this.props.fetchPostsAsync(url);
-	  },
-	  renderPosts: function renderPosts(post) {
-	    return _react2.default.createElement(
-	      _reactRouter.Link,
-	      null,
-	      _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        { key: post._id, className: 'post_feed_item_grid' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 4, md: 4, className: 'col-post-item' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Thumbnail,
-	              { src: '' },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                post.title
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { bsStyle: 'warning btn-sm' },
-	                'See Post'
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	    // {this.props.posts ? this.renderPosts() : <h3>No posts: </h3>}
-	  },
-	
-	  render: function render() {
-	    var _this = this;
-	
-	    var posts = this.props.posts.posts;
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'user_posts_feed' },
-	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        'Posts Feed'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'feed_wrapper' },
-	        posts.map(function (post) {
-	          return _this.renderPosts(post);
-	        })
-	      )
-	    );
-	  }
-	});
-	
-	exports.default = PostsFeed;
-
-/***/ },
-/* 530 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(278);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Post = function (_Component) {
-	  _inherits(Post, _Component);
-	
-	  function Post() {
-	    _classCallCheck(this, Post);
-	
-	    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
-	  }
-	
-	  _createClass(Post, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'container',
-	        { className: 'post-container' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Jumbotron,
-	          { bsStyle: 'post' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'primary' },
-	              'edit'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'primary' },
-	              'delete'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Post;
-	}(_react.Component);
-	
-	exports.default = Post;
-
-/***/ },
-/* 531 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(173);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(239);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(268);
-	
-	var _VideosFeed = __webpack_require__(532);
+	var _VideosFeed = __webpack_require__(529);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
@@ -49733,7 +49532,7 @@
 	exports.default = VideosFeedContainer;
 
 /***/ },
-/* 532 */
+/* 529 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49746,7 +49545,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Video = __webpack_require__(533);
+	var _Video = __webpack_require__(530);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -49765,7 +49564,7 @@
 	exports.default = VideosFeed;
 
 /***/ },
-/* 533 */
+/* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49799,7 +49598,143 @@
 	exports.default = Video;
 
 /***/ },
-/* 534 */
+/* 531 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _store = __webpack_require__(239);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(268);
+	
+	var _actions = __webpack_require__(173);
+	
+	var _Post = __webpack_require__(541);
+	
+	var _Post2 = _interopRequireDefault(_Post);
+	
+	var _reactBootstrap = __webpack_require__(278);
+	
+	var _reactRouter = __webpack_require__(174);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// NO LOGGED IN USER .. All Posts Random feed
+	var PostsFeed = function (_Component) {
+	  _inherits(PostsFeed, _Component);
+	
+	  function PostsFeed() {
+	    _classCallCheck(this, PostsFeed);
+	
+	    return _possibleConstructorReturn(this, (PostsFeed.__proto__ || Object.getPrototypeOf(PostsFeed)).apply(this, arguments));
+	  }
+	
+	  _createClass(PostsFeed, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var url = 'http://localhost:8000/posts';
+	      this.props.fetchPostsAsync(url);
+	    }
+	  }, {
+	    key: 'renderPosts',
+	    value: function renderPosts(post) {
+	      return _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/posts' },
+	        this.props.params.stuff,
+	        _react2.default.createElement(
+	          _reactBootstrap.Grid,
+	          { key: post._id, className: 'post_feed_item_grid' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Row,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Col,
+	              { xs: 4, md: 4, className: 'col-post-item' },
+	              _react2.default.createElement(
+	                _reactBootstrap.Thumbnail,
+	                { src: '' },
+	                _react2.default.createElement(
+	                  'h3',
+	                  null,
+	                  post.title
+	                ),
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'warning btn-sm' },
+	                  'See Post'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	      {
+	        this.props.posts ? this.renderPosts() : _react2.default.createElement(
+	          'h3',
+	          null,
+	          'No posts: '
+	        );
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var posts = this.props.posts.posts;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'user_posts_feed' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Posts Feed'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'feed_wrapper' },
+	          posts.map(function (post) {
+	            return _this2.renderPosts(post);
+	          })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return PostsFeed;
+	}(_react.Component);
+	
+	;
+	
+	function mapStateToProps(state) {
+	  return {
+	    posts: state.allPosts
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPostsAsync: _actions.fetchPostsAsync })(PostsFeed);
+
+/***/ },
+/* 532 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49822,7 +49757,7 @@
 	
 	var _reactRedux = __webpack_require__(268);
 	
-	var _Registration = __webpack_require__(535);
+	var _Registration = __webpack_require__(533);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
@@ -49849,7 +49784,7 @@
 	exports.default = RegistrationContainer;
 
 /***/ },
-/* 535 */
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49971,7 +49906,7 @@
 	exports.default = Registration;
 
 /***/ },
-/* 536 */
+/* 534 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49994,7 +49929,7 @@
 	
 	var _reactRedux = __webpack_require__(268);
 	
-	var _Login = __webpack_require__(537);
+	var _Login = __webpack_require__(535);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -50021,7 +49956,7 @@
 	exports.default = LoginContainer;
 
 /***/ },
-/* 537 */
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50133,7 +50068,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 538 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50156,7 +50091,7 @@
 	
 	var _reactRedux = __webpack_require__(268);
 	
-	var _NewPost = __webpack_require__(539);
+	var _NewPost = __webpack_require__(537);
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
@@ -50183,7 +50118,7 @@
 	exports.default = NewPostContainer;
 
 /***/ },
-/* 539 */
+/* 537 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50290,7 +50225,7 @@
 	exports.default = NewPost;
 
 /***/ },
-/* 540 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50313,7 +50248,7 @@
 	
 	var _reactRedux = __webpack_require__(268);
 	
-	var _NewVideo = __webpack_require__(541);
+	var _NewVideo = __webpack_require__(539);
 	
 	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
@@ -50340,7 +50275,7 @@
 	exports.default = NewVideoContainer;
 
 /***/ },
-/* 541 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50446,7 +50381,7 @@
 	exports.default = NewVideo;
 
 /***/ },
-/* 542 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50461,7 +50396,7 @@
 	
 	var _reactBootstrap = __webpack_require__(278);
 	
-	var _Post = __webpack_require__(530);
+	var _Post = __webpack_require__(541);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -50593,7 +50528,7 @@
 	exports.default = UserPostsFeed;
 
 /***/ },
-/* 543 */
+/* 541 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50601,19 +50536,86 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.onPostsEnter = onPostsEnter;
 	
-	var _store = __webpack_require__(239);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _store2 = _interopRequireDefault(_store);
+	var _react = __webpack_require__(1);
 	
-	var _actions = __webpack_require__(173);
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(268);
+	
+	var _reactRouter = __webpack_require__(174);
+	
+	var _reactBootstrap = __webpack_require__(278);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function onPostsEnter() {
-	  _store2.default.dispatch((0, _actions.fetchPostsAsync)());
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Post = function (_Component) {
+	  _inherits(Post, _Component);
+	
+	  function Post() {
+	    _classCallCheck(this, Post);
+	
+	    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
+	  }
+	
+	  _createClass(Post, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'container',
+	        { className: 'post-container' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Jumbotron,
+	          { bsStyle: 'post' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'title'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'primary' },
+	              'edit'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'primary' },
+	              'delete'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Post;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {};
 	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Post);
 
 /***/ }
 /******/ ]);
