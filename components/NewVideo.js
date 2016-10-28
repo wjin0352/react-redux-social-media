@@ -27,7 +27,7 @@ const NewVideo = React.createClass({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='new-video-form' onSubmit={this.createVideo}>
+            <form className='new-video-form' onSubmit={this.createVideo.bind(this)}>
               <fieldset>
                 <legend>New Video: </legend>
                 <li>add url:</li>

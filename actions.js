@@ -62,9 +62,9 @@ import { browserHistory } from 'react-router';
         })
         .then(response => response.json())
         .then(data => {
-
+          console.log('data from newPostAsync', data)
           dispatch(postSuccess(data))
-          dispatch(newPostToPosts(data.post))
+          dispatch(newPostToPosts(data))
           browserHistory.push('/show_posts')
         })
         .catch(err => {
@@ -80,6 +80,14 @@ import { browserHistory } from 'react-router';
       post
     }
   };
+
+  export function newPostToPosts(post) {
+    console.log('post from newposttoposts action: ',post)
+    return {
+      type: 'ADD_NEW_POST_TO_POSTS',
+      post
+    }
+  }
 
   export function postError (error) {
     return {
@@ -99,7 +107,7 @@ import { browserHistory } from 'react-router';
       })
         .then(response => response.json())
         .then(post => {
-
+          // not finished yet...
         })
     }
     return {
@@ -153,18 +161,12 @@ import { browserHistory } from 'react-router';
         .then(response => response.json())
         .then(posts => {
           dispatch(fetchPostsSuccess(posts))
+          // i just made a
           browserHistory.push('/show_posts')
       })
         .catch(err => dispatch(fetchPostsError(err.message)));
     };
   };
-
-  export function newPostToPosts(post) {
-    return {
-      type: 'ADD_NEW_POST_TO_POSTS',
-      posts: post
-    }
-  }
 
   export function fetchPostsSuccess (posts) {
     return {

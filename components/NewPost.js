@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { newPostAsync } from '../actions';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-const NewPost = React.createClass({
-  getInitialState () {
-    return { showModal: true };
-  },
-  createPost (e) {
+class NewPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showModal: true };
+  }
+
+  createPost(e) {
     e.preventDefault();
     var form = e.target;
     var title = form.querySelector('[name="title"]').value;
@@ -15,13 +19,12 @@ const NewPost = React.createClass({
     var postData = {
       title,
       content: post,
-      // userid: user
     }
-    // console.log(user.id)
     var url = "http://localhost:8000/posts";
     this.props.newPostAsync(postData, url);
-  },
-  render: function () {
+  }
+
+  render() {
     return (
       <Modal show={this.state.showModal} bsSize="large" >
           <Modal.Header>
@@ -30,7 +33,7 @@ const NewPost = React.createClass({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='new-post-form' onSubmit={this.createPost}>
+            <form className='new-post-form' onSubmit={this.createPost.bind(this)}>
               <fieldset>
                 <legend>New Post: </legend>
                 <li>title</li>
@@ -48,8 +51,14 @@ const NewPost = React.createClass({
           </Link>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
-});
+};
 
-export default NewPost;
+function mapStateToProps(state) {
+  return {
+    post: state.post
+  }
+}
+
+export default connect(mapStateToProps, { newPostAsync })(NewPost);

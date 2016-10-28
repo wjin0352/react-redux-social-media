@@ -6,13 +6,12 @@ import { Modal, Button } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = { showModal:true };
   }
 
   handleLogin(e) {
     e.preventDefault();
-    // grab input values
     var form = e.target;
     var name = form.querySelector('[name="username"]').value;
     var pass = form.querySelector('[name="password"]').value;
@@ -34,7 +33,7 @@ class Login extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='login-form' onSubmit={this.handleLogin}>
+            <form className='login-form' onSubmit={this.handleLogin.bind(this)}>
               <fieldset>
                 <legend>Login: </legend>
                 <li>username</li>
