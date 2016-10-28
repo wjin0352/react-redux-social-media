@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import store from '../store';
 import { connect } from 'react-redux';
 import { fetchPostsAsync } from '../actions';
 import Post from './Post';

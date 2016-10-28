@@ -3,11 +3,10 @@ import { render } from 'react-dom';
 
 import MainPageContainer from './containers/MainPageContainer';
 import Header from './components/Header';
-import VideosFeedContainer from './containers/VideosFeedContainer';
 import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
 import RegistrationContainer from './containers/RegistrationContainer';
-import LoginContainer from './containers/LoginContainer';
+import Login from './components/Login';
 import NewPostContainer from './containers/NewPostContainer';
 import NewVideoContainer from './containers/NewVideoContainer';
 import UserPostsFeed from './components/UserPostsFeed';
@@ -23,13 +22,13 @@ const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={MainPageContainer}>
-        <IndexRoute component={VideosFeedContainer}/>
-        <Route path='show_videos' component={VideosFeedContainer}/>
+        <IndexRoute component={PostsFeed}/>
+        <Route path='show_videos' component={VideosFeed}/>
         <Route path='show_posts' component={PostsFeed} />
         <Route path='new_post' component={NewPostContainer}/>
         <Route path='new_video' component={NewVideoContainer}/>
         <Route path='registration' component={RegistrationContainer}/>
-        <Route path='login' component={LoginContainer}/>
+        <Route path='login' component={Login}/>
         <Route path="post" component={Post}/>
       </Route>
     </Router>

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { loginUserAsync } from '../actions';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
-const Login = React.createClass({
-  getInitialState () {
-    return { showModal: true };
-  },
-  handleLogin (e) {
+class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { showModal:true };
+  }
+
+  handleLogin(e) {
     e.preventDefault();
     // grab input values
     var form = e.target;
@@ -19,8 +23,9 @@ const Login = React.createClass({
     }
     var url = "http://localhost:8000/users/login";
     this.props.loginUserAsync(userCred, url);
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <Modal show={this.state.showModal} >
           <Modal.Header>
@@ -48,6 +53,12 @@ const Login = React.createClass({
       </Modal>
     )
   }
-});
+};
 
-export default Login;
+function mapStateToProps(state) {
+  return {
+    login_user: state.login
+  }
+}
+
+export default connect(mapStateToProps, { loginUserAsync })(Login);

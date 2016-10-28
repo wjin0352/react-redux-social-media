@@ -82,6 +82,15 @@ html {
     padding: 4em;
   }
 
+  .jumbotron-buttons {
+    width: 12%;
+    margin: 22em auto;
+  }
+
+  .jumbotron-buttons button {
+    margin-right: 7px;
+  }
+
 /* Post Form */
   .post-form-div {
     border: .01em solid black;
