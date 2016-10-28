@@ -1,17 +1,22 @@
-import React from 'react';
-import Header from './Header';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from './Header';
 
-const MainPage = React.createClass({
-  render: function () {
-    // console.log('user: ', this.props.user)
+class MainPage extends Component {
+  render() {
     return (
       <div>
         <Header/>
         {this.props.children}
       </div>
-    )
+    );
+  }
 }
-});
 
-export default MainPage;
+function mapStateToProps(state) {
+  return {
+    user: state.login.user
+  };
+}
+
+export default connect(mapStateToProps)(MainPage);

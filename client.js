@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import MainPageContainer from './containers/MainPageContainer';
+import MainPage from './components/MainPage';
 import Header from './components/Header';
 import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
@@ -21,7 +21,7 @@ import store from './store';
 const router = (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={MainPageContainer}>
+      <Route path='/' component={MainPage}>
         <IndexRoute component={PostsFeed}/>
         <Route path='show_videos' component={VideosFeed}/>
         <Route path='show_posts' component={PostsFeed} />
