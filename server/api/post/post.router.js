@@ -6,7 +6,7 @@ const isAuthenticated = require('../auth/auth');
 
 router.get('/', controller.getPosts)
   .post('/', isAuthenticated, controller.createPost)
-  .put('/:id', controller.editPost)
-  .delete('/:id', controller.deletePost)
+  .put('/:id', isAuthenticated, controller.editPost)
+  .delete('/:id', isAuthenticated, controller.deletePost)
 
 module.exports = router;
