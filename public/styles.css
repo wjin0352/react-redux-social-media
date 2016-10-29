@@ -83,8 +83,10 @@ html {
   }
 
   .jumbotron-buttons {
-    width: 12%;
-    margin: 22em auto;
+    /*width: 12%;
+    margin: 22em auto;*/
+    margin-top: 23em;
+    text-align: center;
   }
 
   .jumbotron-buttons button {

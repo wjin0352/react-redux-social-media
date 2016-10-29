@@ -80,9 +80,9 @@
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _NewVideoContainer = __webpack_require__(535);
+	var _NewVideo = __webpack_require__(536);
 	
-	var _NewVideoContainer2 = _interopRequireDefault(_NewVideoContainer);
+	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
 	var _UserPostsFeed = __webpack_require__(537);
 	
@@ -119,7 +119,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_posts', component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_post', component: _NewPost2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideoContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideo2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _RegistrationContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Login2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'post', component: _Post2.default })
@@ -50270,56 +50270,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newPostAsync: _actions.newPostAsync })(NewPost);
 
 /***/ },
-/* 535 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(510);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(517);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _NewVideo = __webpack_require__(536);
-	
-	var _NewVideo2 = _interopRequireDefault(_NewVideo);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    video: state.video
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    newVideoAsync: function newVideoAsync(videoData, url) {
-	      dispatch(actions.newVideoAsync(videoData, url));
-	    }
-	  };
-	};
-	
-	var NewVideoContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_NewVideo2.default);
-	
-	exports.default = NewVideoContainer;
-
-/***/ },
+/* 535 */,
 /* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -50329,9 +50280,15 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRedux = __webpack_require__(173);
 	
 	var _reactRouter = __webpack_require__(198);
 	
@@ -50339,91 +50296,116 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var NewVideo = _react2.default.createClass({
-	  displayName: 'NewVideo',
-	  getInitialState: function getInitialState() {
-	    return { showModal: true };
-	  },
-	  createVideo: function createVideo(e) {
-	    e.preventDefault();
-	    var form = e.target;
-	    var videolink = form.querySelector('[name="url"]').value;
-	    var description = form.querySelector('[name="description"]').value;
-	    var videoData = {
-	      videolink: videolink,
-	      description: description
-	    };
-	    var url = "http://localhost:8000/videos";
-	    this.props.newVideoAsync(videoData, url);
-	  },
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      _reactBootstrap.Modal,
-	      { show: this.state.showModal, bsSize: 'large' },
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Header,
-	        null,
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewVideo = function (_Component) {
+	  _inherits(NewVideo, _Component);
+	
+	  function NewVideo(props) {
+	    _classCallCheck(this, NewVideo);
+	
+	    var _this = _possibleConstructorReturn(this, (NewVideo.__proto__ || Object.getPrototypeOf(NewVideo)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(NewVideo, [{
+	    key: 'createVideo',
+	    value: function createVideo(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var videolink = form.querySelector('[name="url"]').value;
+	      var description = form.querySelector('[name="description"]').value;
+	      var videoData = {
+	        videolink: videolink,
+	        description: description
+	      };
+	      var url = "http://localhost:8000/videos";
+	      this.props.newVideoAsync(videoData, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal, bsSize: 'large' },
 	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Title,
+	          _reactBootstrap.Modal.Header,
 	          null,
-	          'Add a link'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Body,
-	        null,
-	        _react2.default.createElement(
-	          'form',
-	          { className: 'new-video-form', onSubmit: this.createVideo.bind(this) },
 	          _react2.default.createElement(
-	            'fieldset',
+	            _reactBootstrap.Modal.Title,
 	            null,
+	            'Add a link'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Body,
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'new-video-form', onSubmit: this.createVideo.bind(this) },
 	            _react2.default.createElement(
-	              'legend',
+	              'fieldset',
 	              null,
-	              'New Video: '
-	            ),
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'New Video: '
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'add url:'
+	              ),
+	              _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'description'
+	              ),
+	              _react2.default.createElement('textarea', { rows: '10', cols: '60', type: 'text', name: 'description', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                'Create'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'new_video_close_redirect', to: '/' },
 	            _react2.default.createElement(
-	              'li',
-	              null,
-	              'add url:'
-	            ),
-	            _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              'description'
-	            ),
-	            _react2.default.createElement('textarea', { rows: '10', cols: '60', type: 'text', name: 'description', required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit' },
-	              'Create'
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Home'
 	            )
 	          )
 	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Footer,
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'new_video_close_redirect', to: '/' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { bsStyle: 'warning' },
-	            'Home'
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
+	      );
+	    }
+	  }]);
 	
-	exports.default = NewVideo;
+	  return NewVideo;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    video: state.video
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newVideoAsync: _actions.newVideoAsync })(NewVideo);
 
 /***/ },
 /* 537 */

@@ -8,7 +8,7 @@ import VideosFeed from './components/VideosFeed';
 import RegistrationContainer from './containers/RegistrationContainer';
 import Login from './components/Login';
 import NewPost from './components/NewPost';
-import NewVideoContainer from './containers/NewVideoContainer';
+import NewVideo from './components/NewVideo';
 import UserPostsFeed from './components/UserPostsFeed';
 import Post from './components/Post';
 import Video from './components/Video';
@@ -26,7 +26,7 @@ const router = (
         <Route path='show_videos' component={VideosFeed}/>
         <Route path='show_posts' component={PostsFeed} />
         <Route path='new_post' component={NewPost}/>
-        <Route path='new_video' component={NewVideoContainer}/>
+        <Route path='new_video' component={NewVideo}/>
         <Route path='registration' component={RegistrationContainer}/>
         <Route path='login' component={Login}/>
         <Route path="post" component={Post}/>

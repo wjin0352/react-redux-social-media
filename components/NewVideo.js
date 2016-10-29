@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { newVideoAsync } from '../actions';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
-const NewVideo = React.createClass({
-  getInitialState () {
-    return { showModal: true };
-  },
-  createVideo (e) {
+class NewVideo extends Component {
+    constructor(props) {
+      super(props);
+      this.state = { showModal: true };
+    }
+
+  createVideo(e) {
     e.preventDefault();
     var form = e.target;
     var videolink = form.querySelector('[name="url"]').value;
@@ -17,8 +21,9 @@ const NewVideo = React.createClass({
     }
     var url = "http://localhost:8000/videos";
     this.props.newVideoAsync(videoData, url);
-  },
-  render: function () {
+  }
+
+  render() {
     return (
       <Modal show={this.state.showModal} bsSize="large" >
           <Modal.Header>
@@ -45,8 +50,14 @@ const NewVideo = React.createClass({
           </Link>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
-});
+}
 
-export default NewVideo;
+function mapStateToProps(state) {
+  return {
+    video: state.video
+  };
+}
+
+export default connect (mapStateToProps, { newVideoAsync })(NewVideo);
