@@ -96,6 +96,10 @@
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
+	var _Post = __webpack_require__(528);
+	
+	var _Post2 = _interopRequireDefault(_Post);
+	
 	var _reactRouter = __webpack_require__(174);
 	
 	var _reactRedux = __webpack_require__(266);
@@ -116,6 +120,7 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPageContainer2.default },
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _VideosFeedContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'posts/:id/', component: _Post2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_videos', component: _VideosFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/show_posts', component: _PostsFeedContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/new_post', component: _NewPostContainer2.default }),
@@ -49480,7 +49485,11 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'post-div' },
-	        _react2.default.createElement('p', null)
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.params.id
+	        )
 	      )
 	    );
 	  }
