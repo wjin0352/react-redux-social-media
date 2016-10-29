@@ -68,9 +68,9 @@
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _RegistrationContainer = __webpack_require__(516);
+	var _Registration = __webpack_require__(532);
 	
-	var _RegistrationContainer2 = _interopRequireDefault(_RegistrationContainer);
+	var _Registration2 = _interopRequireDefault(_Registration);
 	
 	var _Login = __webpack_require__(533);
 	
@@ -120,7 +120,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_posts', component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_post', component: _NewPost2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideo2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _RegistrationContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _Registration2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Login2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'post', component: _Post2.default })
 	    )
@@ -48577,56 +48577,7 @@
 	exports.default = Video;
 
 /***/ },
-/* 516 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(510);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	var _store = __webpack_require__(517);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _Registration = __webpack_require__(532);
-	
-	var _Registration2 = _interopRequireDefault(_Registration);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    register_user: state.register
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    registerUserAsync: function registerUserAsync(formInput, url) {
-	      dispatch(actions.registerUserAsync(formInput, url));
-	    }
-	  };
-	};
-	
-	var RegistrationContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Registration2.default);
-	
-	exports.default = RegistrationContainer;
-
-/***/ },
+/* 516 */,
 /* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49874,9 +49825,15 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRedux = __webpack_require__(173);
 	
 	var _reactRouter = __webpack_require__(198);
 	
@@ -49884,107 +49841,131 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Registration = _react2.default.createClass({
-	  displayName: 'Registration',
-	  getInitialState: function getInitialState() {
-	    return { showModal: true };
-	  },
-	  handleRegistration: function handleRegistration(e) {
-	    e.preventDefault();
-	    // grab form input values
-	    var form = e.target;
-	    var user = form.querySelector('[name="username"]').value;
-	    var pass = form.querySelector('[name="password"]').value;
-	    var email = form.querySelector('[name="email"]').value;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	    var formInput = {
-	      username: user,
-	      password: pass,
-	      email: email
-	    };
-	    var url = "http://localhost:8000/users/register";
-	    // this.props.dispatch(actions.registerUserAsync (formInput, url));
-	    this.props.registerUserAsync(formInput, url);
-	  },
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      _reactBootstrap.Modal,
-	      { show: this.state.showModal },
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Header,
-	        null,
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Registration = function (_Component) {
+	  _inherits(Registration, _Component);
+	
+	  function Registration(props) {
+	    _classCallCheck(this, Registration);
+	
+	    var _this = _possibleConstructorReturn(this, (Registration.__proto__ || Object.getPrototypeOf(Registration)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(Registration, [{
+	    key: 'handleRegistration',
+	    value: function handleRegistration(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var user = form.querySelector('[name="username"]').value;
+	      var pass = form.querySelector('[name="password"]').value;
+	      var email = form.querySelector('[name="email"]').value;
+	
+	      var formInput = {
+	        username: user,
+	        password: pass,
+	        email: email
+	      };
+	      var url = "http://localhost:8000/users/register";
+	      // this.props.dispatch(actions.registerUserAsync (formInput, url));
+	      this.props.registerUserAsync(formInput, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal },
 	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Title,
+	          _reactBootstrap.Modal.Header,
 	          null,
 	          _react2.default.createElement(
-	            'h3',
+	            _reactBootstrap.Modal.Title,
 	            null,
-	            'Please join us'
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Please join us'
+	            )
 	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Body,
-	        null,
+	        ),
 	        _react2.default.createElement(
-	          'form',
-	          { className: 'register-form', onSubmit: this.handleRegistration },
+	          _reactBootstrap.Modal.Body,
+	          null,
 	          _react2.default.createElement(
-	            'fieldset',
-	            null,
+	            'form',
+	            { className: 'register-form', onSubmit: this.handleRegistration.bind(this) },
 	            _react2.default.createElement(
-	              'legend',
+	              'fieldset',
 	              null,
-	              'Registration'
-	            ),
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'Registration'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'user name: '
+	              ),
+	              _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'email: '
+	              ),
+	              _react2.default.createElement('input', { type: 'email', name: 'email', ref: 'email', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'password: '
+	              ),
+	              _react2.default.createElement('input', { type: 'password', name: 'password', ref: 'password', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                'submit'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'register_modal_close_redirect', to: '/' },
 	            _react2.default.createElement(
-	              'li',
-	              null,
-	              'user name: '
-	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              'email: '
-	            ),
-	            _react2.default.createElement('input', { type: 'email', name: 'email', ref: 'email', required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              'password: '
-	            ),
-	            _react2.default.createElement('input', { type: 'password', name: 'password', ref: 'password', required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'button',
-	              { type: 'submit' },
-	              'submit'
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Main Page'
 	            )
 	          )
 	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Modal.Footer,
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'register_modal_close_redirect', to: '/' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { bsStyle: 'warning' },
-	            'Main Page'
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
+	      );
+	    }
+	  }]);
 	
-	exports.default = Registration;
+	  return Registration;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    register_user: state.register
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { registerUserAsync: _actions.registerUserAsync })(Registration);
 
 /***/ },
 /* 533 */

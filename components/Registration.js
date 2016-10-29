@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { registerUserAsync } from '../actions';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
-const Registration = React.createClass({
-  getInitialState () {
-    return { showModal: true };
-  },
+class Registration extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showModal: true };
+  }
+
   handleRegistration (e) {
     e.preventDefault();
-    // grab form input values
     var form = e.target;
     var user = form.querySelector('[name="username"]').value;
     var pass = form.querySelector('[name="password"]').value;
@@ -22,9 +25,10 @@ const Registration = React.createClass({
     var url = "http://localhost:8000/users/register";
     // this.props.dispatch(actions.registerUserAsync (formInput, url));
     this.props.registerUserAsync(formInput, url);
-  },
-  render: function () {
-  return (
+  }
+
+  render() {
+    return (
       <Modal show={this.state.showModal} >
         <Modal.Header>
           <Modal.Title>
@@ -32,7 +36,7 @@ const Registration = React.createClass({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className='register-form' onSubmit={this.handleRegistration}>
+          <form className='register-form' onSubmit={this.handleRegistration.bind(this)}>
             <fieldset>
               <legend>Registration</legend>
               <li>user name: </li>
@@ -51,8 +55,14 @@ const Registration = React.createClass({
           </Link>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
-});
+}
 
-export default Registration;
+function mapStateToProps(state) {
+  return {
+    register_user: state.register
+  };
+}
+
+export default connect (mapStateToProps, { registerUserAsync })(Registration);

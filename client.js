@@ -5,7 +5,7 @@ import MainPage from './components/MainPage';
 import Header from './components/Header';
 import PostsFeed from './components/PostsFeed';
 import VideosFeed from './components/VideosFeed';
-import RegistrationContainer from './containers/RegistrationContainer';
+import Registration from './components/Registration';
 import Login from './components/Login';
 import NewPost from './components/NewPost';
 import NewVideo from './components/NewVideo';
@@ -27,7 +27,7 @@ const router = (
         <Route path='show_posts' component={PostsFeed} />
         <Route path='new_post' component={NewPost}/>
         <Route path='new_video' component={NewVideo}/>
-        <Route path='registration' component={RegistrationContainer}/>
+        <Route path='registration' component={Registration}/>
         <Route path='login' component={Login}/>
         <Route path="post" component={Post}/>
       </Route>
