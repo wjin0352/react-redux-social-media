@@ -29,7 +29,7 @@ const router = (
         <Route path='new_video' component={NewVideo}/>
         <Route path='registration' component={Registration}/>
         <Route path='login' component={Login}/>
-        <Route path="post" component={Post}/>
+        <Route path="posts/:id" component={Post}/>
       </Route>
     </Router>
   </Provider>
