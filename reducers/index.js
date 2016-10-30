@@ -5,6 +5,7 @@ import register from './register';
 import login from './login';
 import allPosts from './postsReducer';
 import allVideos from './videosReducer';
+import allUserPosts from './userPostsReducer';
 
 const allReducers = combineReducers({
   video,
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
   register,
   login,
   allPosts,
-  allVideos
+  allVideos,
+  allUserPosts
 });
 
 export default allReducers;

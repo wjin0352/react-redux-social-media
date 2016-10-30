@@ -1,7 +1,7 @@
 const Post = require('./post.model');
 
 const PostController = function () {};
-
+// All Posts
 PostController.prototype.getPosts = function(req, res) {
   return new Promise (function (resolve, reject) {
     Post.find({}, function (error, posts) {
@@ -16,6 +16,19 @@ PostController.prototype.getPosts = function(req, res) {
   }).catch(function (error) {
     console.log(error);
   });
+}
+// User Posts
+PostController.prototype.getUserPosts = function(req, res) {
+  return new Promise (function (resolve, reject) {
+    Post.find({}, function(error, posts) {
+      if(error) {
+        reject(error);
+      } else {
+        resolve(posts);
+      }
+    });
+  }).then(posts => res.status(200).json(posts))
+    .catch(error => console.log(error))
 }
 
 PostController.prototype.createPost = function(req, res) {

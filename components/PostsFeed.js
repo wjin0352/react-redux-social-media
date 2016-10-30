@@ -14,9 +14,9 @@ class PostsFeed extends Component {
 
   renderPosts(post) {
       return (
-        <Link to='/posts'>
+        <Link to='/posts' key={post._id}>
         {this.props.params.stuff}
-          <Grid key={post._id} className="post_feed_item_grid">
+          <Grid className="post_feed_item_grid">
             <Row>
             <Col xs={4} md={4} className="col-post-item">
               <Thumbnail src="" >
@@ -32,6 +32,7 @@ class PostsFeed extends Component {
   }
 
   render() {
+    // console.log('userPosts: ', this.props)
     const posts = this.props.posts.posts;
     return (
       <div className='user_posts_feed'>

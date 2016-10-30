@@ -182,6 +182,39 @@ import { browserHistory } from 'react-router';
     }
   };
 
+/* GET ALL USER POSTS  */
+  export function fetchUserPostsAsync(url) {
+    return (dispatch) => {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(userPosts => {
+        dispatch(fetchUserPostsSuccess(userPosts))
+        console.log(userPosts)
+        browserHistory.push('/show_user_posts')
+      })
+        .catch(err => dispatch(fetchUserPostsError(err.message)));
+    };
+  };
+
+  export function fetchUserPostsSuccess(userPosts) {
+    return {
+      type: 'FETCH_USER_POSTS_SUCCESS',
+      userPosts
+    }
+  };
+
+  export function fetchUserPostsError(error) {
+    return {
+      type: 'FETCH_USER_POSTS_ERROR',
+      error
+    }
+  };
+
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {
     return (dispatch) => {

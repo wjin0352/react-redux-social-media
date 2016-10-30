@@ -24,6 +24,7 @@ const router = (
       <Route path='/' component={MainPage}>
         <IndexRoute component={PostsFeed}/>
         <Route path='show_videos' component={VideosFeed}/>
+        <Route path='show_user_posts' component={UserPostsFeed}/>
         <Route path='show_posts' component={PostsFeed} />
         <Route path='new_post' component={NewPost}/>
         <Route path='new_video' component={NewVideo}/>
