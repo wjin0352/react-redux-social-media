@@ -47851,7 +47851,7 @@
 	      return response.json();
 	    }).then(function (userPosts) {
 	      dispatch(fetchUserPostsSuccess(userPosts));
-	      console.log(userPosts);
+	      // console.log(userPosts)
 	      _reactRouter.browserHistory.push('/show_user_posts');
 	    }).catch(function (err) {
 	      return dispatch(fetchUserPostsError(err.message));

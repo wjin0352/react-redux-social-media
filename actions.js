@@ -194,7 +194,7 @@ import { browserHistory } from 'react-router';
         .then(response => response.json())
         .then(userPosts => {
         dispatch(fetchUserPostsSuccess(userPosts))
-        console.log(userPosts)
+        // console.log(userPosts)
         browserHistory.push('/show_user_posts')
       })
         .catch(err => dispatch(fetchUserPostsError(err.message)));
