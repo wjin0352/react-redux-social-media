@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPostsAsync } from '../actions';
 import Post from './Post';
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
-import { Link } from 'react-router';
-
+import { Link, browserHistory } from 'react-router';
 // NO LOGGED IN USER .. All Posts Random feed
 class PostsFeed extends Component {
   componentWillMount () {
@@ -14,14 +13,13 @@ class PostsFeed extends Component {
 
   renderPosts(post) {
       return (
-        <Link to='/posts' key={post._id}>
-        {this.props.params.stuff}
+        <Link to={`/my_posts/${post._id}`} key={post._id}>
           <Grid className="post_feed_item_grid">
             <Row>
             <Col xs={4} md={4} className="col-post-item">
               <Thumbnail src="" >
                 <h3>{post.title}</h3>
-                  <Button bsStyle="warning btn-sm">See Post</Button>
+                  <Button bsStyle="warning btn-sm" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
               </Thumbnail>
             </Col>
             </Row>

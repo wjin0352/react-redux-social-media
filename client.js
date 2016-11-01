@@ -13,14 +13,19 @@ import UserPostsFeed from './components/UserPostsFeed';
 import Post from './components/Post';
 import Video from './components/Video';
 // import onPostsEnter from './route_callbacks/route_callbacks';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store';
 
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store)
+
+
 const router = (
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path='/' component={MainPage}>
         <IndexRoute component={PostsFeed}/>
         <Route path='show_videos' component={VideosFeed}/>
@@ -30,7 +35,7 @@ const router = (
         <Route path='new_video' component={NewVideo}/>
         <Route path='registration' component={Registration}/>
         <Route path='login' component={Login}/>
-        <Route path="posts/:id" component={Post}/>
+        <Route path="my_posts/:id" component={Post}/>
       </Route>
     </Router>
   </Provider>

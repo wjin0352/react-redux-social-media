@@ -64,54 +64,61 @@
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(514);
+	var _VideosFeed = __webpack_require__(510);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _Registration = __webpack_require__(516);
+	var _Registration = __webpack_require__(515);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
-	var _Login = __webpack_require__(517);
+	var _Login = __webpack_require__(516);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _NewPost = __webpack_require__(518);
+	var _NewPost = __webpack_require__(517);
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _NewVideo = __webpack_require__(519);
+	var _NewVideo = __webpack_require__(518);
 	
 	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
-	var _UserPostsFeed = __webpack_require__(520);
+	var _UserPostsFeed = __webpack_require__(519);
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
-	var _Post = __webpack_require__(513);
+	var _Post = __webpack_require__(520);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
-	var _Video = __webpack_require__(515);
+	var _Video = __webpack_require__(514);
 	
 	var _Video2 = _interopRequireDefault(_Video);
+	
+	var _reactRouterRedux = __webpack_require__(521);
 	
 	var _reactRouter = __webpack_require__(198);
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _store = __webpack_require__(521);
+	var _store = __webpack_require__(526);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// Create an enhanced history that syncs navigation events with the store
+	
+	// import onPostsEnter from './route_callbacks/route_callbacks';
+	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, _store2.default);
 	
 	var router = _react2.default.createElement(
 	  _reactRedux.Provider,
 	  { store: _store2.default },
 	  _react2.default.createElement(
 	    _reactRouter.Router,
-	    { history: _reactRouter.browserHistory },
+	    { history: history },
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPage2.default },
@@ -123,11 +130,10 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideo2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _Registration2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Login2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'posts/:id', component: _Post2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'my_posts/:id', component: _Post2.default })
 	    )
 	  )
 	);
-	// import onPostsEnter from './route_callbacks/route_callbacks';
 	
 	(0, _reactDom.render)(router, document.getElementById('app'));
 
@@ -47505,9 +47511,9 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
-	var _Post = __webpack_require__(513);
+	var _Post = __webpack_require__(520);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -47544,8 +47550,7 @@
 	    value: function renderPosts(post) {
 	      return _react2.default.createElement(
 	        _reactRouter.Link,
-	        { to: '/posts', key: post._id },
-	        this.props.params.stuff,
+	        { to: '/my_posts/' + post._id, key: post._id },
 	        _react2.default.createElement(
 	          _reactBootstrap.Grid,
 	          { className: 'post_feed_item_grid' },
@@ -47565,7 +47570,9 @@
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
-	                  { bsStyle: 'warning btn-sm' },
+	                  { bsStyle: 'warning btn-sm', onClick: function onClick() {
+	                      return _reactRouter.browserHistory.push('/my_posts/' + post._id);
+	                    } },
 	                  'See Post'
 	                )
 	              )
@@ -47629,6 +47636,103 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _actions = __webpack_require__(511);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _Video = __webpack_require__(514);
+	
+	var _Video2 = _interopRequireDefault(_Video);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// NO LOGGED IN USER .. All Videos random feed
+	var VideosFeed = function (_Component) {
+	  _inherits(VideosFeed, _Component);
+	
+	  function VideosFeed() {
+	    _classCallCheck(this, VideosFeed);
+	
+	    return _possibleConstructorReturn(this, (VideosFeed.__proto__ || Object.getPrototypeOf(VideosFeed)).apply(this, arguments));
+	  }
+	
+	  _createClass(VideosFeed, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var url = "http://localhost:8000/videos";
+	      this.props.allVideosAsync(url);
+	    }
+	  }, {
+	    key: 'renderVideos',
+	    value: function renderVideos(video) {
+	      return _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'videos' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            video.description
+	          ),
+	          _react2.default.createElement('iframe', { className: 'iframe-video',
+	            src: video.videolink })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var videos = this.props.videos.videos;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Video2.default, null),
+	        videos.map(function (video) {
+	          return _this2.renderVideos(video);
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return VideosFeed;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    videos: state.allVideos
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { allVideosAsync: _actions.allVideosAsync })(VideosFeed);
+
+/***/ },
+/* 511 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.newVideoAsync = newVideoAsync;
 	exports.videoSuccess = videoSuccess;
 	exports.videoError = videoError;
@@ -47655,7 +47759,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var fetch = __webpack_require__(511);
+	var fetch = __webpack_require__(512);
 	
 	
 	/* VIDEO ACTIONS */
@@ -47948,19 +48052,19 @@
 	}
 
 /***/ },
-/* 511 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(512);
+	__webpack_require__(513);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 512 */
+/* 513 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -48399,202 +48503,7 @@
 
 
 /***/ },
-/* 513 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Post = function (_Component) {
-	  _inherits(Post, _Component);
-	
-	  function Post() {
-	    _classCallCheck(this, Post);
-	
-	    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
-	  }
-	
-	  _createClass(Post, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'container',
-	          { className: 'post-container' },
-	          _react2.default.createElement(
-	            _reactBootstrap.Jumbotron,
-	            { bsStyle: 'post' },
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'title'
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              '"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."'
-	            ),
-	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              this.props.params.id
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'jumbotron-buttons' },
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { bsStyle: 'primary' },
-	                'edit'
-	              ),
-	              _react2.default.createElement(
-	                _reactBootstrap.Button,
-	                { bsStyle: 'primary' },
-	                'delete'
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Post;
-	}(_react.Component);
-	//
-	// function mapStateToProps(state) {
-	//   return { }
-	// }
-	
-	// export default connect(mapStateToProps)(Post);
-	
-	
-	exports.default = Post;
-
-/***/ },
 /* 514 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _actions = __webpack_require__(510);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _Video = __webpack_require__(515);
-	
-	var _Video2 = _interopRequireDefault(_Video);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	// NO LOGGED IN USER .. All Videos random feed
-	var VideosFeed = function (_Component) {
-	  _inherits(VideosFeed, _Component);
-	
-	  function VideosFeed() {
-	    _classCallCheck(this, VideosFeed);
-	
-	    return _possibleConstructorReturn(this, (VideosFeed.__proto__ || Object.getPrototypeOf(VideosFeed)).apply(this, arguments));
-	  }
-	
-	  _createClass(VideosFeed, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var url = "http://localhost:8000/videos";
-	      this.props.allVideosAsync(url);
-	    }
-	  }, {
-	    key: 'renderVideos',
-	    value: function renderVideos(video) {
-	      return _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'videos' },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            video.description
-	          ),
-	          _react2.default.createElement('iframe', { className: 'iframe-video',
-	            src: video.videolink })
-	        )
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      var videos = this.props.videos.videos;
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_Video2.default, null),
-	        videos.map(function (video) {
-	          return _this2.renderVideos(video);
-	        })
-	      );
-	    }
-	  }]);
-	
-	  return VideosFeed;
-	}(_react.Component);
-	
-	function mapStateToProps(state) {
-	  return {
-	    videos: state.allVideos
-	  };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { allVideosAsync: _actions.allVideosAsync })(VideosFeed);
-
-/***/ },
-/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48628,7 +48537,7 @@
 	exports.default = Video;
 
 /***/ },
-/* 516 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48643,7 +48552,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var _reactRedux = __webpack_require__(173);
 	
@@ -48780,7 +48689,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { registerUserAsync: _actions.registerUserAsync })(Registration);
 
 /***/ },
-/* 517 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48795,7 +48704,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var _reactRedux = __webpack_require__(173);
 	
@@ -48924,7 +48833,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { loginUserAsync: _actions.loginUserAsync })(Login);
 
 /***/ },
-/* 518 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48941,7 +48850,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var _reactRouter = __webpack_require__(198);
 	
@@ -49063,7 +48972,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newPostAsync: _actions.newPostAsync })(NewPost);
 
 /***/ },
-/* 519 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49078,7 +48987,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var _reactRedux = __webpack_require__(173);
 	
@@ -49200,7 +49109,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newVideoAsync: _actions.newVideoAsync })(NewVideo);
 
 /***/ },
-/* 520 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49217,13 +49126,13 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var _reactBootstrap = __webpack_require__(259);
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _Post = __webpack_require__(513);
+	var _Post = __webpack_require__(520);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -49332,6 +49241,100 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUserPostsAsync: _actions.fetchUserPostsAsync })(UserPostsFeed);
 
 /***/ },
+/* 520 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Post = function (_Component) {
+	  _inherits(Post, _Component);
+	
+	  function Post() {
+	    _classCallCheck(this, Post);
+	
+	    return _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).apply(this, arguments));
+	  }
+	
+	  _createClass(Post, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'container',
+	          { className: 'post-container' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Jumbotron,
+	            { bsStyle: 'post' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'title'
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              this.props
+	            ),
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              this.props.params.id
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'jumbotron-buttons' },
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { bsStyle: 'primary' },
+	                'edit'
+	              ),
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { bsStyle: 'primary' },
+	                'delete'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Post;
+	}(_react.Component);
+	
+	// export default connect(mapStateToProps)(Post);
+	
+	
+	exports.default = Post;
+
+/***/ },
 /* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49340,34 +49343,84 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
 	
-	var _redux = __webpack_require__(180);
+	var _reducer = __webpack_require__(522);
 	
-	var _index = __webpack_require__(522);
+	Object.defineProperty(exports, 'LOCATION_CHANGE', {
+	  enumerable: true,
+	  get: function get() {
+	    return _reducer.LOCATION_CHANGE;
+	  }
+	});
+	Object.defineProperty(exports, 'routerReducer', {
+	  enumerable: true,
+	  get: function get() {
+	    return _reducer.routerReducer;
+	  }
+	});
 	
-	var _index2 = _interopRequireDefault(_index);
+	var _actions = __webpack_require__(523);
 	
-	var _reduxLogger = __webpack_require__(529);
+	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.CALL_HISTORY_METHOD;
+	  }
+	});
+	Object.defineProperty(exports, 'push', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.push;
+	  }
+	});
+	Object.defineProperty(exports, 'replace', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.replace;
+	  }
+	});
+	Object.defineProperty(exports, 'go', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.go;
+	  }
+	});
+	Object.defineProperty(exports, 'goBack', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.goBack;
+	  }
+	});
+	Object.defineProperty(exports, 'goForward', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.goForward;
+	  }
+	});
+	Object.defineProperty(exports, 'routerActions', {
+	  enumerable: true,
+	  get: function get() {
+	    return _actions.routerActions;
+	  }
+	});
 	
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	var _sync = __webpack_require__(524);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _sync2 = _interopRequireDefault(_sync);
 	
-	var redux = __webpack_require__(180);
+	var _middleware = __webpack_require__(525);
 	
-	var thunk = __webpack_require__(535).default;
+	var _middleware2 = _interopRequireDefault(_middleware);
 	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var logger = (0, _reduxLogger2.default)();
-	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	  return f;
-	}));
-	
-	exports.default = store;
+	exports.syncHistoryWithStore = _sync2['default'];
+	exports.routerMiddleware = _middleware2['default'];
 
 /***/ },
 /* 522 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
@@ -49375,52 +49428,84 @@
 	  value: true
 	});
 	
-	var _redux = __webpack_require__(180);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _video = __webpack_require__(523);
+	exports.routerReducer = routerReducer;
+	/**
+	 * This action type will be dispatched when your history
+	 * receives a location change.
+	 */
+	var LOCATION_CHANGE = exports.LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
 	
-	var _video2 = _interopRequireDefault(_video);
+	var initialState = {
+	  locationBeforeTransitions: null
+	};
 	
-	var _post = __webpack_require__(524);
+	/**
+	 * This reducer will update the state with the most recent location history
+	 * has transitioned to. This may not be in sync with the router, particularly
+	 * if you have asynchronously-loaded routes, so reading from and relying on
+	 * this state is discouraged.
+	 */
+	function routerReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 	
-	var _post2 = _interopRequireDefault(_post);
+	  var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 	
-	var _register = __webpack_require__(525);
+	  var type = _ref.type;
+	  var payload = _ref.payload;
 	
-	var _register2 = _interopRequireDefault(_register);
+	  if (type === LOCATION_CHANGE) {
+	    return _extends({}, state, { locationBeforeTransitions: payload });
+	  }
 	
-	var _login = __webpack_require__(526);
-	
-	var _login2 = _interopRequireDefault(_login);
-	
-	var _postsReducer = __webpack_require__(527);
-	
-	var _postsReducer2 = _interopRequireDefault(_postsReducer);
-	
-	var _videosReducer = __webpack_require__(528);
-	
-	var _videosReducer2 = _interopRequireDefault(_videosReducer);
-	
-	var _userPostsReducer = __webpack_require__(536);
-	
-	var _userPostsReducer2 = _interopRequireDefault(_userPostsReducer);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var allReducers = (0, _redux.combineReducers)({
-	  video: _video2.default,
-	  post: _post2.default,
-	  register: _register2.default,
-	  login: _login2.default,
-	  allPosts: _postsReducer2.default,
-	  allVideos: _videosReducer2.default,
-	  allUserPosts: _userPostsReducer2.default
-	});
-	
-	exports.default = allReducers;
+	  return state;
+	}
 
 /***/ },
 /* 523 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * This action type will be dispatched by the history actions below.
+	 * If you're writing a middleware to watch for navigation events, be sure to
+	 * look for actions of this type.
+	 */
+	var CALL_HISTORY_METHOD = exports.CALL_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
+	
+	function updateLocation(method) {
+	  return function () {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return {
+	      type: CALL_HISTORY_METHOD,
+	      payload: { method: method, args: args }
+	    };
+	  };
+	}
+	
+	/**
+	 * These actions correspond to the history API.
+	 * The associated routerMiddleware will capture these events before they get to
+	 * your reducer and reissue them as the matching function on your history.
+	 */
+	var push = exports.push = updateLocation('push');
+	var replace = exports.replace = updateLocation('replace');
+	var go = exports.go = updateLocation('go');
+	var goBack = exports.goBack = updateLocation('goBack');
+	var goForward = exports.goForward = updateLocation('goForward');
+	
+	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
+
+/***/ },
+/* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49431,7 +49516,290 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	exports['default'] = syncHistoryWithStore;
+	
+	var _reducer = __webpack_require__(522);
+	
+	var defaultSelectLocationState = function defaultSelectLocationState(state) {
+	  return state.routing;
+	};
+	
+	/**
+	 * This function synchronizes your history state with the Redux store.
+	 * Location changes flow from history to the store. An enhanced history is
+	 * returned with a listen method that responds to store updates for location.
+	 *
+	 * When this history is provided to the router, this means the location data
+	 * will flow like this:
+	 * history.push -> store.dispatch -> enhancedHistory.listen -> router
+	 * This ensures that when the store state changes due to a replay or other
+	 * event, the router will be updated appropriately and can transition to the
+	 * correct router state.
+	 */
+	function syncHistoryWithStore(history, store) {
+	  var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	
+	  var _ref$selectLocationSt = _ref.selectLocationState;
+	  var selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt;
+	  var _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay;
+	  var adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
+	
+	  // Ensure that the reducer is mounted on the store and functioning properly.
+	  if (typeof selectLocationState(store.getState()) === 'undefined') {
+	    throw new Error('Expected the routing state to be available either as `state.routing` ' + 'or as the custom expression you can specify as `selectLocationState` ' + 'in the `syncHistoryWithStore()` options. ' + 'Ensure you have added the `routerReducer` to your store\'s ' + 'reducers via `combineReducers` or whatever method you use to isolate ' + 'your reducers.');
+	  }
+	
+	  var initialLocation = void 0;
+	  var isTimeTraveling = void 0;
+	  var unsubscribeFromStore = void 0;
+	  var unsubscribeFromHistory = void 0;
+	  var currentLocation = void 0;
+	
+	  // What does the store say about current location?
+	  var getLocationInStore = function getLocationInStore(useInitialIfEmpty) {
+	    var locationState = selectLocationState(store.getState());
+	    return locationState.locationBeforeTransitions || (useInitialIfEmpty ? initialLocation : undefined);
+	  };
+	
+	  // Init initialLocation with potential location in store
+	  initialLocation = getLocationInStore();
+	
+	  // If the store is replayed, update the URL in the browser to match.
+	  if (adjustUrlOnReplay) {
+	    var handleStoreChange = function handleStoreChange() {
+	      var locationInStore = getLocationInStore(true);
+	      if (currentLocation === locationInStore || initialLocation === locationInStore) {
+	        return;
+	      }
+	
+	      // Update address bar to reflect store state
+	      isTimeTraveling = true;
+	      currentLocation = locationInStore;
+	      history.transitionTo(_extends({}, locationInStore, {
+	        action: 'PUSH'
+	      }));
+	      isTimeTraveling = false;
+	    };
+	
+	    unsubscribeFromStore = store.subscribe(handleStoreChange);
+	    handleStoreChange();
+	  }
+	
+	  // Whenever location changes, dispatch an action to get it in the store
+	  var handleLocationChange = function handleLocationChange(location) {
+	    // ... unless we just caused that location change
+	    if (isTimeTraveling) {
+	      return;
+	    }
+	
+	    // Remember where we are
+	    currentLocation = location;
+	
+	    // Are we being called for the first time?
+	    if (!initialLocation) {
+	      // Remember as a fallback in case state is reset
+	      initialLocation = location;
+	
+	      // Respect persisted location, if any
+	      if (getLocationInStore()) {
+	        return;
+	      }
+	    }
+	
+	    // Tell the store to update by dispatching an action
+	    store.dispatch({
+	      type: _reducer.LOCATION_CHANGE,
+	      payload: location
+	    });
+	  };
+	  unsubscribeFromHistory = history.listen(handleLocationChange);
+	
+	  // The enhanced history uses store as source of truth
+	  return _extends({}, history, {
+	    // The listeners are subscribed to the store instead of history
+	    listen: function listen(listener) {
+	      // Copy of last location.
+	      var lastPublishedLocation = getLocationInStore(true);
+	
+	      // Keep track of whether we unsubscribed, as Redux store
+	      // only applies changes in subscriptions on next dispatch
+	      var unsubscribed = false;
+	      var unsubscribeFromStore = store.subscribe(function () {
+	        var currentLocation = getLocationInStore(true);
+	        if (currentLocation === lastPublishedLocation) {
+	          return;
+	        }
+	        lastPublishedLocation = currentLocation;
+	        if (!unsubscribed) {
+	          listener(lastPublishedLocation);
+	        }
+	      });
+	
+	      // History listeners expect a synchronous call. Make the first call to the
+	      // listener after subscribing to the store, in case the listener causes a
+	      // location change (e.g. when it redirects)
+	      listener(lastPublishedLocation);
+	
+	      // Let user unsubscribe later
+	      return function () {
+	        unsubscribed = true;
+	        unsubscribeFromStore();
+	      };
+	    },
+	
+	
+	    // It also provides a way to destroy internal listeners
+	    unsubscribe: function unsubscribe() {
+	      if (adjustUrlOnReplay) {
+	        unsubscribeFromStore();
+	      }
+	      unsubscribeFromHistory();
+	    }
+	  });
+	}
+
+/***/ },
+/* 525 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = routerMiddleware;
+	
+	var _actions = __webpack_require__(523);
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	/**
+	 * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
+	 * provided history object. This will prevent these actions from reaching your
+	 * reducer or any middleware that comes after this one.
+	 */
+	function routerMiddleware(history) {
+	  return function () {
+	    return function (next) {
+	      return function (action) {
+	        if (action.type !== _actions.CALL_HISTORY_METHOD) {
+	          return next(action);
+	        }
+	
+	        var _action$payload = action.payload;
+	        var method = _action$payload.method;
+	        var args = _action$payload.args;
+	
+	        history[method].apply(history, _toConsumableArray(args));
+	      };
+	    };
+	  };
+	}
+
+/***/ },
+/* 526 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(180);
+	
+	var _index = __webpack_require__(527);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	var _reduxLogger = __webpack_require__(535);
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var redux = __webpack_require__(180);
+	
+	var thunk = __webpack_require__(541).default;
+	
+	
+	var logger = (0, _reduxLogger2.default)();
+	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  return f;
+	}));
+	
+	exports.default = store;
+
+/***/ },
+/* 527 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(180);
+	
+	var _video = __webpack_require__(528);
+	
+	var _video2 = _interopRequireDefault(_video);
+	
+	var _post = __webpack_require__(529);
+	
+	var _post2 = _interopRequireDefault(_post);
+	
+	var _register = __webpack_require__(530);
+	
+	var _register2 = _interopRequireDefault(_register);
+	
+	var _login = __webpack_require__(531);
+	
+	var _login2 = _interopRequireDefault(_login);
+	
+	var _postsReducer = __webpack_require__(532);
+	
+	var _postsReducer2 = _interopRequireDefault(_postsReducer);
+	
+	var _videosReducer = __webpack_require__(533);
+	
+	var _videosReducer2 = _interopRequireDefault(_videosReducer);
+	
+	var _userPostsReducer = __webpack_require__(534);
+	
+	var _userPostsReducer2 = _interopRequireDefault(_userPostsReducer);
+	
+	var _reactRouterRedux = __webpack_require__(521);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var allReducers = (0, _redux.combineReducers)({
+	  video: _video2.default,
+	  post: _post2.default,
+	  register: _register2.default,
+	  login: _login2.default,
+	  allPosts: _postsReducer2.default,
+	  allVideos: _videosReducer2.default,
+	  allUserPosts: _userPostsReducer2.default,
+	  routing: _reactRouterRedux.routerReducer
+	});
+	
+	exports.default = allReducers;
+
+/***/ },
+/* 528 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49468,7 +49836,7 @@
 	exports.default = newVideo;
 
 /***/ },
-/* 524 */
+/* 529 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49479,7 +49847,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49516,7 +49884,7 @@
 	exports.default = newPost;
 
 /***/ },
-/* 525 */
+/* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49527,7 +49895,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49563,7 +49931,7 @@
 	exports.default = register;
 
 /***/ },
-/* 526 */
+/* 531 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49574,7 +49942,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49606,7 +49974,7 @@
 	exports.default = login;
 
 /***/ },
-/* 527 */
+/* 532 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49617,7 +49985,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49655,7 +50023,7 @@
 	exports.default = allPosts;
 
 /***/ },
-/* 528 */
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49666,7 +50034,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _actions = __webpack_require__(510);
+	var _actions = __webpack_require__(511);
 	
 	var actions = _interopRequireWildcard(_actions);
 	
@@ -49698,7 +50066,56 @@
 	exports.default = allVideos;
 
 /***/ },
-/* 529 */
+/* 534 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(511);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var initialState = {
+	  userPosts: [],
+	  error: ''
+	};
+	
+	var allUserPosts = function allUserPosts() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'FETCH_USER_POSTS_SUCCESS':
+	      return _extends({}, state, {
+	        userPosts: action.userPosts
+	      });
+	    case 'FETCH_USER_POSTS_ERROR':
+	      return _extends({}, state, {
+	        error: action.error
+	      });
+	    case 'ADD_NEW_USER_POSTS_TO_POSTS':
+	      return _extends({}, state, {
+	        userPosts: [].concat(_toConsumableArray(state.userPosts), [action.userPosts])
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = allUserPosts;
+
+/***/ },
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49709,11 +50126,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(530);
+	var _core = __webpack_require__(536);
 	
-	var _helpers = __webpack_require__(531);
+	var _helpers = __webpack_require__(537);
 	
-	var _defaults = __webpack_require__(534);
+	var _defaults = __webpack_require__(540);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -49816,7 +50233,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 530 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49826,9 +50243,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(531);
+	var _helpers = __webpack_require__(537);
 	
-	var _diff = __webpack_require__(532);
+	var _diff = __webpack_require__(538);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -49949,7 +50366,7 @@
 	}
 
 /***/ },
-/* 531 */
+/* 537 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49973,7 +50390,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 532 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49983,7 +50400,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(533);
+	var _deepDiff = __webpack_require__(539);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -50069,7 +50486,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 533 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -50498,7 +50915,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 534 */
+/* 540 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -50549,7 +50966,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 535 */
+/* 541 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50575,55 +50992,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 536 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _actions = __webpack_require__(510);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	var initialState = {
-	  userPosts: [],
-	  error: ''
-	};
-	
-	var allUserPosts = function allUserPosts() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'FETCH_USER_POSTS_SUCCESS':
-	      return _extends({}, state, {
-	        userPosts: action.userPosts
-	      });
-	    case 'FETCH_USER_POSTS_ERROR':
-	      return _extends({}, state, {
-	        error: action.error
-	      });
-	    case 'ADD_NEW_USER_POSTS_TO_POSTS':
-	      return _extends({}, state, {
-	        userPosts: [].concat(_toConsumableArray(state.userPosts), [action.userPosts])
-	      });
-	    default:
-	      return state;
-	  }
-	};
-	
-	exports.default = allUserPosts;
 
 /***/ }
 /******/ ]);
