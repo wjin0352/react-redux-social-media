@@ -74,6 +74,13 @@ html {
     height: 700px;
   }
 
+  .post-paragraph {
+    padding: 2em;
+    margin: 3em;
+    background-color: white;
+    border-radius: 3px;
+  }
+
   .post-div {
     border: .01em solid orange;
     width: 50%;

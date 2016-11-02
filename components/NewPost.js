@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { newPostAsync } from '../actions';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 
 class NewPost extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class NewPost extends Component {
 function mapStateToProps(state) {
   return {
     post: state.post
-  }
+  };
 }
 
 export default connect(mapStateToProps, { newPostAsync })(NewPost);

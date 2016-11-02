@@ -32,6 +32,22 @@ PostController.prototype.getUserPosts = function(req, res) {
     res.status(200).json(posts)})
     .catch(error => console.log(error))
 }
+// Get Current Post with :id
+PostController.prototype.getCurrentPost = function(req, res) {
+  return new Promise (function(resolve, reject) {
+    Post.find({_id: req.params.id}, function(error, post) {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(post);
+      }
+    });
+  }).then(post => {
+    console.log('req.params: ', req.params)
+    console.log('post: ',post)
+    res.status(200).json(post)
+  }).catch(error => console.log(error))
+}
 
 PostController.prototype.createPost = function(req, res) {
   return new Promise (function (resolve, reject) {

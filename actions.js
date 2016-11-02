@@ -97,9 +97,10 @@ import { browserHistory } from 'react-router';
   };
 
 /* Post actions */
-  export function fetchPost (id, url) {
+  export function fetchPost (url, id) {
     return (dispatch) => {
       return fetch(url, {
+        credentials: 'include',
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -107,15 +108,27 @@ import { browserHistory } from 'react-router';
       })
         .then(response => response.json())
         .then(post => {
-          // not finished yet...
+          console.log('[[][][][][][][][] My Post from the .then: ', post)
+          dispatch(getPostSuccess(post))
+          // browserHistory.push('/')
         })
-    }
-    return {
-      type: 'FETCH_POST',
+        .catch(err => dispatch(getPostError(err.message)));
+    };
+  };
 
-    }
+  export function getPostSuccess(post) {
+    return {
+      type: 'GET_POST_SUCCESS',
+      post
+    };
   }
 
+  export function getPostError(error) {
+    return {
+      type: 'GET_POST_ERROR',
+      error
+    };
+  }
 
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {
