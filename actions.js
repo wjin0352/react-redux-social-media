@@ -1,6 +1,8 @@
 const fetch = require('isomorphic-fetch');
 import { browserHistory } from 'react-router';
 
+var url = 'http://localhost:8000';
+
 /* VIDEO ACTIONS */
   export function newVideoAsync(videoData, url) {
     return (dispatch) => {
@@ -97,9 +99,9 @@ import { browserHistory } from 'react-router';
   };
 
 /* Post actions */
-  export function fetchPost (url, id) {
+  export function fetchPost (id) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(`${url}/posts/${id}`, {
         credentials: 'include',
         method: 'GET',
         headers: {
@@ -110,11 +112,10 @@ import { browserHistory } from 'react-router';
         .then(post => {
           console.log('[[][][][][][][][] My Post from the .then: ', post)
           dispatch(getPostSuccess(post))
-          // browserHistory.push('/')
         })
         .catch(err => dispatch(getPostError(err.message)));
     };
-  };
+  }
 
   export function getPostSuccess(post) {
     return {
@@ -126,6 +127,33 @@ import { browserHistory } from 'react-router';
   export function getPostError(error) {
     return {
       type: 'GET_POST_ERROR',
+      error
+    };
+  }
+
+  export function deletePost(id) {
+    return (dispatch) => {
+      return fetch(`${url}/posts/${id}`, {
+        credentials: 'include',
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(post => {
+        // console.log('[][][][][][]DELETED ITEM: ', post)
+        // you probably need to send another dispatch to userspostslist
+        // and delete that post for that redux posts array
+        browserHistory.push('/show_posts')
+      })
+      .catch(err => dispatch(postDeleteError(err.message)));
+    };
+  }
+
+  export function postDeleteError(error) {
+    return {
+      type: 'POST_DELETE_ERROR',
       error
     };
   }

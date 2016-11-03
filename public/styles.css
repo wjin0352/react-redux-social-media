@@ -18,6 +18,9 @@ html {
     text-align: center;
   }*/
 
+button {
+  font-family: serif;
+}
 /* Videos feed container */
 
 
@@ -72,6 +75,7 @@ html {
     margin: 2em auto;
     padding: 5em;
     height: 700px;
+    font-family: serif;
   }
 
   .post-paragraph {
@@ -79,6 +83,10 @@ html {
     margin: 3em;
     background-color: white;
     border-radius: 3px;
+  }
+
+  p.post-paragraph {
+    font-size: 18px;
   }
 
   .post-div {

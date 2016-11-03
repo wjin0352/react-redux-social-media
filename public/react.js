@@ -47646,6 +47646,8 @@
 	exports.fetchPost = fetchPost;
 	exports.getPostSuccess = getPostSuccess;
 	exports.getPostError = getPostError;
+	exports.deletePost = deletePost;
+	exports.postDeleteError = postDeleteError;
 	exports.allVideosAsync = allVideosAsync;
 	exports.allVideosSuccess = allVideosSuccess;
 	exports.allVideosError = allVideosError;
@@ -47666,6 +47668,8 @@
 	
 	var fetch = __webpack_require__(511);
 	
+	
+	var url = 'http://localhost:8000';
 	
 	/* VIDEO ACTIONS */
 	function newVideoAsync(videoData, url) {
@@ -47762,9 +47766,9 @@
 	};
 	
 	/* Post actions */
-	function fetchPost(url, id) {
+	function fetchPost(id) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(url + '/posts/' + id, {
 	      credentials: 'include',
 	      method: 'GET',
 	      headers: {
@@ -47775,12 +47779,11 @@
 	    }).then(function (post) {
 	      console.log('[[][][][][][][][] My Post from the .then: ', post);
 	      dispatch(getPostSuccess(post));
-	      // browserHistory.push('/')
 	    }).catch(function (err) {
 	      return dispatch(getPostError(err.message));
 	    });
 	  };
-	};
+	}
 	
 	function getPostSuccess(post) {
 	  return {
@@ -47792,6 +47795,34 @@
 	function getPostError(error) {
 	  return {
 	    type: 'GET_POST_ERROR',
+	    error: error
+	  };
+	}
+	
+	function deletePost(id) {
+	  return function (dispatch) {
+	    return fetch(url + '/posts/' + id, {
+	      credentials: 'include',
+	      method: 'DELETE',
+	      headers: {
+	        'content-type': 'application/json'
+	      }
+	    }).then(function (response) {
+	      return response.json();
+	    }).then(function (post) {
+	      // console.log('[][][][][][]DELETED ITEM: ', post)
+	      // you probably need to send another dispatch to userspostslist
+	      // and delete that post for that redux posts array
+	      _reactRouter.browserHistory.push('/show_posts');
+	    }).catch(function (err) {
+	      return dispatch(postDeleteError(err.message));
+	    });
+	  };
+	}
+	
+	function postDeleteError(error) {
+	  return {
+	    type: 'POST_DELETE_ERROR',
 	    error: error
 	  };
 	}
@@ -48467,14 +48498,24 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      var id = this.props.params.id;
-	      var url = 'http://localhost:8000/posts/' + id;
+	      // var url = `http://localhost:8000/posts/${id}`;
 	      // var url ='http://localhost:8000/posts/asdf';
-	      this.props.fetchPost(url, id);
+	      this.props.fetchPost(id);
+	    }
+	  }, {
+	    key: 'handleDelete',
+	    value: function handleDelete(id) {
+	      // var url = `http://localhost:8000/posts/${id}`;
+	      console.log(id);
+	      this.props.deletePost(id);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var post = this.props.post.current_post;
+	
 	      console.log('whats on the props object: ', this.props);
 	      return _react2.default.createElement(
 	        'div',
@@ -48514,7 +48555,9 @@
 	              ),
 	              _react2.default.createElement(
 	                _reactBootstrap.Button,
-	                { bsStyle: 'primary' },
+	                { bsStyle: 'primary', onClick: function onClick() {
+	                    return _this2.handleDelete(post._id);
+	                  } },
 	                'delete'
 	              )
 	            )
@@ -48534,7 +48577,7 @@
 	}
 	
 	// export default connect(mapStateToProps)(Post);
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPost: _actions.fetchPost })(Post);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPost: _actions.fetchPost, deletePost: _actions.deletePost })(Post);
 
 /***/ },
 /* 514 */
@@ -49811,6 +49854,10 @@
 	
 	var _getPost2 = _interopRequireDefault(_getPost);
 	
+	var _deletePost = __webpack_require__(544);
+	
+	var _deletePost2 = _interopRequireDefault(_deletePost);
+	
 	var _reactRouterRedux = __webpack_require__(521);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -49824,6 +49871,7 @@
 	  allVideos: _videosReducer2.default,
 	  allUserPosts: _userPostsReducer2.default,
 	  getPost: _getPost2.default,
+	  deletePost: _deletePost2.default,
 	  routing: _reactRouterRedux.routerReducer
 	});
 	
@@ -51082,6 +51130,45 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
+
+/***/ },
+/* 543 */,
+/* 544 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(510);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {
+	  error: ''
+	};
+	
+	var deletePost = function deletePost() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'POST_DELETE_ERROR':
+	      return _extends({}, state, {
+	        error: action.error
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = deletePost;
 
 /***/ }
 /******/ ]);

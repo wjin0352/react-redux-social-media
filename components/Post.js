@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPost } from '../actions';
+import { fetchPost, deletePost } from '../actions';
 import { Link } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
 
 class Post extends Component {
   componentWillMount() {
     var id = this.props.params.id;
-    var url = `http://localhost:8000/posts/${id}`;
+    // var url = `http://localhost:8000/posts/${id}`;
     // var url ='http://localhost:8000/posts/asdf';
-    this.props.fetchPost(url, id);
+    this.props.fetchPost(id);
+  }
+
+  handleDelete(id) {
+    // var url = `http://localhost:8000/posts/${id}`;
+    console.log(id);
+    this.props.deletePost(id);
   }
 
   render() {
     var post = this.props.post.current_post;
+
     console.log('whats on the props object: ', this.props);
     return (
       <div>
@@ -28,7 +35,7 @@ class Post extends Component {
             <h6>{post.likes}</h6>
             <div className="jumbotron-buttons">
               <Button bsStyle="primary">edit</Button>
-              <Button bsStyle="primary">delete</Button>
+              <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
             </div>
           </Jumbotron>
         </container>
@@ -44,4 +51,4 @@ function mapStateToProps(state) {
 }
 
 // export default connect(mapStateToProps)(Post);
-export default connect(mapStateToProps, { fetchPost })(Post);
+export default connect(mapStateToProps, { fetchPost, deletePost })(Post);
