@@ -22,7 +22,7 @@ CommentController.prototype.createComment = function(req, res) {
   return new Promise (function (resolve, reject) {
     Comment.create({
       content: req.body.content,
-      userid: req.user
+      userid: req.user.id
     }, function (error, comment) {
       if (error) {
         reject(error);
@@ -34,6 +34,7 @@ CommentController.prototype.createComment = function(req, res) {
     res.status(200).json(comment)
   }).catch(function(error) {
     console.log(error);
+    return error;
   });
 }
 

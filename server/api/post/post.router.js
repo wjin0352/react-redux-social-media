@@ -6,8 +6,8 @@ const isAuthenticated = require('../auth/auth');
 
 router.get('/', controller.getPosts)
   .get('/user', controller.getUserPosts)
-  .get('/:id', controller.getCurrentPost)
   .post('/', isAuthenticated, controller.createPost)
+  .get('/:id', controller.getCurrentPost)
   .put('/:id', isAuthenticated, controller.editPost)
   .delete('/:id', isAuthenticated, controller.deletePost)
 

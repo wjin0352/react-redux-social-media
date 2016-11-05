@@ -36,7 +36,7 @@ class NewVideo extends Component {
               <fieldset>
                 <legend>New Video: </legend>
                 <li>add url:</li>
-                  <input type='url' name='url' required /><br/>
+                  <input type='url' name='url' required autoFocus/><br/>
                 <li>description</li>
                   <textarea rows="10" cols="60" type='text' name='description' required >
                   </textarea><br/>

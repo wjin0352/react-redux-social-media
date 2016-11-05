@@ -1,7 +1,8 @@
 const fetch = require('isomorphic-fetch');
 import { browserHistory } from 'react-router';
 
-var url = 'http://localhost:8000';
+const DEV_URL = 'http://localhost:8000';
+const PROD_URL = '';
 
 /* VIDEO ACTIONS */
   export function newVideoAsync(videoData, url) {
@@ -64,7 +65,6 @@ var url = 'http://localhost:8000';
         })
         .then(response => response.json())
         .then(data => {
-          console.log('data from newPostAsync', data)
           dispatch(postSuccess(data))
           dispatch(newPostToPosts(data))
           browserHistory.push('/show_posts')
@@ -98,10 +98,11 @@ var url = 'http://localhost:8000';
     }
   };
 
-/* Post actions */
+/* POST ACTIONS */
+  // get a post
   export function fetchPost (id) {
     return (dispatch) => {
-      return fetch(`${url}/posts/${id}`, {
+      return fetch(`${DEV_URL}/posts/${id}`, {
         credentials: 'include',
         method: 'GET',
         headers: {
@@ -110,7 +111,6 @@ var url = 'http://localhost:8000';
       })
         .then(response => response.json())
         .then(post => {
-          console.log('[[][][][][][][][] My Post from the .then: ', post)
           dispatch(getPostSuccess(post))
         })
         .catch(err => dispatch(getPostError(err.message)));
@@ -130,21 +130,18 @@ var url = 'http://localhost:8000';
       error
     };
   }
-
+  // delete a post
   export function deletePost(id) {
     return (dispatch) => {
-      return fetch(`${url}/posts/${id}`, {
+      return fetch(`${DEV_URL}/posts/${id}`, {
         credentials: 'include',
         method: 'DELETE',
         headers: {
           'content-type': 'application/json'
         }
       })
-      .then(response => response.json())
-      .then(post => {
-        // console.log('[][][][][][]DELETED ITEM: ', post)
-        // you probably need to send another dispatch to userspostslist
-        // and delete that post for that redux posts array
+      .then(response => {
+        response.json()
         browserHistory.push('/show_posts')
       })
       .catch(err => dispatch(postDeleteError(err.message)));
@@ -157,6 +154,52 @@ var url = 'http://localhost:8000';
       error
     };
   }
+
+/* COMMENT ON POST ACTIONS */
+  // create a comment on POST
+  export function createComment(commentData, id) {
+    return (dispatch) => {
+      return fetch(`${DEV_URL}/comments`, {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({content: commentData})
+      })
+      .then(response => {
+        if (response.status != 200) {
+          throw new Error(response.statusText);
+        } else {
+          return response;
+        }
+      })
+        .then(response => response.json())
+        .then(comment => {
+          console.log('---0000000------ comment:', comment)
+          dispatch(commentSuccess(comment))
+          browserHistory.push(`/my_posts/${id}`)
+        })
+        .catch(err => {
+          dispatch(commentError(err.message))
+          browserHistory.push(`/posts/${id}`)
+        });
+      };
+    }
+
+    export function commentSuccess(comment) {
+      return {
+        type: 'COMMENT_SUCCESS',
+        comment
+      };
+    }
+
+    export function commentError(error) {
+      return {
+        type: 'COMMENT_ERROR',
+        error
+      };
+    }
 
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {

@@ -64,27 +64,27 @@
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(514);
+	var _VideosFeed = __webpack_require__(515);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _Registration = __webpack_require__(516);
+	var _Registration = __webpack_require__(517);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
-	var _Login = __webpack_require__(517);
+	var _Login = __webpack_require__(518);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _NewPost = __webpack_require__(518);
+	var _NewPost = __webpack_require__(519);
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _NewVideo = __webpack_require__(519);
+	var _NewVideo = __webpack_require__(520);
 	
 	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
-	var _UserPostsFeed = __webpack_require__(520);
+	var _UserPostsFeed = __webpack_require__(521);
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
@@ -92,17 +92,17 @@
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
-	var _Video = __webpack_require__(515);
+	var _Video = __webpack_require__(516);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
-	var _reactRouterRedux = __webpack_require__(521);
+	var _reactRouterRedux = __webpack_require__(522);
 	
 	var _reactRouter = __webpack_require__(198);
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _store = __webpack_require__(526);
+	var _store = __webpack_require__(527);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -47648,6 +47648,9 @@
 	exports.getPostError = getPostError;
 	exports.deletePost = deletePost;
 	exports.postDeleteError = postDeleteError;
+	exports.createComment = createComment;
+	exports.commentSuccess = commentSuccess;
+	exports.commentError = commentError;
 	exports.allVideosAsync = allVideosAsync;
 	exports.allVideosSuccess = allVideosSuccess;
 	exports.allVideosError = allVideosError;
@@ -47669,7 +47672,8 @@
 	var fetch = __webpack_require__(511);
 	
 	
-	var url = 'http://localhost:8000';
+	var DEV_URL = 'http://localhost:8000';
+	var PROD_URL = '';
 	
 	/* VIDEO ACTIONS */
 	function newVideoAsync(videoData, url) {
@@ -47732,7 +47736,6 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (data) {
-	      console.log('data from newPostAsync', data);
 	      dispatch(postSuccess(data));
 	      dispatch(newPostToPosts(data));
 	      _reactRouter.browserHistory.push('/show_posts');
@@ -47765,10 +47768,11 @@
 	  };
 	};
 	
-	/* Post actions */
+	/* POST ACTIONS */
+	// get a post
 	function fetchPost(id) {
 	  return function (dispatch) {
-	    return fetch(url + '/posts/' + id, {
+	    return fetch(DEV_URL + '/posts/' + id, {
 	      credentials: 'include',
 	      method: 'GET',
 	      headers: {
@@ -47777,7 +47781,6 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (post) {
-	      console.log('[[][][][][][][][] My Post from the .then: ', post);
 	      dispatch(getPostSuccess(post));
 	    }).catch(function (err) {
 	      return dispatch(getPostError(err.message));
@@ -47798,21 +47801,17 @@
 	    error: error
 	  };
 	}
-	
+	// delete a post
 	function deletePost(id) {
 	  return function (dispatch) {
-	    return fetch(url + '/posts/' + id, {
+	    return fetch(DEV_URL + '/posts/' + id, {
 	      credentials: 'include',
 	      method: 'DELETE',
 	      headers: {
 	        'content-type': 'application/json'
 	      }
 	    }).then(function (response) {
-	      return response.json();
-	    }).then(function (post) {
-	      // console.log('[][][][][][]DELETED ITEM: ', post)
-	      // you probably need to send another dispatch to userspostslist
-	      // and delete that post for that redux posts array
+	      response.json();
 	      _reactRouter.browserHistory.push('/show_posts');
 	    }).catch(function (err) {
 	      return dispatch(postDeleteError(err.message));
@@ -47823,6 +47822,50 @@
 	function postDeleteError(error) {
 	  return {
 	    type: 'POST_DELETE_ERROR',
+	    error: error
+	  };
+	}
+	
+	/* COMMENT ON POST ACTIONS */
+	// create a comment on POST
+	function createComment(commentData, id) {
+	  return function (dispatch) {
+	    return fetch(DEV_URL + '/comments', {
+	      credentials: 'include',
+	      method: 'POST',
+	      headers: {
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({ content: commentData })
+	    }).then(function (response) {
+	      if (response.status != 200) {
+	        throw new Error(response.statusText);
+	      } else {
+	        return response;
+	      }
+	    }).then(function (response) {
+	      return response.json();
+	    }).then(function (comment) {
+	      console.log('---0000000------ comment:', comment);
+	      dispatch(commentSuccess(comment));
+	      _reactRouter.browserHistory.push('/my_posts/' + id);
+	    }).catch(function (err) {
+	      dispatch(commentError(err.message));
+	      _reactRouter.browserHistory.push('/posts/' + id);
+	    });
+	  };
+	}
+	
+	function commentSuccess(comment) {
+	  return {
+	    type: 'COMMENT_SUCCESS',
+	    comment: comment
+	  };
+	}
+	
+	function commentError(error) {
+	  return {
+	    type: 'COMMENT_ERROR',
 	    error: error
 	  };
 	}
@@ -48477,6 +48520,10 @@
 	
 	var _reactBootstrap = __webpack_require__(259);
 	
+	var _NewComment = __webpack_require__(514);
+	
+	var _NewComment2 = _interopRequireDefault(_NewComment);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48560,7 +48607,8 @@
 	                  } },
 	                'delete'
 	              )
-	            )
+	            ),
+	            _react2.default.createElement(_NewComment2.default, { post_id: post._id })
 	          )
 	        )
 	      );
@@ -48597,11 +48645,115 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	var _actions = __webpack_require__(510);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewComment = function (_Component) {
+	  _inherits(NewComment, _Component);
+	
+	  function NewComment(props) {
+	    _classCallCheck(this, NewComment);
+	
+	    return _possibleConstructorReturn(this, (NewComment.__proto__ || Object.getPrototypeOf(NewComment)).call(this, props));
+	  }
+	
+	  _createClass(NewComment, [{
+	    key: 'createComment',
+	    value: function createComment(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var commentData = form.querySelector('[name="post_comment"]').value;
+	      var id = this.props.post_id;
+	      console.log('id ', id);
+	      this.props.createComment(commentData, id);
+	    }
+	  }, {
+	    key: 'cancelComment',
+	    value: function cancelComment(e) {
+	      e.preventDefault();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'new-post-form', onSubmit: function onSubmit(e) {
+	              return _this2.createComment(e);
+	            } },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Comments: '
+	          ),
+	          _react2.default.createElement('textarea', { rows: '7', cols: '50', type: 'text', name: 'post_comment', placeholder: 'Add a comment...', autoFocus: true, required: true }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'reset', className: 'btn btn-sm btn-default' },
+	            'Cancel'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-sm btn-primary', onClick: function onClick() {
+	                return _this2.cancelComment;
+	              } },
+	            'Comment'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return NewComment;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    comment: state.comment
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { createComment: _actions.createComment })(NewComment);
+
+/***/ },
+/* 515 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
 	var _actions = __webpack_require__(510);
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _Video = __webpack_require__(515);
+	var _Video = __webpack_require__(516);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -48677,7 +48829,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { allVideosAsync: _actions.allVideosAsync })(VideosFeed);
 
 /***/ },
-/* 515 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48711,7 +48863,7 @@
 	exports.default = Video;
 
 /***/ },
-/* 516 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48810,7 +48962,7 @@
 	                null,
 	                'user name: '
 	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
+	              _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true, autoFocus: true }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'li',
@@ -48863,7 +49015,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { registerUserAsync: _actions.registerUserAsync })(Registration);
 
 /***/ },
-/* 517 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48959,7 +49111,7 @@
 	                null,
 	                'username'
 	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'username', required: true }),
+	              _react2.default.createElement('input', { type: 'text', name: 'username', required: true, autoFocus: true }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'li',
@@ -49007,7 +49159,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { loginUserAsync: _actions.loginUserAsync })(Login);
 
 /***/ },
-/* 518 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49054,6 +49206,7 @@
 	    key: 'createPost',
 	    value: function createPost(e) {
 	      e.preventDefault();
+	      console.log(e.target);
 	      var form = e.target;
 	      var title = form.querySelector('[name="title"]').value;
 	      var post = form.querySelector('[name="blog_post"]').value;
@@ -49067,6 +49220,8 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
 	        _reactBootstrap.Modal,
 	        { show: this.state.showModal, bsSize: 'large' },
@@ -49084,7 +49239,9 @@
 	          null,
 	          _react2.default.createElement(
 	            'form',
-	            { className: 'new-post-form', onSubmit: this.createPost.bind(this) },
+	            { className: 'new-post-form', onSubmit: function onSubmit(e) {
+	                return _this2.createPost(e);
+	              } },
 	            _react2.default.createElement(
 	              'fieldset',
 	              null,
@@ -49098,7 +49255,7 @@
 	                null,
 	                'title'
 	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'title', required: true }),
+	              _react2.default.createElement('input', { type: 'text', name: 'title', required: true, autoFocus: true }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'li',
@@ -49146,7 +49303,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newPostAsync: _actions.newPostAsync })(NewPost);
 
 /***/ },
-/* 519 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49237,7 +49394,7 @@
 	                null,
 	                'add url:'
 	              ),
-	              _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
+	              _react2.default.createElement('input', { type: 'url', name: 'url', required: true, autoFocus: true }),
 	              _react2.default.createElement('br', null),
 	              _react2.default.createElement(
 	                'li',
@@ -49283,7 +49440,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newVideoAsync: _actions.newVideoAsync })(NewVideo);
 
 /***/ },
-/* 520 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49415,7 +49572,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUserPostsAsync: _actions.fetchUserPostsAsync })(UserPostsFeed);
 
 /***/ },
-/* 521 */
+/* 522 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49425,7 +49582,7 @@
 	});
 	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
 	
-	var _reducer = __webpack_require__(522);
+	var _reducer = __webpack_require__(523);
 	
 	Object.defineProperty(exports, 'LOCATION_CHANGE', {
 	  enumerable: true,
@@ -49440,7 +49597,7 @@
 	  }
 	});
 	
-	var _actions = __webpack_require__(523);
+	var _actions = __webpack_require__(524);
 	
 	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
 	  enumerable: true,
@@ -49485,11 +49642,11 @@
 	  }
 	});
 	
-	var _sync = __webpack_require__(524);
+	var _sync = __webpack_require__(525);
 	
 	var _sync2 = _interopRequireDefault(_sync);
 	
-	var _middleware = __webpack_require__(525);
+	var _middleware = __webpack_require__(526);
 	
 	var _middleware2 = _interopRequireDefault(_middleware);
 	
@@ -49499,7 +49656,7 @@
 	exports.routerMiddleware = _middleware2['default'];
 
 /***/ },
-/* 522 */
+/* 523 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49543,7 +49700,7 @@
 	}
 
 /***/ },
-/* 523 */
+/* 524 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49585,7 +49742,7 @@
 	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
 
 /***/ },
-/* 524 */
+/* 525 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49598,7 +49755,7 @@
 	
 	exports['default'] = syncHistoryWithStore;
 	
-	var _reducer = __webpack_require__(522);
+	var _reducer = __webpack_require__(523);
 	
 	var defaultSelectLocationState = function defaultSelectLocationState(state) {
 	  return state.routing;
@@ -49739,7 +49896,7 @@
 	}
 
 /***/ },
-/* 525 */
+/* 526 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49749,7 +49906,7 @@
 	});
 	exports['default'] = routerMiddleware;
 	
-	var _actions = __webpack_require__(523);
+	var _actions = __webpack_require__(524);
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
@@ -49777,40 +49934,6 @@
 	}
 
 /***/ },
-/* 526 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(180);
-	
-	var _index = __webpack_require__(527);
-	
-	var _index2 = _interopRequireDefault(_index);
-	
-	var _reduxLogger = __webpack_require__(536);
-	
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var redux = __webpack_require__(180);
-	
-	var thunk = __webpack_require__(542).default;
-	
-	
-	var logger = (0, _reduxLogger2.default)();
-	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	  return f;
-	}));
-	
-	exports.default = store;
-
-/***/ },
 /* 527 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49822,43 +49945,81 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _video = __webpack_require__(528);
+	var _index = __webpack_require__(528);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	var _reduxLogger = __webpack_require__(539);
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var redux = __webpack_require__(180);
+	
+	var thunk = __webpack_require__(545).default;
+	
+	
+	var logger = (0, _reduxLogger2.default)();
+	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  return f;
+	}));
+	
+	exports.default = store;
+
+/***/ },
+/* 528 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(180);
+	
+	var _video = __webpack_require__(529);
 	
 	var _video2 = _interopRequireDefault(_video);
 	
-	var _post = __webpack_require__(529);
+	var _post = __webpack_require__(530);
 	
 	var _post2 = _interopRequireDefault(_post);
 	
-	var _register = __webpack_require__(530);
+	var _register = __webpack_require__(531);
 	
 	var _register2 = _interopRequireDefault(_register);
 	
-	var _login = __webpack_require__(531);
+	var _login = __webpack_require__(532);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _postsReducer = __webpack_require__(532);
+	var _postsReducer = __webpack_require__(533);
 	
 	var _postsReducer2 = _interopRequireDefault(_postsReducer);
 	
-	var _videosReducer = __webpack_require__(533);
+	var _videosReducer = __webpack_require__(534);
 	
 	var _videosReducer2 = _interopRequireDefault(_videosReducer);
 	
-	var _userPostsReducer = __webpack_require__(534);
+	var _userPostsReducer = __webpack_require__(535);
 	
 	var _userPostsReducer2 = _interopRequireDefault(_userPostsReducer);
 	
-	var _getPost = __webpack_require__(535);
+	var _getPost = __webpack_require__(536);
 	
 	var _getPost2 = _interopRequireDefault(_getPost);
 	
-	var _deletePost = __webpack_require__(544);
+	var _deletePost = __webpack_require__(537);
 	
 	var _deletePost2 = _interopRequireDefault(_deletePost);
 	
-	var _reactRouterRedux = __webpack_require__(521);
+	var _comment = __webpack_require__(538);
+	
+	var _comment2 = _interopRequireDefault(_comment);
+	
+	var _reactRouterRedux = __webpack_require__(522);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -49872,13 +50033,14 @@
 	  allUserPosts: _userPostsReducer2.default,
 	  getPost: _getPost2.default,
 	  deletePost: _deletePost2.default,
+	  comment: _comment2.default,
 	  routing: _reactRouterRedux.routerReducer
 	});
 	
 	exports.default = allReducers;
 
 /***/ },
-/* 528 */
+/* 529 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49926,7 +50088,7 @@
 	exports.default = newVideo;
 
 /***/ },
-/* 529 */
+/* 530 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49974,7 +50136,7 @@
 	exports.default = newPost;
 
 /***/ },
-/* 530 */
+/* 531 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50021,7 +50183,7 @@
 	exports.default = register;
 
 /***/ },
-/* 531 */
+/* 532 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50064,7 +50226,7 @@
 	exports.default = login;
 
 /***/ },
-/* 532 */
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50113,7 +50275,7 @@
 	exports.default = allPosts;
 
 /***/ },
-/* 533 */
+/* 534 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50156,7 +50318,7 @@
 	exports.default = allVideos;
 
 /***/ },
-/* 534 */
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50205,7 +50367,7 @@
 	exports.default = allUserPosts;
 
 /***/ },
-/* 535 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50253,7 +50415,88 @@
 	exports.default = getPost;
 
 /***/ },
-/* 536 */
+/* 537 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(510);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {
+	  error: ''
+	};
+	
+	var deletePost = function deletePost() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'POST_DELETE_ERROR':
+	      return _extends({}, state, {
+	        error: action.error
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = deletePost;
+
+/***/ },
+/* 538 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _actions = __webpack_require__(510);
+	
+	var actions = _interopRequireWildcard(_actions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var initialState = {
+	  comment: '',
+	  error: ''
+	};
+	
+	var newComment = function newComment() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'COMMENT_SUCCESS':
+	      return _extends({}, state, {
+	        comment: action.comment
+	      });
+	    case 'COMMENT_ERROR':
+	      return _extends({}, state, {
+	        error: action.error
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = newComment;
+
+/***/ },
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50264,11 +50507,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(537);
+	var _core = __webpack_require__(540);
 	
-	var _helpers = __webpack_require__(538);
+	var _helpers = __webpack_require__(541);
 	
-	var _defaults = __webpack_require__(541);
+	var _defaults = __webpack_require__(544);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -50371,7 +50614,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 537 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50381,9 +50624,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(538);
+	var _helpers = __webpack_require__(541);
 	
-	var _diff = __webpack_require__(539);
+	var _diff = __webpack_require__(542);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -50504,7 +50747,7 @@
 	}
 
 /***/ },
-/* 538 */
+/* 541 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -50528,7 +50771,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 539 */
+/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50538,7 +50781,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(540);
+	var _deepDiff = __webpack_require__(543);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -50624,7 +50867,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 540 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -51053,7 +51296,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 541 */
+/* 544 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -51104,7 +51347,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 542 */
+/* 545 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51130,45 +51373,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 543 */,
-/* 544 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _actions = __webpack_require__(510);
-	
-	var actions = _interopRequireWildcard(_actions);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	var initialState = {
-	  error: ''
-	};
-	
-	var deletePost = function deletePost() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'POST_DELETE_ERROR':
-	      return _extends({}, state, {
-	        error: action.error
-	      });
-	    default:
-	      return state;
-	  }
-	};
-	
-	exports.default = deletePost;
 
 /***/ }
 /******/ ]);

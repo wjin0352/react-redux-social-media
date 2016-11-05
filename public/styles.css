@@ -100,12 +100,21 @@ button {
   .jumbotron-buttons {
     /*width: 12%;
     margin: 22em auto;*/
-    margin-top: 23em;
+    /*margin-top: 23em;*/
+    /* if this div is 100% width and text-align center the buttons inside it will
+    be centered */
     text-align: center;
+    margin: 20px 0px 75px 0px;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 60px;
   }
 
   .jumbotron-buttons button {
     margin-right: 7px;
+  }
+
+  /* Post Comment Buttons */
+  button.new-post-form {
   }
 
 /* Post Form */

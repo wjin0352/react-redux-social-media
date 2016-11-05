@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../actions';
 import { Link } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
+import NewComment from './NewComment';
 
 class Post extends Component {
   componentWillMount() {
@@ -37,6 +38,7 @@ class Post extends Component {
               <Button bsStyle="primary">edit</Button>
               <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
             </div>
+            <NewComment post_id={post._id}/>
           </Jumbotron>
         </container>
       </div>

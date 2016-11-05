@@ -12,6 +12,7 @@ class NewPost extends Component {
 
   createPost(e) {
     e.preventDefault();
+    console.log(e.target);
     var form = e.target;
     var title = form.querySelector('[name="title"]').value;
     var post = form.querySelector('[name="blog_post"]').value;
@@ -32,11 +33,11 @@ class NewPost extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='new-post-form' onSubmit={this.createPost.bind(this)}>
+            <form className='new-post-form' onSubmit={(e) => this.createPost(e)}>
               <fieldset>
                 <legend>New Post: </legend>
                 <li>title</li>
-                  <input type='text' name='title' required /><br/>
+                  <input type='text' name='title' required autoFocus /><br/>
                 <li>Blog Post</li>
                   <textarea rows="30" cols="100" type='text' name='blog_post' required >
                   </textarea><br/>

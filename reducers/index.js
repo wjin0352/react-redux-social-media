@@ -8,6 +8,7 @@ import allVideos from './videosReducer';
 import allUserPosts from './userPostsReducer';
 import getPost from './getPost';
 import deletePost from './deletePost';
+import comment from './comment';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const allReducers = combineReducers({
@@ -20,6 +21,7 @@ const allReducers = combineReducers({
   allUserPosts,
   getPost,
   deletePost,
+  comment,
   routing: routerReducer
 });
 
