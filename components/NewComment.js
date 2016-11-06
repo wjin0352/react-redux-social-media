@@ -12,10 +12,15 @@ class NewComment extends Component {
   createComment(e) {
     e.preventDefault();
     var form = e.target;
-    var commentData = form.querySelector('[name="post_comment"]').value;
+    var comment = form.querySelector('[name="post_comment"]').value;
     var id = this.props.post_id;
     console.log('id ',id)
-    this.props.createComment(commentData, id);
+    var commentData = {
+      comment,
+      id
+    };
+
+    this.props.createComment(commentData);
   }
 
   cancelComment(e) {

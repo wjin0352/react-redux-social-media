@@ -157,7 +157,7 @@ const PROD_URL = '';
 
 /* COMMENT ON POST ACTIONS */
   // create a comment on POST
-  export function createComment(commentData, id) {
+  export function createComment(commentData) {
     return (dispatch) => {
       return fetch(`${DEV_URL}/comments`, {
         credentials: 'include',
@@ -165,7 +165,7 @@ const PROD_URL = '';
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({content: commentData})
+        body: JSON.stringify(commentData)
       })
       .then(response => {
         if (response.status != 200) {
@@ -176,13 +176,13 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(comment => {
-          console.log('---0000000------ comment:', comment)
+          console.log('SUCCESS!!!---0000000------ comment:', comment)
           dispatch(commentSuccess(comment))
-          browserHistory.push(`/my_posts/${id}`)
+          browserHistory.push(`/my_posts/${commentData.id}`)
         })
         .catch(err => {
           dispatch(commentError(err.message))
-          browserHistory.push(`/posts/${id}`)
+          browserHistory.push(`/posts/${commentData.id}`)
         });
       };
     }
@@ -278,7 +278,6 @@ const PROD_URL = '';
         .then(response => response.json())
         .then(userPosts => {
         dispatch(fetchUserPostsSuccess(userPosts))
-        // console.log(userPosts)
         browserHistory.push('/show_user_posts')
       })
         .catch(err => dispatch(fetchUserPostsError(err.message)));

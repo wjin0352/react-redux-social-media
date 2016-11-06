@@ -8,21 +8,17 @@ import NewComment from './NewComment';
 class Post extends Component {
   componentWillMount() {
     var id = this.props.params.id;
-    // var url = `http://localhost:8000/posts/${id}`;
-    // var url ='http://localhost:8000/posts/asdf';
     this.props.fetchPost(id);
   }
 
   handleDelete(id) {
-    // var url = `http://localhost:8000/posts/${id}`;
     console.log(id);
     this.props.deletePost(id);
   }
 
   render() {
     var post = this.props.post.current_post;
-
-    console.log('whats on the props object: ', this.props);
+    console.log('post: ',post)
     return (
       <div>
         <container className='post-container' key={post._id}>

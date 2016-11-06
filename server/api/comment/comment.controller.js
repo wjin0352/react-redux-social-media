@@ -20,9 +20,11 @@ CommentController.prototype.getComments = function(req, res) {
 
 CommentController.prototype.createComment = function(req, res) {
   return new Promise (function (resolve, reject) {
+    console.log('COMMENT req.body: ', req.body)
     Comment.create({
-      content: req.body.content,
-      userid: req.user.id
+      comment: req.body.comment,
+      userid: req.user.id,
+      postid: req.body.id
     }, function (error, comment) {
       if (error) {
         reject(error);
@@ -31,6 +33,7 @@ CommentController.prototype.createComment = function(req, res) {
       }
     });
   }).then(function(comment) {
+    console.log(comment)
     res.status(200).json(comment)
   }).catch(function(error) {
     console.log(error);

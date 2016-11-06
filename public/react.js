@@ -47828,7 +47828,7 @@
 	
 	/* COMMENT ON POST ACTIONS */
 	// create a comment on POST
-	function createComment(commentData, id) {
+	function createComment(commentData) {
 	  return function (dispatch) {
 	    return fetch(DEV_URL + '/comments', {
 	      credentials: 'include',
@@ -47836,7 +47836,7 @@
 	      headers: {
 	        'Content-Type': 'application/json'
 	      },
-	      body: JSON.stringify({ content: commentData })
+	      body: JSON.stringify(commentData)
 	    }).then(function (response) {
 	      if (response.status != 200) {
 	        throw new Error(response.statusText);
@@ -47846,12 +47846,12 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (comment) {
-	      console.log('---0000000------ comment:', comment);
+	      console.log('SUCCESS!!!---0000000------ comment:', comment);
 	      dispatch(commentSuccess(comment));
-	      _reactRouter.browserHistory.push('/my_posts/' + id);
+	      _reactRouter.browserHistory.push('/my_posts/' + commentData.id);
 	    }).catch(function (err) {
 	      dispatch(commentError(err.message));
-	      _reactRouter.browserHistory.push('/posts/' + id);
+	      _reactRouter.browserHistory.push('/posts/' + commentData.id);
 	    });
 	  };
 	}
@@ -47949,7 +47949,6 @@
 	      return response.json();
 	    }).then(function (userPosts) {
 	      dispatch(fetchUserPostsSuccess(userPosts));
-	      // console.log(userPosts)
 	      _reactRouter.browserHistory.push('/show_user_posts');
 	    }).catch(function (err) {
 	      return dispatch(fetchUserPostsError(err.message));
@@ -48545,14 +48544,11 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      var id = this.props.params.id;
-	      // var url = `http://localhost:8000/posts/${id}`;
-	      // var url ='http://localhost:8000/posts/asdf';
 	      this.props.fetchPost(id);
 	    }
 	  }, {
 	    key: 'handleDelete',
 	    value: function handleDelete(id) {
-	      // var url = `http://localhost:8000/posts/${id}`;
 	      console.log(id);
 	      this.props.deletePost(id);
 	    }
@@ -48562,8 +48558,7 @@
 	      var _this2 = this;
 	
 	      var post = this.props.post.current_post;
-	
-	      console.log('whats on the props object: ', this.props);
+	      console.log('post: ', post);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -48673,10 +48668,15 @@
 	    value: function createComment(e) {
 	      e.preventDefault();
 	      var form = e.target;
-	      var commentData = form.querySelector('[name="post_comment"]').value;
+	      var comment = form.querySelector('[name="post_comment"]').value;
 	      var id = this.props.post_id;
 	      console.log('id ', id);
-	      this.props.createComment(commentData, id);
+	      var commentData = {
+	        comment: comment,
+	        id: id
+	      };
+	
+	      this.props.createComment(commentData);
 	    }
 	  }, {
 	    key: 'cancelComment',
