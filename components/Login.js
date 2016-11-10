@@ -37,7 +37,7 @@ class Login extends Component {
               <fieldset>
                 <legend>Login: </legend>
                 <li>username</li>
-                  <input type='text' name='username' required /><br/>
+                  <input type='text' name='username' required autoFocus/><br/>
                 <li>password</li>
                   <input type='password' name='password' required /><br/>
                 <button type="submit" value="done">Login</button>

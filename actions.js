@@ -1,5 +1,9 @@
 const fetch = require('isomorphic-fetch');
+import axios from 'axios';
 import { browserHistory } from 'react-router';
+
+const DEV_URL = 'http://localhost:8000';
+const PROD_URL = '';
 
 /* VIDEO ACTIONS */
   export function newVideoAsync(videoData, url) {
@@ -62,7 +66,6 @@ import { browserHistory } from 'react-router';
         })
         .then(response => response.json())
         .then(data => {
-          console.log('data from newPostAsync', data)
           dispatch(postSuccess(data))
           dispatch(newPostToPosts(data))
           browserHistory.push('/show_posts')
@@ -82,7 +85,6 @@ import { browserHistory } from 'react-router';
   };
 
   export function newPostToPosts(post) {
-    console.log('post from newposttoposts action: ',post)
     return {
       type: 'ADD_NEW_POST_TO_POSTS',
       post
@@ -96,10 +98,12 @@ import { browserHistory } from 'react-router';
     }
   };
 
-/* Post actions */
-  export function fetchPost (id, url) {
+/* POST ACTIONS */
+  // get a post
+  export function fetchPost (id) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(`${DEV_URL}/posts/${id}`, {
+        credentials: 'include',
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -107,15 +111,94 @@ import { browserHistory } from 'react-router';
       })
         .then(response => response.json())
         .then(post => {
-          // not finished yet...
+          dispatch(getPostSuccess(post))
         })
-    }
-    return {
-      type: 'FETCH_POST',
-
-    }
+        .catch(err => dispatch(getPostError(err.message)));
+    };
   }
 
+  export function getPostSuccess(post) {
+    return {
+      type: 'GET_POST_SUCCESS',
+      post
+    };
+  }
+
+  export function getPostError(error) {
+    return {
+      type: 'GET_POST_ERROR',
+      error
+    };
+  }
+  // delete a post
+  export function deletePost(id) {
+    return (dispatch) => {
+      return fetch(`${DEV_URL}/posts/${id}`, {
+        credentials: 'include',
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(response => {
+        response.json()
+        browserHistory.push('/show_posts')
+      })
+      .catch(err => dispatch(postDeleteError(err.message)));
+    };
+  }
+
+  export function postDeleteError(error) {
+    return {
+      type: 'POST_DELETE_ERROR',
+      error
+    };
+  }
+
+/* COMMENT ON POST ACTIONS */
+  // create a comment on POST
+  export function createComment(commentData) {
+    return (dispatch) => {
+      return fetch(`${DEV_URL}/comments`, {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentData)
+      })
+      .then(response => {
+        if (response.status != 200) {
+          throw new Error(response.statusText);
+        } else {
+          return response;
+        }
+      })
+        .then(response => response.json())
+        .then(comment => {
+          dispatch(commentSuccess(comment))
+          // browserHistory.push(`/my_posts/${commentData.id}`)
+        })
+        .catch(err => {
+          dispatch(commentError(err.message))
+          browserHistory.push('/login')
+        });
+      };
+    }
+
+    export function commentSuccess(comment) {
+      return {
+        type: 'COMMENT_SUCCESS',
+        comment
+      };
+    }
+
+    export function commentError(error) {
+      return {
+        type: 'COMMENT_ERROR',
+        error
+      };
+    }
 
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {
@@ -181,6 +264,64 @@ import { browserHistory } from 'react-router';
       error
     }
   };
+
+/* GET ALL USER POSTS  */
+  export function fetchUserPostsAsync(url) {
+    return (dispatch) => {
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(userPosts => {
+        dispatch(fetchUserPostsSuccess(userPosts))
+        browserHistory.push('/show_user_posts')
+      })
+        .catch(err => dispatch(fetchUserPostsError(err.message)));
+    };
+  }
+
+  export function fetchUserPostsSuccess(userPosts) {
+    return {
+      type: 'FETCH_USER_POSTS_SUCCESS',
+      userPosts
+    };
+  }
+
+  export function fetchUserPostsError(error) {
+    return {
+      type: 'FETCH_USER_POSTS_ERROR',
+      error
+    };
+  }
+
+/* GET ALL COMMENTS */
+  export function getComments(id) {
+    return (dispatch) => {
+      axios.get(`${DEV_URL}/comments/${id}`)
+      .then(response => {
+        console.log('[][][][]response:', response)
+        dispatch(commentsSuccess(response.data))
+      })
+      .catch(err => dispatch(commentsError(err.message)))
+    };
+  }
+
+  export function commentsSuccess(comments) {
+    return {
+      type: 'COMMENTS_SUCCESS',
+      comments
+    };
+  }
+
+  export function commentsError(error) {
+    return {
+      type: 'COMMENTS_ERROR',
+      error
+    };
+  }
 
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {

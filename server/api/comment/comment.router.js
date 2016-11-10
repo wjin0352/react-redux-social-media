@@ -3,7 +3,7 @@ const router = express.Router();
 const controller = require('./comment.controller');
 const isAuthenticated = require('../auth/auth');
 
-router.get('/', controller.getComments)
+router.get('/:post_id', controller.getPostComments)
   .post('/', isAuthenticated, controller.createComment)
   .put('/:id', isAuthenticated, controller.editComment)
   .delete('/:id', isAuthenticated, controller.deleteComment)

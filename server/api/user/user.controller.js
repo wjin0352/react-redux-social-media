@@ -57,29 +57,6 @@ UserController.prototype.registerUser = function (req, res) {
   });
 };
 
-
-
-// UserController.prototype.registerUser = function (req, res) {
-//   console.log(req.body)
-//   return new Promise(function (resolve, reject) {
-//     User.create({
-//       username: req.body.username,
-//       password: req.body.password,
-//       email: req.body.email
-//     }, function (error, user) {
-//       if (error) {
-//         reject(error);
-//       } else {
-//         resolve(user);
-//       }
-//     });
-//   }).then(function (user) {
-//     res.status(200).json(user);
-//   }).catch(function (error) {
-//     console.log(error);
-//   });
-// }
-
 UserController.prototype.logout = function(req, res){
   req.logout();
   res.redirect('/');

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPostsAsync } from '../actions';
 import Post from './Post';
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 // NO LOGGED IN USER .. All Posts Random feed
 class PostsFeed extends Component {
@@ -14,14 +14,13 @@ class PostsFeed extends Component {
 
   renderPosts(post) {
       return (
-        <Link to='/posts'>
-        {this.props.params.stuff}
-          <Grid key={post._id} className="post_feed_item_grid">
+        <Link to={`/my_posts/${post._id}`} key={post._id}>
+          <Grid className="post_feed_item_grid">
             <Row>
             <Col xs={4} md={4} className="col-post-item">
               <Thumbnail src="" >
                 <h3>{post.title}</h3>
-                  <Button bsStyle="warning btn-sm">See Post</Button>
+                  <Button bsStyle="warning btn-sm" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
               </Thumbnail>
             </Col>
             </Row>
@@ -32,7 +31,7 @@ class PostsFeed extends Component {
   }
 
   render() {
-    const posts = this.props.posts.posts;
+    const posts = this.props.posts;
     return (
       <div className='user_posts_feed'>
         <h3>Posts Feed</h3>
@@ -46,7 +45,7 @@ class PostsFeed extends Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.allPosts
+    posts: state.allPosts.posts
   }
 }
 

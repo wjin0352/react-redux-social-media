@@ -18,6 +18,9 @@ html {
     text-align: center;
   }*/
 
+button {
+  font-family: serif;
+}
 /* Videos feed container */
 
 
@@ -72,6 +75,18 @@ html {
     margin: 2em auto;
     padding: 5em;
     height: 700px;
+    font-family: serif;
+  }
+
+  .post-paragraph {
+    padding: 2em;
+    margin: 3em;
+    background-color: white;
+    border-radius: 3px;
+  }
+
+  p.post-paragraph {
+    font-size: 18px;
   }
 
   .post-div {
@@ -85,12 +100,21 @@ html {
   .jumbotron-buttons {
     /*width: 12%;
     margin: 22em auto;*/
-    margin-top: 23em;
+    /*margin-top: 23em;*/
+    /* if this div is 100% width and text-align center the buttons inside it will
+    be centered */
     text-align: center;
+    margin: 20px 0px 75px 0px;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 60px;
   }
 
   .jumbotron-buttons button {
     margin-right: 7px;
+  }
+
+  /* Post Comment Buttons */
+  button.new-post-form {
   }
 
 /* Post Form */

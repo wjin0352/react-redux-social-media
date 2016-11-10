@@ -1,30 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPost, deletePost } from '../actions';
 import { Link } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
+import NewComment from './NewComment';
+import CommentsFeed from './CommentsFeed';
 
 class Post extends Component {
+  componentWillMount() {
+    var id = this.props.params.id;
+    this.props.fetchPost(id);
+  }
 
-  render () {
+  handleDelete(id) {
+    console.log(id);
+    this.props.deletePost(id);
+  }
+
+  render() {
+    var post = this.props.post.current_post;
+    console.log('[][][][][]]][post_id: ',post._id)
     return (
-      <container className='post-container'>
-        <Jumbotron bsStyle='post'>
-          <h3>title</h3>
-          <p>
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-          </p>
-          <div className="jumbotron-buttons">
-            <Button bsStyle="primary">edit</Button>
-            <Button bsStyle="primary">delete</Button>
-          </div>
-        </Jumbotron>
-      </container>
+      <div>
+        <container className='post-container' key={post._id}>
+          <Jumbotron bsStyle='post'>
+            <h3>{post.title}</h3>
+              <div>
+                <p className="post-paragraph">
+                  {post.content}
+                </p>
+              </div>
+            <h6>{post.likes}</h6>
+            <div className="jumbotron-buttons">
+              <Button bsStyle="primary">edit</Button>
+              <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
+            </div>
+            <NewComment post_id={post._id}/>
+            <CommentsFeed post_id={post._id}/>
+          </Jumbotron>
+        </container>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { }
+  return {
+    post: state.getPost
+  };
 }
 
-export default connect(mapStateToProps)(Post);
+// export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps, { fetchPost, deletePost })(Post);

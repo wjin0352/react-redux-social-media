@@ -5,6 +5,12 @@ import register from './register';
 import login from './login';
 import allPosts from './postsReducer';
 import allVideos from './videosReducer';
+import allUserPosts from './userPostsReducer';
+import getPost from './getPost';
+import deletePost from './deletePost';
+import comment from './comment';
+import allComments from './commentsReducer';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const allReducers = combineReducers({
   video,
@@ -12,7 +18,13 @@ const allReducers = combineReducers({
   register,
   login,
   allPosts,
-  allVideos
+  allVideos,
+  allUserPosts,
+  getPost,
+  deletePost,
+  comment,
+  allComments,
+  routing: routerReducer
 });
 
 export default allReducers;

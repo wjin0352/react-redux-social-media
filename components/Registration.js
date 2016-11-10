@@ -40,7 +40,7 @@ class Registration extends Component {
             <fieldset>
               <legend>Registration</legend>
               <li>user name: </li>
-                <input type='text' name='username' ref='username' required /><br/>
+                <input type='text' name='username' ref='username' required autoFocus/><br/>
               <li>email: </li>
                 <input type='email' name='email' ref='email' required /><br/>
               <li>password: </li>

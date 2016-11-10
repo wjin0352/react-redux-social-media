@@ -15,7 +15,11 @@ module.exports = function (app) {
   // passport configuration
   app.use(session({ secret: 'keyboard cat' }));
   app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passport.session({ secret: 'keyboard cat',
+                    cookie: { maxAge: 60000 },
+                    resave: false,
+                    saveUninitialized: false
+                  }));
   // passport strategy
   passport.use(new LocalStrategy(
     function(username, password, callback) {
@@ -38,7 +42,7 @@ module.exports = function (app) {
   ));
   // passport sessions support
   passport.serializeUser(function(user, done) {
-    done(null, user);
+    done(null, user.id);
   });
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {

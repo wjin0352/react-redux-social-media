@@ -1,6 +1,5 @@
 function isAuthenticated (req, res, next) {
   if(req.user) {
-    console.log('req.user is : ', req.user);
     next();
   }
   else {

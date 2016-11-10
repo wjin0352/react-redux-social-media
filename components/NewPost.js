@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { newPostAsync } from '../actions';
 import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 
 class NewPost extends Component {
   constructor(props) {
@@ -13,6 +12,7 @@ class NewPost extends Component {
 
   createPost(e) {
     e.preventDefault();
+    console.log(e.target);
     var form = e.target;
     var title = form.querySelector('[name="title"]').value;
     var post = form.querySelector('[name="blog_post"]').value;
@@ -33,11 +33,11 @@ class NewPost extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='new-post-form' onSubmit={this.createPost.bind(this)}>
+            <form className='new-post-form' onSubmit={(e) => this.createPost(e)}>
               <fieldset>
                 <legend>New Post: </legend>
                 <li>title</li>
-                  <input type='text' name='title' required /><br/>
+                  <input type='text' name='title' required autoFocus /><br/>
                 <li>Blog Post</li>
                   <textarea rows="30" cols="100" type='text' name='blog_post' required >
                   </textarea><br/>
@@ -58,7 +58,7 @@ class NewPost extends Component {
 function mapStateToProps(state) {
   return {
     post: state.post
-  }
+  };
 }
 
 export default connect(mapStateToProps, { newPostAsync })(NewPost);
