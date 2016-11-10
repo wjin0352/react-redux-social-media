@@ -4,6 +4,7 @@ import { fetchPost, deletePost } from '../actions';
 import { Link } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
 import NewComment from './NewComment';
+import CommentsFeed from './CommentsFeed';
 
 class Post extends Component {
   componentWillMount() {
@@ -18,7 +19,7 @@ class Post extends Component {
 
   render() {
     var post = this.props.post.current_post;
-    console.log('post: ',post)
+    console.log('[][][][][]]][post_id: ',post._id)
     return (
       <div>
         <container className='post-container' key={post._id}>
@@ -35,6 +36,7 @@ class Post extends Component {
               <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
             </div>
             <NewComment post_id={post._id}/>
+            <CommentsFeed post_id={post._id}/>
           </Jumbotron>
         </container>
       </div>

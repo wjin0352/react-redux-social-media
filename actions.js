@@ -1,4 +1,5 @@
 const fetch = require('isomorphic-fetch');
+import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 const DEV_URL = 'http://localhost:8000';
@@ -84,7 +85,6 @@ const PROD_URL = '';
   };
 
   export function newPostToPosts(post) {
-    console.log('post from newposttoposts action: ',post)
     return {
       type: 'ADD_NEW_POST_TO_POSTS',
       post
@@ -176,13 +176,12 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(comment => {
-          console.log('SUCCESS!!!---0000000------ comment:', comment)
           dispatch(commentSuccess(comment))
-          browserHistory.push(`/my_posts/${commentData.id}`)
+          // browserHistory.push(`/my_posts/${commentData.id}`)
         })
         .catch(err => {
           dispatch(commentError(err.message))
-          browserHistory.push(`/posts/${commentData.id}`)
+          browserHistory.push('/login')
         });
       };
     }
@@ -282,21 +281,47 @@ const PROD_URL = '';
       })
         .catch(err => dispatch(fetchUserPostsError(err.message)));
     };
-  };
+  }
 
   export function fetchUserPostsSuccess(userPosts) {
     return {
       type: 'FETCH_USER_POSTS_SUCCESS',
       userPosts
-    }
-  };
+    };
+  }
 
   export function fetchUserPostsError(error) {
     return {
       type: 'FETCH_USER_POSTS_ERROR',
       error
-    }
-  };
+    };
+  }
+
+/* GET ALL COMMENTS */
+  export function getComments(id) {
+    return (dispatch) => {
+      axios.get(`${DEV_URL}/comments/${id}`)
+      .then(response => {
+        console.log('[][][][]response:', response)
+        dispatch(commentsSuccess(response.data))
+      })
+      .catch(err => dispatch(commentsError(err.message)))
+    };
+  }
+
+  export function commentsSuccess(comments) {
+    return {
+      type: 'COMMENTS_SUCCESS',
+      comments
+    };
+  }
+
+  export function commentsError(error) {
+    return {
+      type: 'COMMENTS_ERROR',
+      error
+    };
+  }
 
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {

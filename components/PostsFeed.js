@@ -4,6 +4,7 @@ import { fetchPostsAsync } from '../actions';
 import Post from './Post';
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 import { Link, browserHistory } from 'react-router';
+
 // NO LOGGED IN USER .. All Posts Random feed
 class PostsFeed extends Component {
   componentWillMount () {
@@ -30,8 +31,7 @@ class PostsFeed extends Component {
   }
 
   render() {
-    // console.log('userPosts: ', this.props)
-    const posts = this.props.posts.posts;
+    const posts = this.props.posts;
     return (
       <div className='user_posts_feed'>
         <h3>Posts Feed</h3>
@@ -45,7 +45,7 @@ class PostsFeed extends Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.allPosts
+    posts: state.allPosts.posts
   }
 }
 
