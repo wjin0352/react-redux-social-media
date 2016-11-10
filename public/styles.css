@@ -105,7 +105,6 @@ button {
     be centered */
     text-align: center;
     margin: 20px 0px 75px 0px;
-    border-bottom: 1px solid #e2e2e2;
     padding-bottom: 60px;
   }
 
@@ -144,6 +143,12 @@ button {
   .post-form input {
     display: block;
     margin: 0em auto 2em auto;
+  }
+
+  .new-post-form {
+    padding: 2em 0em;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
   }
 
 /* Login form React-Bootstrap modal */

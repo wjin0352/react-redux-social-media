@@ -47570,7 +47570,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
-	                  { bsStyle: 'warning btn-sm', onClick: function onClick() {
+	                  { bsStyle: 'warning', onClick: function onClick() {
 	                      return _reactRouter.browserHistory.push('/my_posts/' + post._id);
 	                    } },
 	                  'See Post'
@@ -47650,6 +47650,7 @@
 	exports.createComment = createComment;
 	exports.commentSuccess = commentSuccess;
 	exports.commentError = commentError;
+	exports.addNewCommentToComments = addNewCommentToComments;
 	exports.allVideosAsync = allVideosAsync;
 	exports.allVideosSuccess = allVideosSuccess;
 	exports.allVideosError = allVideosError;
@@ -47853,8 +47854,10 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (comment) {
+	      console.log(comment);
 	      dispatch(commentSuccess(comment));
-	      // browserHistory.push(`/my_posts/${commentData.id}`)
+	      dispatch(addNewCommentToComments(comment));
+	      _reactRouter.browserHistory.push('/my_posts/' + comment.postid);
 	    }).catch(function (err) {
 	      dispatch(commentError(err.message));
 	      _reactRouter.browserHistory.push('/login');
@@ -47873,6 +47876,13 @@
 	  return {
 	    type: 'COMMENT_ERROR',
 	    error: error
+	  };
+	}
+	
+	function addNewCommentToComments(comment) {
+	  return {
+	    type: 'ADD_NEW_COMMENT_TO_COMMENTS',
+	    comment: comment
 	  };
 	}
 	
@@ -47980,7 +47990,6 @@
 	function getComments(id) {
 	  return function (dispatch) {
 	    _axios2.default.get(DEV_URL + '/comments/' + id).then(function (response) {
-	      console.log('[][][][]response:', response);
 	      dispatch(commentsSuccess(response.data));
 	    }).catch(function (err) {
 	      return dispatch(commentsError(err.message));
@@ -50084,12 +50093,12 @@
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'reset', className: 'btn btn-sm btn-default' },
+	            { type: 'reset', className: 'btn btn-default' },
 	            'Cancel'
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn btn-sm btn-primary', onClick: function onClick() {
+	            { className: 'btn btn-primary', onClick: function onClick() {
 	                return _this2.cancelComment;
 	              } },
 	            'Comment'
@@ -50154,11 +50163,52 @@
 	  _createClass(CommentsFeed, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      console.log('COMMENT FEED COMPONENT MOUNTING!!!!');
 	      this.props.getComments(this.props.post_id);
+	    }
+	  }, {
+	    key: 'renderComments',
+	    value: function renderComments(comment) {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'single_comment', key: comment._id },
+	        _react2.default.createElement(
+	          _reactBootstrap.Media,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Media.Left,
+	            { align: 'top' },
+	            _react2.default.createElement('img', { width: 64, height: 64, src: '/assets/thumbnail.png', alt: 'Image' })
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Media.Body,
+	            null,
+	            _react2.default.createElement(
+	              _reactBootstrap.Media.Heading,
+	              null,
+	              comment.userid
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              comment.comment
+	            )
+	          )
+	        )
+	      );
+	      {
+	        this.props.comments ? this.renderComments() : _react2.default.createElement(
+	          'h3',
+	          null,
+	          'No Comments: '
+	        );
+	      }
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var comments = this.props.comments;
 	      return _react2.default.createElement(
 	        'div',
@@ -50171,7 +50221,10 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'comments_feed_wrapper' },
-	          'Comments'
+	          'Comments: ',
+	          comments.map(function (comment) {
+	            return _this2.renderComments(comment);
+	          })
 	        )
 	      );
 	    }
@@ -50973,7 +51026,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
-	                  { bsStyle: 'warning btn-sm' },
+	                  { bsStyle: 'warning' },
 	                  'See Post'
 	                )
 	              )
@@ -51975,6 +52028,8 @@
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	var initialState = {
 	  comments: [],
 	  error: ''
@@ -51992,6 +52047,10 @@
 	    case 'COMMENTS_ERROR':
 	      return _extends({}, state, {
 	        error: action.error
+	      });
+	    case 'ADD_NEW_COMMENT_TO_COMMENTS':
+	      return _extends({}, state, {
+	        comments: [].concat(_toConsumableArray(state.comments), [action.comment])
 	      });
 	    default:
 	      return state;

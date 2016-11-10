@@ -20,7 +20,7 @@ class UserPostsFeed extends Component {
           <Col xs={4} md={4} className="col-post-item">
             <Thumbnail src="" >
               <h3>{userPost.title}</h3>
-                <Button bsStyle="warning btn-sm">See Post</Button>
+                <Button bsStyle="warning">See Post</Button>
             </Thumbnail>
           </Col>
           </Row>

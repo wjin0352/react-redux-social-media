@@ -176,8 +176,10 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(comment => {
+          console.log(comment)
           dispatch(commentSuccess(comment))
-          // browserHistory.push(`/my_posts/${commentData.id}`)
+          dispatch(addNewCommentToComments(comment))
+          browserHistory.push(`/my_posts/${comment.postid}`)
         })
         .catch(err => {
           dispatch(commentError(err.message))
@@ -197,6 +199,13 @@ const PROD_URL = '';
       return {
         type: 'COMMENT_ERROR',
         error
+      };
+    }
+
+    export function addNewCommentToComments(comment) {
+      return {
+        type: 'ADD_NEW_COMMENT_TO_COMMENTS',
+        comment
       };
     }
 
@@ -302,7 +311,6 @@ const PROD_URL = '';
     return (dispatch) => {
       axios.get(`${DEV_URL}/comments/${id}`)
       .then(response => {
-        console.log('[][][][]response:', response)
         dispatch(commentsSuccess(response.data))
       })
       .catch(err => dispatch(commentsError(err.message)))
