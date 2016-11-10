@@ -50065,6 +50065,7 @@
 	        id: id
 	      };
 	      this.props.createComment(commentData);
+	      form.querySelector('[name="post_comment"]').value = '';
 	    }
 	  }, {
 	    key: 'cancelComment',
@@ -50166,9 +50167,12 @@
 	      console.log('COMMENT FEED COMPONENT MOUNTING!!!!');
 	      this.props.getComments(this.props.post_id);
 	    }
+	    // <img width={64} height={64} src="/assets/thumbnail.png" alt="Image"/>
+	
 	  }, {
 	    key: 'renderComments',
 	    value: function renderComments(comment) {
+	      console.log('xxxxxxxxCOMMENT OBJECT:', comment);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'single_comment', key: comment._id },
@@ -50178,7 +50182,7 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Media.Left,
 	            { align: 'top' },
-	            _react2.default.createElement('img', { width: 64, height: 64, src: '/assets/thumbnail.png', alt: 'Image' })
+	            _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'align-left' })
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Media.Body,
@@ -50186,7 +50190,8 @@
 	            _react2.default.createElement(
 	              _reactBootstrap.Media.Heading,
 	              null,
-	              comment.userid
+	              'By ',
+	              comment.username + ', ' + comment.user_email
 	            ),
 	            _react2.default.createElement(
 	              'p',

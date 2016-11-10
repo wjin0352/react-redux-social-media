@@ -19,6 +19,7 @@ class NewComment extends Component {
       id
     };
     this.props.createComment(commentData);
+    form.querySelector('[name="post_comment"]').value = '';
   }
 
   cancelComment(e) {

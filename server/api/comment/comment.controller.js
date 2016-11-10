@@ -39,13 +39,13 @@ CommentController.prototype.getPostComments = function(req, res) {
 //   });
 // }
 
-
-
 CommentController.prototype.createComment = function(req, res) {
   return new Promise (function (resolve, reject) {
-    console.log('COMMENT req.body: ', req.body)
+    console.log('COMMENT req.user: ', req.user)
     Comment.create({
       comment: req.body.comment,
+      user_email: req.user.email,
+      username: req.user.username,
       userid: req.user.id,
       postid: req.body.id
     }, function (error, comment) {
