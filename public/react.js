@@ -64,35 +64,35 @@
 	
 	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
 	
-	var _VideosFeed = __webpack_require__(514);
+	var _VideosFeed = __webpack_require__(538);
 	
 	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
 	
-	var _Registration = __webpack_require__(532);
+	var _Registration = __webpack_require__(540);
 	
 	var _Registration2 = _interopRequireDefault(_Registration);
 	
-	var _Login = __webpack_require__(533);
+	var _Login = __webpack_require__(541);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _NewPost = __webpack_require__(534);
+	var _NewPost = __webpack_require__(542);
 	
 	var _NewPost2 = _interopRequireDefault(_NewPost);
 	
-	var _NewVideo = __webpack_require__(536);
+	var _NewVideo = __webpack_require__(543);
 	
 	var _NewVideo2 = _interopRequireDefault(_NewVideo);
 	
-	var _UserPostsFeed = __webpack_require__(537);
+	var _UserPostsFeed = __webpack_require__(544);
 	
 	var _UserPostsFeed2 = _interopRequireDefault(_UserPostsFeed);
 	
-	var _Post = __webpack_require__(513);
+	var _Post = __webpack_require__(535);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
-	var _Video = __webpack_require__(515);
+	var _Video = __webpack_require__(539);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -100,7 +100,7 @@
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _store = __webpack_require__(517);
+	var _store = __webpack_require__(550);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -47506,7 +47506,7 @@
 	
 	var _actions = __webpack_require__(510);
 	
-	var _Post = __webpack_require__(513);
+	var _Post = __webpack_require__(535);
 	
 	var _Post2 = _interopRequireDefault(_Post);
 	
@@ -47650,7 +47650,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var fetch = __webpack_require__(511);
+	var fetch = __webpack_require__(533);
 	
 	
 	/* VIDEO ACTIONS */
@@ -47909,19 +47909,41 @@
 	}
 
 /***/ },
-/* 511 */
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */,
+/* 520 */,
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(512);
+	__webpack_require__(534);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 512 */
+/* 534 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -48360,7 +48382,7 @@
 
 
 /***/ },
-/* 513 */
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48446,7 +48468,9 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Post);
 
 /***/ },
-/* 514 */
+/* 536 */,
+/* 537 */,
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48467,7 +48491,7 @@
 	
 	var _reactRouter = __webpack_require__(198);
 	
-	var _Video = __webpack_require__(515);
+	var _Video = __webpack_require__(539);
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
@@ -48543,7 +48567,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { allVideosAsync: _actions.allVideosAsync })(VideosFeed);
 
 /***/ },
-/* 515 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48577,8 +48601,731 @@
 	exports.default = Video;
 
 /***/ },
-/* 516 */,
-/* 517 */
+/* 540 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Registration = function (_Component) {
+	  _inherits(Registration, _Component);
+	
+	  function Registration(props) {
+	    _classCallCheck(this, Registration);
+	
+	    var _this = _possibleConstructorReturn(this, (Registration.__proto__ || Object.getPrototypeOf(Registration)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(Registration, [{
+	    key: 'handleRegistration',
+	    value: function handleRegistration(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var user = form.querySelector('[name="username"]').value;
+	      var pass = form.querySelector('[name="password"]').value;
+	      var email = form.querySelector('[name="email"]').value;
+	
+	      var formInput = {
+	        username: user,
+	        password: pass,
+	        email: email
+	      };
+	      var url = "http://localhost:8000/users/register";
+	      // this.props.dispatch(actions.registerUserAsync (formInput, url));
+	      this.props.registerUserAsync(formInput, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Header,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Title,
+	            null,
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Please join us'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Body,
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'register-form', onSubmit: this.handleRegistration.bind(this) },
+	            _react2.default.createElement(
+	              'fieldset',
+	              null,
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'Registration'
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'user name: '
+	              ),
+	              _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'email: '
+	              ),
+	              _react2.default.createElement('input', { type: 'email', name: 'email', ref: 'email', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'password: '
+	              ),
+	              _react2.default.createElement('input', { type: 'password', name: 'password', ref: 'password', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                'submit'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'register_modal_close_redirect', to: '/' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Main Page'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Registration;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    register_user: state.register
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { registerUserAsync: _actions.registerUserAsync })(Registration);
+
+/***/ },
+/* 541 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_Component) {
+	  _inherits(Login, _Component);
+	
+	  function Login(props) {
+	    _classCallCheck(this, Login);
+	
+	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(Login, [{
+	    key: 'handleLogin',
+	    value: function handleLogin(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var name = form.querySelector('[name="username"]').value;
+	      var pass = form.querySelector('[name="password"]').value;
+	
+	      var userCred = {
+	        username: name,
+	        password: pass
+	      };
+	      var url = "http://localhost:8000/users/login";
+	      this.props.loginUserAsync(userCred, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Header,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Title,
+	            null,
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Sign in first'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Body,
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'login-form', onSubmit: this.handleLogin.bind(this) },
+	            _react2.default.createElement(
+	              'fieldset',
+	              null,
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'Login: '
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'username'
+	              ),
+	              _react2.default.createElement('input', { type: 'text', name: 'username', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'password'
+	              ),
+	              _react2.default.createElement('input', { type: 'password', name: 'password', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit', value: 'done' },
+	                'Login'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'login_modal_close_redirect', to: '/' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Close'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Login;
+	}(_react.Component);
+	
+	;
+	
+	function mapStateToProps(state) {
+	  return {
+	    login_user: state.login
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { loginUserAsync: _actions.loginUserAsync })(Login);
+
+/***/ },
+/* 542 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewPost = function (_Component) {
+	  _inherits(NewPost, _Component);
+	
+	  function NewPost(props) {
+	    _classCallCheck(this, NewPost);
+	
+	    var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(NewPost, [{
+	    key: 'createPost',
+	    value: function createPost(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var title = form.querySelector('[name="title"]').value;
+	      var post = form.querySelector('[name="blog_post"]').value;
+	      var postData = {
+	        title: title,
+	        content: post
+	      };
+	      var url = "http://localhost:8000/posts";
+	      this.props.newPostAsync(postData, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal, bsSize: 'large' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Header,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Title,
+	            null,
+	            'Add a post'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Body,
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'new-post-form', onSubmit: this.createPost.bind(this) },
+	            _react2.default.createElement(
+	              'fieldset',
+	              null,
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'New Post: '
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'title'
+	              ),
+	              _react2.default.createElement('input', { type: 'text', name: 'title', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'Blog Post'
+	              ),
+	              _react2.default.createElement('textarea', { rows: '30', cols: '100', type: 'text', name: 'blog_post', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit', value: 'done' },
+	                'Finished'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'new_post_close_redirect', to: '/' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Home'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return NewPost;
+	}(_react.Component);
+	
+	;
+	
+	function mapStateToProps(state) {
+	  return {
+	    post: state.post
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newPostAsync: _actions.newPostAsync })(NewPost);
+
+/***/ },
+/* 543 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(510);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var NewVideo = function (_Component) {
+	  _inherits(NewVideo, _Component);
+	
+	  function NewVideo(props) {
+	    _classCallCheck(this, NewVideo);
+	
+	    var _this = _possibleConstructorReturn(this, (NewVideo.__proto__ || Object.getPrototypeOf(NewVideo)).call(this, props));
+	
+	    _this.state = { showModal: true };
+	    return _this;
+	  }
+	
+	  _createClass(NewVideo, [{
+	    key: 'createVideo',
+	    value: function createVideo(e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      var videolink = form.querySelector('[name="url"]').value;
+	      var description = form.querySelector('[name="description"]').value;
+	      var videoData = {
+	        videolink: videolink,
+	        description: description
+	      };
+	      var url = "http://localhost:8000/videos";
+	      this.props.newVideoAsync(videoData, url);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.Modal,
+	        { show: this.state.showModal, bsSize: 'large' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Header,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Modal.Title,
+	            null,
+	            'Add a link'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Body,
+	          null,
+	          _react2.default.createElement(
+	            'form',
+	            { className: 'new-video-form', onSubmit: this.createVideo.bind(this) },
+	            _react2.default.createElement(
+	              'fieldset',
+	              null,
+	              _react2.default.createElement(
+	                'legend',
+	                null,
+	                'New Video: '
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'add url:'
+	              ),
+	              _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'li',
+	                null,
+	                'description'
+	              ),
+	              _react2.default.createElement('textarea', { rows: '10', cols: '60', type: 'text', name: 'description', required: true }),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                'Create'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Modal.Footer,
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'new_video_close_redirect', to: '/' },
+	            _react2.default.createElement(
+	              _reactBootstrap.Button,
+	              { bsStyle: 'warning' },
+	              'Home'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return NewVideo;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    video: state.video
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newVideoAsync: _actions.newVideoAsync })(NewVideo);
+
+/***/ },
+/* 544 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactBootstrap = __webpack_require__(259);
+	
+	var _Post = __webpack_require__(535);
+	
+	var _Post2 = _interopRequireDefault(_Post);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UserPostsFeed = _react2.default.createClass({
+	  displayName: 'UserPostsFeed',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'user_posts_feed' },
+	      _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Posts Feed '
+	      ),
+	      _react2.default.createElement(
+	        _reactBootstrap.Grid,
+	        null,
+	        _react2.default.createElement(
+	          _reactBootstrap.Row,
+	          null,
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'with pic'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Description'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.Col,
+	            { xs: 6, md: 4 },
+	            _react2.default.createElement(
+	              _reactBootstrap.Thumbnail,
+	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
+	              _react2.default.createElement(
+	                'h3',
+	                null,
+	                'Thumbnail label'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Description'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'primary' },
+	                  'Button'
+	                ),
+	                ' ',
+	                _react2.default.createElement(
+	                  _reactBootstrap.Button,
+	                  { bsStyle: 'default' },
+	                  'Button'
+	                )
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	exports.default = UserPostsFeed;
+
+/***/ },
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48589,11 +49336,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _index = __webpack_require__(518);
+	var _index = __webpack_require__(551);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _reduxLogger = __webpack_require__(525);
+	var _reduxLogger = __webpack_require__(563);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
@@ -48601,16 +49348,18 @@
 	
 	var redux = __webpack_require__(180);
 	
-	var thunk = __webpack_require__(531).default;
+	var thunk = __webpack_require__(569).default;
 	
 	
 	var logger = (0, _reduxLogger2.default)();
-	var store = (0, _redux.createStore)(_index2.default, (0, _redux.applyMiddleware)(thunk, logger));
+	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  return f;
+	}));
 	
 	exports.default = store;
 
 /***/ },
-/* 518 */
+/* 551 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48621,27 +49370,27 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _video = __webpack_require__(519);
+	var _video = __webpack_require__(552);
 	
 	var _video2 = _interopRequireDefault(_video);
 	
-	var _post = __webpack_require__(520);
+	var _post = __webpack_require__(553);
 	
 	var _post2 = _interopRequireDefault(_post);
 	
-	var _register = __webpack_require__(521);
+	var _register = __webpack_require__(554);
 	
 	var _register2 = _interopRequireDefault(_register);
 	
-	var _login = __webpack_require__(522);
+	var _login = __webpack_require__(555);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _postsReducer = __webpack_require__(523);
+	var _postsReducer = __webpack_require__(556);
 	
 	var _postsReducer2 = _interopRequireDefault(_postsReducer);
 	
-	var _videosReducer = __webpack_require__(524);
+	var _videosReducer = __webpack_require__(557);
 	
 	var _videosReducer2 = _interopRequireDefault(_videosReducer);
 	
@@ -48659,7 +49408,7 @@
 	exports.default = allReducers;
 
 /***/ },
-/* 519 */
+/* 552 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48707,7 +49456,7 @@
 	exports.default = newVideo;
 
 /***/ },
-/* 520 */
+/* 553 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48755,7 +49504,7 @@
 	exports.default = newPost;
 
 /***/ },
-/* 521 */
+/* 554 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48802,7 +49551,7 @@
 	exports.default = register;
 
 /***/ },
-/* 522 */
+/* 555 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48845,7 +49594,7 @@
 	exports.default = login;
 
 /***/ },
-/* 523 */
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48894,7 +49643,7 @@
 	exports.default = allPosts;
 
 /***/ },
-/* 524 */
+/* 557 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48937,7 +49686,12 @@
 	exports.default = allVideos;
 
 /***/ },
-/* 525 */
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48948,11 +49702,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(526);
+	var _core = __webpack_require__(564);
 	
-	var _helpers = __webpack_require__(527);
+	var _helpers = __webpack_require__(565);
 	
-	var _defaults = __webpack_require__(530);
+	var _defaults = __webpack_require__(568);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -49055,7 +49809,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 526 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49065,9 +49819,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(527);
+	var _helpers = __webpack_require__(565);
 	
-	var _diff = __webpack_require__(528);
+	var _diff = __webpack_require__(566);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -49188,7 +49942,7 @@
 	}
 
 /***/ },
-/* 527 */
+/* 565 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49212,7 +49966,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 528 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49222,7 +49976,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(529);
+	var _deepDiff = __webpack_require__(567);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -49308,7 +50062,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 529 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -49737,7 +50491,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 530 */
+/* 568 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49788,7 +50542,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 531 */
+/* 569 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -49814,726 +50568,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 532 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(510);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Registration = function (_Component) {
-	  _inherits(Registration, _Component);
-	
-	  function Registration(props) {
-	    _classCallCheck(this, Registration);
-	
-	    var _this = _possibleConstructorReturn(this, (Registration.__proto__ || Object.getPrototypeOf(Registration)).call(this, props));
-	
-	    _this.state = { showModal: true };
-	    return _this;
-	  }
-	
-	  _createClass(Registration, [{
-	    key: 'handleRegistration',
-	    value: function handleRegistration(e) {
-	      e.preventDefault();
-	      var form = e.target;
-	      var user = form.querySelector('[name="username"]').value;
-	      var pass = form.querySelector('[name="password"]').value;
-	      var email = form.querySelector('[name="email"]').value;
-	
-	      var formInput = {
-	        username: user,
-	        password: pass,
-	        email: email
-	      };
-	      var url = "http://localhost:8000/users/register";
-	      // this.props.dispatch(actions.registerUserAsync (formInput, url));
-	      this.props.registerUserAsync(formInput, url);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        _reactBootstrap.Modal,
-	        { show: this.state.showModal },
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Header,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Title,
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Please join us'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
-	          _react2.default.createElement(
-	            'form',
-	            { className: 'register-form', onSubmit: this.handleRegistration.bind(this) },
-	            _react2.default.createElement(
-	              'fieldset',
-	              null,
-	              _react2.default.createElement(
-	                'legend',
-	                null,
-	                'Registration'
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'user name: '
-	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'username', ref: 'username', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'email: '
-	              ),
-	              _react2.default.createElement('input', { type: 'email', name: 'email', ref: 'email', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'password: '
-	              ),
-	              _react2.default.createElement('input', { type: 'password', name: 'password', ref: 'password', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                'submit'
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Footer,
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'register_modal_close_redirect', to: '/' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'warning' },
-	              'Main Page'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Registration;
-	}(_react.Component);
-	
-	function mapStateToProps(state) {
-	  return {
-	    register_user: state.register
-	  };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { registerUserAsync: _actions.registerUserAsync })(Registration);
-
-/***/ },
-/* 533 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(510);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Login = function (_Component) {
-	  _inherits(Login, _Component);
-	
-	  function Login(props) {
-	    _classCallCheck(this, Login);
-	
-	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-	
-	    _this.state = { showModal: true };
-	    return _this;
-	  }
-	
-	  _createClass(Login, [{
-	    key: 'handleLogin',
-	    value: function handleLogin(e) {
-	      e.preventDefault();
-	      var form = e.target;
-	      var name = form.querySelector('[name="username"]').value;
-	      var pass = form.querySelector('[name="password"]').value;
-	
-	      var userCred = {
-	        username: name,
-	        password: pass
-	      };
-	      var url = "http://localhost:8000/users/login";
-	      this.props.loginUserAsync(userCred, url);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        _reactBootstrap.Modal,
-	        { show: this.state.showModal },
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Header,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Title,
-	            null,
-	            _react2.default.createElement(
-	              'h3',
-	              null,
-	              'Sign in first'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
-	          _react2.default.createElement(
-	            'form',
-	            { className: 'login-form', onSubmit: this.handleLogin.bind(this) },
-	            _react2.default.createElement(
-	              'fieldset',
-	              null,
-	              _react2.default.createElement(
-	                'legend',
-	                null,
-	                'Login: '
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'username'
-	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'username', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'password'
-	              ),
-	              _react2.default.createElement('input', { type: 'password', name: 'password', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit', value: 'done' },
-	                'Login'
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Footer,
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'login_modal_close_redirect', to: '/' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'warning' },
-	              'Close'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Login;
-	}(_react.Component);
-	
-	;
-	
-	function mapStateToProps(state) {
-	  return {
-	    login_user: state.login
-	  };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { loginUserAsync: _actions.loginUserAsync })(Login);
-
-/***/ },
-/* 534 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _actions = __webpack_require__(510);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var NewPost = function (_Component) {
-	  _inherits(NewPost, _Component);
-	
-	  function NewPost(props) {
-	    _classCallCheck(this, NewPost);
-	
-	    var _this = _possibleConstructorReturn(this, (NewPost.__proto__ || Object.getPrototypeOf(NewPost)).call(this, props));
-	
-	    _this.state = { showModal: true };
-	    return _this;
-	  }
-	
-	  _createClass(NewPost, [{
-	    key: 'createPost',
-	    value: function createPost(e) {
-	      e.preventDefault();
-	      var form = e.target;
-	      var title = form.querySelector('[name="title"]').value;
-	      var post = form.querySelector('[name="blog_post"]').value;
-	      var postData = {
-	        title: title,
-	        content: post
-	      };
-	      var url = "http://localhost:8000/posts";
-	      this.props.newPostAsync(postData, url);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        _reactBootstrap.Modal,
-	        { show: this.state.showModal, bsSize: 'large' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Header,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Title,
-	            null,
-	            'Add a post'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
-	          _react2.default.createElement(
-	            'form',
-	            { className: 'new-post-form', onSubmit: this.createPost.bind(this) },
-	            _react2.default.createElement(
-	              'fieldset',
-	              null,
-	              _react2.default.createElement(
-	                'legend',
-	                null,
-	                'New Post: '
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'title'
-	              ),
-	              _react2.default.createElement('input', { type: 'text', name: 'title', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'Blog Post'
-	              ),
-	              _react2.default.createElement('textarea', { rows: '30', cols: '100', type: 'text', name: 'blog_post', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit', value: 'done' },
-	                'Finished'
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Footer,
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'new_post_close_redirect', to: '/' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'warning' },
-	              'Home'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return NewPost;
-	}(_react.Component);
-	
-	;
-	
-	function mapStateToProps(state) {
-	  return {
-	    post: state.post
-	  };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newPostAsync: _actions.newPostAsync })(NewPost);
-
-/***/ },
-/* 535 */,
-/* 536 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _actions = __webpack_require__(510);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _reactRouter = __webpack_require__(198);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var NewVideo = function (_Component) {
-	  _inherits(NewVideo, _Component);
-	
-	  function NewVideo(props) {
-	    _classCallCheck(this, NewVideo);
-	
-	    var _this = _possibleConstructorReturn(this, (NewVideo.__proto__ || Object.getPrototypeOf(NewVideo)).call(this, props));
-	
-	    _this.state = { showModal: true };
-	    return _this;
-	  }
-	
-	  _createClass(NewVideo, [{
-	    key: 'createVideo',
-	    value: function createVideo(e) {
-	      e.preventDefault();
-	      var form = e.target;
-	      var videolink = form.querySelector('[name="url"]').value;
-	      var description = form.querySelector('[name="description"]').value;
-	      var videoData = {
-	        videolink: videolink,
-	        description: description
-	      };
-	      var url = "http://localhost:8000/videos";
-	      this.props.newVideoAsync(videoData, url);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        _reactBootstrap.Modal,
-	        { show: this.state.showModal, bsSize: 'large' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Header,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Title,
-	            null,
-	            'Add a link'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
-	          _react2.default.createElement(
-	            'form',
-	            { className: 'new-video-form', onSubmit: this.createVideo.bind(this) },
-	            _react2.default.createElement(
-	              'fieldset',
-	              null,
-	              _react2.default.createElement(
-	                'legend',
-	                null,
-	                'New Video: '
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'add url:'
-	              ),
-	              _react2.default.createElement('input', { type: 'url', name: 'url', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                'description'
-	              ),
-	              _react2.default.createElement('textarea', { rows: '10', cols: '60', type: 'text', name: 'description', required: true }),
-	              _react2.default.createElement('br', null),
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                'Create'
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Footer,
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'new_video_close_redirect', to: '/' },
-	            _react2.default.createElement(
-	              _reactBootstrap.Button,
-	              { bsStyle: 'warning' },
-	              'Home'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return NewVideo;
-	}(_react.Component);
-	
-	function mapStateToProps(state) {
-	  return {
-	    video: state.video
-	  };
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { newVideoAsync: _actions.newVideoAsync })(NewVideo);
-
-/***/ },
-/* 537 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactBootstrap = __webpack_require__(259);
-	
-	var _Post = __webpack_require__(513);
-	
-	var _Post2 = _interopRequireDefault(_Post);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UserPostsFeed = _react2.default.createClass({
-	  displayName: 'UserPostsFeed',
-	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'user_posts_feed' },
-	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        'Posts Feed '
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 6, md: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.Thumbnail,
-	              { src: '', alt: '242x200' },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Thumbnail label'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'with pic'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'primary' },
-	                  'Button'
-	                ),
-	                ' ',
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'default' },
-	                  'Button'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 6, md: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.Thumbnail,
-	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Thumbnail label'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Description'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'primary' },
-	                  'Button'
-	                ),
-	                ' ',
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'default' },
-	                  'Button'
-	                )
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.Col,
-	            { xs: 6, md: 4 },
-	            _react2.default.createElement(
-	              _reactBootstrap.Thumbnail,
-	              { src: '/assets/thumbnaildiv.png', alt: '242x200' },
-	              _react2.default.createElement(
-	                'h3',
-	                null,
-	                'Thumbnail label'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Description'
-	              ),
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'primary' },
-	                  'Button'
-	                ),
-	                ' ',
-	                _react2.default.createElement(
-	                  _reactBootstrap.Button,
-	                  { bsStyle: 'default' },
-	                  'Button'
-	                )
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	exports.default = UserPostsFeed;
 
 /***/ }
 /******/ ]);
