@@ -17,6 +17,16 @@ const login = function (state = initialState, action) {
         ...state,
         error: action.error
       }
+    case 'LOG_OUT':
+      return {
+        ...state,
+        user: null
+      }
+    case 'LOG_OUT_ERROR':
+      return {
+        ...state,
+        error: action.error
+      }
   default:
     return state;
   }

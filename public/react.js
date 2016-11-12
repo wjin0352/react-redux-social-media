@@ -114,6 +114,7 @@
 	
 	// Create an enhanced history that syncs navigation events with the store
 	
+	
 	// import onPostsEnter from './route_callbacks/route_callbacks';
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, _store2.default);
 	
@@ -23331,9 +23332,15 @@
 	  value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _actions = __webpack_require__(516);
+	
+	var _reactRedux = __webpack_require__(173);
 	
 	var _reactRouter = __webpack_require__(204);
 	
@@ -23341,116 +23348,157 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Navigation = _react2.default.createClass({
-	  displayName: 'Navigation',
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      _reactBootstrap.Navbar,
-	      { bsStyle: 'inverse' },
-	      _react2.default.createElement(
-	        _reactBootstrap.Navbar.Header,
-	        null,
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Navigation = function (_Component) {
+	  _inherits(Navigation, _Component);
+	
+	  function Navigation() {
+	    _classCallCheck(this, Navigation);
+	
+	    return _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).apply(this, arguments));
+	  }
+	
+	  _createClass(Navigation, [{
+	    key: 'logOut',
+	    value: function logOut() {
+	      this.props.logOutUser();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        _reactBootstrap.Navbar,
+	        { bsStyle: 'inverse' },
 	        _react2.default.createElement(
-	          _reactBootstrap.Navbar.Brand,
+	          _reactBootstrap.Navbar.Header,
 	          null,
-	          'Social Media Blog'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _reactBootstrap.Nav,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 1 },
 	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { className: 'home_link', to: '/' },
-	            'Home'
+	            _reactBootstrap.Navbar.Brand,
+	            null,
+	            'Social Media Blog'
 	          )
 	        ),
 	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 2 },
+	          _reactBootstrap.Nav,
+	          null,
 	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { className: 'community_posts', to: '/show_posts' },
-	            'Posts'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 3 },
-	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { className: 'community_videos', to: '/show_videos' },
-	            'Videos'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 4 },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'posts_link', to: '/show_user_posts' },
-	            'Your Posts'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 5 },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { className: 'videos_link', to: '/show_user_videos' },
-	            'Your Videos'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 6 },
-	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { className: 'new_post_link', to: '/new_post' },
-	            'New Post'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavItem,
-	          { eventKey: 7 },
-	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { className: 'new_video_link', to: '/new_video' },
-	            'New Video'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.NavDropdown,
-	          { eventKey: 7, title: 'Sign in', id: 'basic-nav-dropdown' },
-	          _react2.default.createElement(
-	            _reactBootstrap.MenuItem,
-	            { eventKey: 7.1 },
+	            _reactBootstrap.NavItem,
+	            { eventKey: 1 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { className: 'register_link', to: '/registration' },
-	              'Register'
+	              { className: 'home_link', to: '/' },
+	              'Home'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _reactBootstrap.MenuItem,
-	            { eventKey: 7.2 },
+	            _reactBootstrap.NavItem,
+	            { eventKey: 2 },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { className: 'login_link', to: '/login' },
-	              'Login'
+	              { className: 'community_posts', to: '/show_posts' },
+	              'Posts'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 3 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'community_videos', to: '/show_videos' },
+	              'Videos'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 4 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'posts_link', to: '/show_user_posts' },
+	              'Your Posts'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 5 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'videos_link', to: '/show_user_videos' },
+	              'Your Videos'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 6 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'new_post_link', to: '/new_post' },
+	              'New Post'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 7 },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { className: 'new_video_link', to: '/new_video' },
+	              'New Video'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavDropdown,
+	            { eventKey: 7, title: 'Sign in', id: 'basic-nav-dropdown' },
+	            _react2.default.createElement(
+	              _reactBootstrap.MenuItem,
+	              { eventKey: 7.1 },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { className: 'register_link', to: '/registration' },
+	                'Register'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactBootstrap.MenuItem,
+	              { eventKey: 7.2 },
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { className: 'login_link', to: '/login' },
+	                'Login'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 8 },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'log_out', onClick: function onClick() {
+	                  return _this2.logOut();
+	                } },
+	              'Log Out'
 	            )
 	          )
 	        )
-	      )
-	    );
-	  }
-	});
+	      );
+	    }
+	  }]);
 	
-	exports.default = Navigation;
+	  return Navigation;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    logged_user: state.login
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { logOutUser: _actions.logOutUser })(Navigation);
 
 /***/ },
 /* 204 */
@@ -47822,6 +47870,9 @@
 	exports.loginUserAsync = loginUserAsync;
 	exports.loginSuccess = loginSuccess;
 	exports.loginError = loginError;
+	exports.logOutUser = logOutUser;
+	exports.loggingOutUser = loggingOutUser;
+	exports.logOutError = logOutError;
 	
 	var _axios = __webpack_require__(517);
 	
@@ -48201,7 +48252,7 @@
 	  };
 	};
 	
-	/* LOGIN ACTIONS */
+	/* LOGIN LOGOUT ACTIONS */
 	function loginUserAsync(userCred, url) {
 	  return function (dispatch) {
 	    return fetch(url, {
@@ -48235,6 +48286,29 @@
 	function loginError(error) {
 	  return {
 	    type: 'LOGIN_ERROR',
+	    error: error
+	  };
+	}
+	
+	function logOutUser() {
+	  return function (dispatch) {
+	    _axios2.default.get(DEV_URL + '/users/log_out').then(function (response) {
+	      return dispatch(loggingOutUser());
+	    }).catch(function (err) {
+	      return dispatch(logOutError(err.message));
+	    });
+	  };
+	}
+	
+	function loggingOutUser() {
+	  return {
+	    type: 'LOG_OUT'
+	  };
+	}
+	
+	function logOutError(error) {
+	  return {
+	    type: 'LOG_OUT_ERROR',
 	    error: error
 	  };
 	}
@@ -51308,6 +51382,13 @@
 	        }
 	      }
 	    }, {
+	      key: 'componentWillUpdate',
+	      value: function componentWillUpdate(nextProps) {
+	        if (!nextProps.isAuthenticated) {
+	          _reactRouter.browserHistory.push('/show_posts');
+	        }
+	      }
+	    }, {
 	      key: 'render',
 	      value: function render() {
 	        return _react2.default.createElement(ComposedComponent, this.props);
@@ -51995,6 +52076,14 @@
 	        user: action.user
 	      });
 	    case 'LOGIN_ERROR':
+	      return _extends({}, state, {
+	        error: action.error
+	      });
+	    case 'LOG_OUT':
+	      return _extends({}, state, {
+	        user: null
+	      });
+	    case 'LOG_OUT_ERROR':
 	      return _extends({}, state, {
 	        error: action.error
 	      });

@@ -13,6 +13,7 @@ import UserPostsFeed from './components/UserPostsFeed';
 import Post from './components/Post';
 import Video from './components/Video';
 import requireAuth from './components/RequireAuthentication';
+
 // import onPostsEnter from './route_callbacks/route_callbacks';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 

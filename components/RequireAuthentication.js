@@ -11,6 +11,12 @@ export default function(ComposedComponent) {
       }
     }
 
+    componentWillUpdate(nextProps) {
+      if(!nextProps.isAuthenticated) {
+        browserHistory.push('/show_posts');
+      }
+    }
+
     render() {
       return (
         <ComposedComponent {...this.props} />

@@ -57,7 +57,7 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     login_user: state.login
-  }
+  };
 }
 
 export default connect(mapStateToProps, { loginUserAsync })(Login);

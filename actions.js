@@ -367,7 +367,7 @@ const PROD_URL = '';
   };
 
 
-/* LOGIN ACTIONS */
+/* LOGIN LOGOUT ACTIONS */
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
       return fetch(url, {
@@ -404,4 +404,25 @@ const PROD_URL = '';
       type: 'LOGIN_ERROR',
       error
     }
+  }
+
+  export function logOutUser() {
+    return (dispatch) => {
+      axios.get(`${DEV_URL}/users/log_out`)
+      .then(response => dispatch(loggingOutUser()))
+      .catch(err => dispatch(logOutError(err.message)))
+    }
+  }
+
+  export function loggingOutUser() {
+    return {
+      type: 'LOG_OUT'
+    };
+  }
+
+  export function logOutError(error) {
+    return {
+      type: 'LOG_OUT_ERROR',
+      error
+    };
   }
