@@ -23369,10 +23369,51 @@
 	      this.props.logOutUser();
 	    }
 	  }, {
-	    key: 'render',
-	    value: function render() {
+	    key: 'loginAndRegistrationDropDown',
+	    value: function loginAndRegistrationDropDown() {
+	      return _react2.default.createElement(
+	        _reactBootstrap.NavDropdown,
+	        { eventKey: 7, title: 'Sign in', id: 'basic-nav-dropdown' },
+	        _react2.default.createElement(
+	          _reactBootstrap.MenuItem,
+	          { eventKey: 7.1 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'register_link', to: '/registration' },
+	            'Register'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.MenuItem,
+	          { eventKey: 7.2 },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'login_link', to: '/login' },
+	            'Login'
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'logOutButton',
+	    value: function logOutButton() {
 	      var _this2 = this;
 	
+	      return _react2.default.createElement(
+	        _reactBootstrap.NavItem,
+	        { eventKey: 8 },
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'log_out', onClick: function onClick() {
+	              return _this2.logOut();
+	            } },
+	          'Log Out'
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 	      return _react2.default.createElement(
 	        _reactBootstrap.Navbar,
 	        { bsStyle: 'inverse' },
@@ -23451,39 +23492,8 @@
 	              'New Video'
 	            )
 	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.NavDropdown,
-	            { eventKey: 7, title: 'Sign in', id: 'basic-nav-dropdown' },
-	            _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              { eventKey: 7.1 },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { className: 'register_link', to: '/registration' },
-	                'Register'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactBootstrap.MenuItem,
-	              { eventKey: 7.2 },
-	              _react2.default.createElement(
-	                _reactRouter.Link,
-	                { className: 'login_link', to: '/login' },
-	                'Login'
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactBootstrap.NavItem,
-	            { eventKey: 8 },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'log_out', onClick: function onClick() {
-	                  return _this2.logOut();
-	                } },
-	              'Log Out'
-	            )
-	          )
+	          !this.props.logged_user.user ? this.loginAndRegistrationDropDown() : console.log(this.props.logged_user.user),
+	          this.props.logged_user.user ? this.logOutButton() : ''
 	        )
 	      );
 	    }
@@ -48265,10 +48275,15 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (jsonData) {
+	      console.log('JSONDATA:', jsonData);
+	      var userData = {
+	        user: jsonData.username,
+	        email: jsonData.email
+	      };
+	      console.log('userData: => ', userData);
 	
-	      loginSuccess(jsonData.email, dispatch);
+	      loginSuccess(userData, dispatch);
 	      _reactRouter.browserHistory.push('/');
-	      console.log('jsonData: => ', jsonData);
 	    }).catch(function (err) {
 	      dispatch(loginError(err.message));
 	      alert('Opps password or username is incorrect');
@@ -48279,7 +48294,7 @@
 	function loginSuccess(user, dispatch) {
 	  return dispatch({
 	    type: 'LOGIN_SUCCESS',
-	    user: user
+	    userData: userData
 	  });
 	}
 	
@@ -52063,6 +52078,7 @@
 	
 	var initialState = {
 	  user: null,
+	  email: null,
 	  error: ''
 	};
 	
@@ -52073,7 +52089,8 @@
 	  switch (action.type) {
 	    case 'LOGIN_SUCCESS':
 	      return _extends({}, state, {
-	        user: action.user
+	        user: action.userData.user,
+	        email: action.userData.email
 	      });
 	    case 'LOGIN_ERROR':
 	      return _extends({}, state, {
@@ -52081,7 +52098,8 @@
 	      });
 	    case 'LOG_OUT':
 	      return _extends({}, state, {
-	        user: null
+	        user: null,
+	        email: null
 	      });
 	    case 'LOG_OUT_ERROR':
 	      return _extends({}, state, {

@@ -9,6 +9,27 @@ class Navigation extends Component {
     this.props.logOutUser();
   }
 
+  loginAndRegistrationDropDown() {
+    return (
+      <NavDropdown eventKey={7} title="Sign in" id="basic-nav-dropdown">
+        <MenuItem eventKey={7.1}>
+          <Link className='register_link' to='/registration' >Register</Link>
+          </MenuItem>
+        <MenuItem eventKey={7.2}>
+          <Link className='login_link' to='/login' >Login</Link>
+        </MenuItem>
+      </NavDropdown>
+    );
+  }
+
+  logOutButton() {
+    return (
+      <NavItem eventKey={8}>
+        <button className='log_out' onClick={() => this.logOut()}>Log Out</button>
+      </NavItem>
+    );
+  }
+
   render() {
     return (
       <Navbar bsStyle='inverse'>
@@ -39,17 +60,8 @@ class Navigation extends Component {
           <NavItem eventKey={7}>
             <Link className='new_video_link' to="/new_video">New Video</Link>
           </NavItem>
-          <NavDropdown eventKey={7} title="Sign in" id="basic-nav-dropdown">
-            <MenuItem eventKey={7.1}>
-              <Link className='register_link' to='/registration' >Register</Link>
-              </MenuItem>
-            <MenuItem eventKey={7.2}>
-              <Link className='login_link' to='/login' >Login</Link>
-            </MenuItem>
-          </NavDropdown>
-          <NavItem eventKey={8}>
-            <button className='log_out' onClick={() => this.logOut()}>Log Out</button>
-          </NavItem>
+          { !(this.props.logged_user.user) ? this.loginAndRegistrationDropDown() : console.log(this.props.logged_user.user) }
+          { this.props.logged_user.user ? this.logOutButton() : '' }
         </Nav>
       </Navbar>
     );

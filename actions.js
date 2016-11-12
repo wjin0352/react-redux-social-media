@@ -380,10 +380,15 @@ const PROD_URL = '';
       })
       .then(response => response.json())
       .then(jsonData => {
+        console.log('JSONDATA:',jsonData)
+        var userData = {
+          user: jsonData.username,
+          email: jsonData.email
+        }
+        console.log('userData: => ',userData)
 
-        loginSuccess(jsonData.email, dispatch)
+        loginSuccess(userData, dispatch)
         browserHistory.push('/')
-        console.log('jsonData: => ',jsonData)
       })
       .catch(err => {
         dispatch(loginError(err.message))
@@ -395,7 +400,7 @@ const PROD_URL = '';
   export function loginSuccess (user, dispatch) {
     return dispatch({
       type: 'LOGIN_SUCCESS',
-      user
+      userData
     })
   }
 
