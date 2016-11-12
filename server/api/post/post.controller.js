@@ -19,8 +19,9 @@ PostController.prototype.getPosts = function(req, res) {
 }
 // User Posts
 PostController.prototype.getUserPosts = function(req, res) {
+  console.log('req.user.id::: ',req.user.id)
   return new Promise (function (resolve, reject) {
-    Post.find({userid: req.user.id}, function(error, posts) {
+    Post.find({"userid": req.user.id}, function(error, posts) {
       if(error) {
         reject(error);
       } else {
@@ -28,7 +29,7 @@ PostController.prototype.getUserPosts = function(req, res) {
       }
     });
   }).then(posts => {
-    console.log('USER POSTS: ', posts)
+    // console.log('FROM POSTS CONTROLLER getuserposts USER POSTS: ', posts)
     res.status(200).json(posts)})
     .catch(error => console.log(error))
 }
@@ -43,8 +44,8 @@ PostController.prototype.getCurrentPost = function(req, res) {
       }
     });
   }).then(post => {
-    console.log('req.params: ', req.params)
-    console.log('post: ',post)
+    // console.log('req.params: ', req.params)
+    // console.log('post: ',post)
     res.status(200).json(post)
   }).catch(error => console.log(error))
 }

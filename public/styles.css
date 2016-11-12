@@ -21,8 +21,6 @@ html {
 button {
   font-family: serif;
 }
-/* Videos feed container */
-
 
 /* Video */
   .videos {
@@ -36,6 +34,17 @@ button {
     width: 420px;
     height: 315px;
   }
+
+/* Videos feed container */
+  .video-thumbnail {
+
+  }
+
+  .iframe-video-feed {
+    width: 350px;
+    height: 250px;
+  }
+
 
 /* Video Form */
 

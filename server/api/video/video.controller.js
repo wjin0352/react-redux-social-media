@@ -23,6 +23,7 @@ VideoController.prototype.createVideo = function(req, res) {
     Video.create({
       videolink: req.body.videolink,
       description: req.body.description,
+      title: req.body.title,
       comments: req.body.comments,
       userid: req.user
     }, function (error, video) {

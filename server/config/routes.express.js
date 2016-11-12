@@ -7,8 +7,8 @@ const commentRouter = require('../api/comment/comment.router');
 module.exports = function(app) {
   app.use('/', mainRouter);
   app.use('/users', userRouter);
-  app.use('/posts', postRouter);
+  app.use('/', postRouter);
   app.use('/videos', videoRouter);
-  app.use('/comments', commentRouter);
+  app.use('/', commentRouter);
   app.use('/*', mainRouter);
 }

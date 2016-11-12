@@ -12,6 +12,7 @@ import NewVideo from './components/NewVideo';
 import UserPostsFeed from './components/UserPostsFeed';
 import Post from './components/Post';
 import Video from './components/Video';
+import requireAuth from './components/RequireAuthentication';
 // import onPostsEnter from './route_callbacks/route_callbacks';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
@@ -30,8 +31,8 @@ const router = (
         <Route path='show_videos' component={VideosFeed}/>
         <Route path='show_user_posts' component={UserPostsFeed}/>
         <Route path='show_posts' component={PostsFeed} />
-        <Route path='new_post' component={NewPost}/>
-        <Route path='new_video' component={NewVideo}/>
+        <Route path='new_post' component={requireAuth(NewPost)}/>
+        <Route path='new_video' component={requireAuth(NewVideo)}/>
         <Route path='registration' component={Registration}/>
         <Route path='login' component={Login}/>
         <Route path="my_posts/:id" component={Post}/>

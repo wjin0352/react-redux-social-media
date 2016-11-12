@@ -47,13 +47,12 @@ CommentController.prototype.createComment = function(req, res) {
       user_email: req.user.email,
       username: req.user.username,
       userid: req.user.id,
-      postid: req.body.id
+      postid: req.params.post_id
     }, function (error, comment) {
       if (error) {
         reject(error);
       } else {
-
-        Post.findByIdAndUpdate(req.body.id, {$push: {comments: comment}}, { new: true }, (error, post) => {
+        Post.findByIdAndUpdate(comment.postid, {$push: {comments: comment}}, { new: true }, (error, post) => {
           if (error) {
             console.log(error)
           }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { allVideosAsync } from '../actions';
+import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import Video from './Video';
 
@@ -13,24 +14,34 @@ class VideosFeed extends Component {
 
   renderVideos(video) {
     return (
-      <Link to='/'>
-        <div className='videos'>
-          <h3>{video.description}</h3>
-          <iframe className='iframe-video'
-            src={video.videolink}>
-          </iframe>
+      <Col xs={6} md={4}>
+        <div className='video-thumbnail'>
+          <Link to='/'>
+            <iframe className='iframe-video-feed'
+              src={video.videolink}>
+            </iframe>
+          </Link>
+          <h3>{video.title}</h3>
+          <p>{video.description}</p>
+          <p>
+            <Button bsStyle="primary">Button</Button>&nbsp;
+            <Button bsStyle="default">Button</Button>
+          </p>
         </div>
-      </Link>
+      </Col>
     );
   }
 
   render() {
     const videos = this.props.videos.videos;
     return (
-      <div>
-        <Video />
-        {videos.map(video => this.renderVideos(video))}
-      </div>
+      <Grid>
+        <Row>
+          <div>
+            {videos.map(video => this.renderVideos(video))}
+          </div>
+        </Row>
+      </Grid>
     );
   }
 }

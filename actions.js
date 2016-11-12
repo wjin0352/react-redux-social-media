@@ -159,7 +159,7 @@ const PROD_URL = '';
   // create a comment on POST
   export function createComment(commentData) {
     return (dispatch) => {
-      return fetch(`${DEV_URL}/comments`, {
+      return fetch(`${DEV_URL}/posts/${commentData.id}/comments`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -285,6 +285,7 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(userPosts => {
+          console.log('usersPosts from the action: ', userPosts)
         dispatch(fetchUserPostsSuccess(userPosts))
         browserHistory.push('/show_user_posts')
       })
@@ -307,9 +308,9 @@ const PROD_URL = '';
   }
 
 /* GET ALL COMMENTS */
-  export function getComments(id) {
+  export function getPostComments(id) {
     return (dispatch) => {
-      axios.get(`${DEV_URL}/comments/${id}`)
+      axios.get(`${DEV_URL}/posts/${id}/comments`)
       .then(response => {
         dispatch(commentsSuccess(response.data))
       })
@@ -382,7 +383,7 @@ const PROD_URL = '';
 
         loginSuccess(jsonData.email, dispatch)
         browserHistory.push('/')
-        jsonData
+        console.log('jsonData: => ',jsonData)
       })
       .catch(err => {
         dispatch(loginError(err.message))

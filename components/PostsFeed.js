@@ -32,6 +32,8 @@ class PostsFeed extends Component {
 
   render() {
     const posts = this.props.posts;
+    // console.log('logged in user', res.locals.user);
+
     return (
       <div className='user_posts_feed'>
         <h3>Posts Feed</h3>

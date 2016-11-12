@@ -15,8 +15,10 @@ class NewVideo extends Component {
     var form = e.target;
     var videolink = form.querySelector('[name="url"]').value;
     var description = form.querySelector('[name="description"]').value;
+    var title = form.querySelector('[name="title"]').value;
     var videoData = {
       videolink,
+      title,
       description
     }
     var url = "http://localhost:8000/videos";
@@ -37,6 +39,8 @@ class NewVideo extends Component {
                 <legend>New Video: </legend>
                 <li>add url:</li>
                   <input type='url' name='url' required autoFocus/><br/>
+                <li>add title:</li>
+                  <input type='title' name='title' required /><br/>
                 <li>description</li>
                   <textarea rows="10" cols="60" type='text' name='description' required >
                   </textarea><br/>
