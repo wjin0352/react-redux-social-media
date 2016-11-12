@@ -18,6 +18,7 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(jsonData => {
+          console.log('VIDEO JSONDATA: ', jsonData)
           dispatch(videoSuccess(jsonData))
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
@@ -397,7 +398,7 @@ const PROD_URL = '';
     )}
     }
 
-  export function loginSuccess (user, dispatch) {
+  export function loginSuccess (userData, dispatch) {
     return dispatch({
       type: 'LOGIN_SUCCESS',
       userData

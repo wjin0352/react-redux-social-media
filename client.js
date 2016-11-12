@@ -33,7 +33,7 @@ const router = (
         <Route path='show_user_posts' component={UserPostsFeed}/>
         <Route path='show_posts' component={PostsFeed} />
         <Route path='new_post' component={requireAuth(NewPost)}/>
-        <Route path='new_video' component={requireAuth(NewVideo)}/>
+        <Route path='new_video' component={NewVideo}/>
         <Route path='registration' component={Registration}/>
         <Route path='login' component={Login}/>
         <Route path="my_posts/:id" component={Post}/>

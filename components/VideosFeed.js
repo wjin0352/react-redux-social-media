@@ -18,7 +18,7 @@ class VideosFeed extends Component {
         <div className='video-thumbnail'>
           <Link to='/'>
             <iframe className='iframe-video-feed'
-              src={video.videolink}>
+              src={video.videolink} allowfullscreen>
             </iframe>
           </Link>
           <h3>{video.title}</h3>

@@ -36,12 +36,13 @@ class PostsFeed extends Component {
 
     return (
       <div className='user_posts_feed'>
+
         <h3>Posts Feed</h3>
-        <div className="feed_wrapper">
+        <div>
           {posts.map(post => this.renderPosts(post))}
         </div>
       </div>
-    )
+    );
   }
 };
 
