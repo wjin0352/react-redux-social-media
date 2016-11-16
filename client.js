@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-
 import MainPage from './components/MainPage';
 import Header from './components/Header';
 import PostsFeed from './components/PostsFeed';

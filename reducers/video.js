@@ -3,6 +3,7 @@ import * as actions from '../actions';
 const initialState = {
   userVideo: {
     videolink: '',
+    image: '',
     description: '',
     comments: [],
     userid: null

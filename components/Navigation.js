@@ -16,7 +16,7 @@ class Navigation extends Component {
           <Link className='register_link' to='/registration' >Register</Link>
           </MenuItem>
         <MenuItem eventKey={7.2}>
-          <Link className='login_link' to='/login' >Login</Link>
+          <Link className='login_link' to='/login'>Login</Link>
         </MenuItem>
       </NavDropdown>
     );
@@ -25,7 +25,7 @@ class Navigation extends Component {
   logOutButton() {
     return (
       <NavItem eventKey={8}>
-        <button className='log_out' onClick={() => this.logOut()}>Log Out</button>
+        <Link className='log_out' onClick={() => this.logOut()}>Log Out</Link>
       </NavItem>
     );
   }

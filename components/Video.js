@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 
-const Video = React.createClass({
-  render: function () {
+class Video extends Component {
+  render() {
     return (
-      <div className='videos'>
-      <h3></h3>
+      <div className='video'>
         <iframe className='iframe-video'
-          src="https://www.youtube.com/embed/watch?v=_lGYG_s_yTM&index=1&list=PLEKIsm9AjY8LfH5cYnhJE-L5A7NWis6qB" allowfullscreen>
+          src={this.props.video.videolink} allowFullScreen>
         </iframe>
+        <p>{this.props.video.description}</p>
       </div>
     );
   }
-})
+}
 
 export default Video;

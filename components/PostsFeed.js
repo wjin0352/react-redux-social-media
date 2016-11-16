@@ -17,10 +17,10 @@ class PostsFeed extends Component {
         <Link to={`/my_posts/${post._id}`} key={post._id}>
           <Grid className="post_feed_item_grid">
             <Row>
-            <Col xs={4} md={4} className="col-post-item">
+            <Col   className="col-post-item">
               <Thumbnail src="" >
                 <h3>{post.title}</h3>
-                  <Button bsStyle="warning" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
+                  <Button bsStyle="default" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
               </Thumbnail>
             </Col>
             </Row>
@@ -36,9 +36,8 @@ class PostsFeed extends Component {
 
     return (
       <div className='user_posts_feed'>
-
         <h3>Posts Feed</h3>
-        <div>
+        <div className="feed_wrapper">
           {posts.map(post => this.renderPosts(post))}
         </div>
       </div>

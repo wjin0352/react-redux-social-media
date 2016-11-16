@@ -14,14 +14,21 @@ class NewVideo extends Component {
     return link.replace('?v=', '').replace('watch', 'embed/');
   }
 
+  parseImage(videolink) {
+    var imageInfo = videolink.substr(videolink.lastIndexOf("/")+1);
+    return `http://img.youtube.com/vi/${imageInfo}/0.jpg`;
+  }
+
   createVideo(e) {
     e.preventDefault();
     var form = e.target;
     var videolink = this.parseLink(form.querySelector('[name="url"]').value);
+    var image = this.parseImage(videolink);
     var description = form.querySelector('[name="description"]').value;
     var title = form.querySelector('[name="title"]').value;
     var videoData = {
       videolink,
+      image,
       title,
       description
     }
