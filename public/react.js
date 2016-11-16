@@ -52645,11 +52645,7 @@
 	  console.log('state: ', state);
 	  switch (action.type) {
 	    case 'CREATE_MODAL':
-	      return _extends({}, state, {
-	        description: action.video.description,
-	        videolink: action.video.videolink,
-	        title: action.video.title
-	      });
+	      return _extends({}, state, action.video);
 	    case 'OPEN_MODAL':
 	      return _extends({}, state, {
 	        show: action.show

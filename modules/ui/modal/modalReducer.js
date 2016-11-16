@@ -14,9 +14,7 @@ const modalReducer = (state = initialState, action) => {
     case 'CREATE_MODAL':
       return {
         ...state,
-        description: action.video.description,
-        videolink: action.video.videolink,
-        title: action.video.title
+        ...action.video
       }
     case 'OPEN_MODAL':
       return {
