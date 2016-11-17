@@ -33,8 +33,10 @@ class NewComment extends Component {
           <li>Comment : </li>
           <textarea rows="7" cols="50" type='text' name='post_comment' placeholder="Add a comment..." autoFocus required >
           </textarea><br/>
-          <button type="reset" className="btn btn-default">Cancel</button>
-          <button className="btn btn-primary" onClick={() => this.cancelComment}>Comment</button>
+          <div className="comment-buttons-container">
+            <button type="reset" className="btn btn-default">Cancel</button>
+            <button className="btn btn-primary" onClick={() => this.cancelComment}>Comment</button>
+          </div>
         </form>
       </div>
     );

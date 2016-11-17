@@ -50191,7 +50191,6 @@
 	      var _this2 = this;
 	
 	      var post = this.props.post.current_post;
-	      console.log('[][][][][]]][post_id: ', post._id);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -50337,16 +50336,20 @@
 	          _react2.default.createElement('textarea', { rows: '7', cols: '50', type: 'text', name: 'post_comment', placeholder: 'Add a comment...', autoFocus: true, required: true }),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
-	            'button',
-	            { type: 'reset', className: 'btn btn-default' },
-	            'Cancel'
-	          ),
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn btn-primary', onClick: function onClick() {
-	                return _this2.cancelComment;
-	              } },
-	            'Comment'
+	            'div',
+	            { className: 'comment-buttons-container' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'reset', className: 'btn btn-default' },
+	              'Cancel'
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn btn-primary', onClick: function onClick() {
+	                  return _this2.cancelComment;
+	                } },
+	              'Comment'
+	            )
 	          )
 	        )
 	      );
@@ -50428,7 +50431,7 @@
 	          ),
 	          _react2.default.createElement(
 	            _reactBootstrap.Media.Body,
-	            null,
+	            { className: 'comments-feed-body' },
 	            _react2.default.createElement(
 	              _reactBootstrap.Media.Heading,
 	              null,
@@ -50463,7 +50466,12 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'comments_feed_wrapper' },
-	          'Comments feed: ',
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'feed-title' },
+	            'Comments feed: '
+	          ),
+	          ' ',
 	          comments.map(function (comment) {
 	            return _this2.renderComments(comment);
 	          })
@@ -50721,8 +50729,6 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -50735,66 +50741,50 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var ModalComponent = function ModalComponent(_ref) {
+	  var _ref$modalVideo = _ref.modalVideo;
+	  var show = _ref$modalVideo.show;
+	  var title = _ref$modalVideo.title;
+	  var videolink = _ref$modalVideo.videolink;
+	  var description = _ref$modalVideo.description;
+	  var closeModal = _ref.closeModal;
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ModalComponent = function (_Component) {
-	  _inherits(ModalComponent, _Component);
-	
-	  function ModalComponent() {
-	    _classCallCheck(this, ModalComponent);
-	
-	    return _possibleConstructorReturn(this, (ModalComponent.__proto__ || Object.getPrototypeOf(ModalComponent)).apply(this, arguments));
-	  }
-	
-	  _createClass(ModalComponent, [{
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      return _react2.default.createElement(
-	        _reactBootstrap.Modal,
-	        { className: 'video-modal', show: this.props.modalVideo.show, bsSize: 'large', 'aria-labelledby': 'contained-modal-title-lg' },
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Header,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Modal.Title,
-	            { id: 'contained-modal-title-lg' },
-	            this.props.modalVideo.title
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Body,
-	          null,
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.props.modalVideo.description
-	          ),
-	          _react2.default.createElement('iframe', { className: 'iframe-video-feed', src: this.props.modalVideo.videolink,
-	            allowFullScreen: true })
-	        ),
-	        _react2.default.createElement(
-	          _reactBootstrap.Modal.Footer,
-	          null,
-	          _react2.default.createElement(
-	            _reactBootstrap.Button,
-	            { onClick: function onClick() {
-	                return _this2.props.closeModal();
-	              } },
-	            'Close'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ModalComponent;
-	}(_react.Component);
+	  return _react2.default.createElement(
+	    _reactBootstrap.Modal,
+	    { className: 'video-modal', show: show, bsSize: 'large', 'aria-labelledby': 'contained-modal-title-lg' },
+	    _react2.default.createElement(
+	      _reactBootstrap.Modal.Header,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Modal.Title,
+	        { id: 'contained-modal-title-lg' },
+	        title
+	      )
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Modal.Body,
+	      null,
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        description
+	      ),
+	      _react2.default.createElement('iframe', { className: 'iframe-video-feed', src: videolink,
+	        allowFullScreen: true })
+	    ),
+	    _react2.default.createElement(
+	      _reactBootstrap.Modal.Footer,
+	      null,
+	      _react2.default.createElement(
+	        _reactBootstrap.Button,
+	        { onClick: function onClick() {
+	            return closeModal();
+	          } },
+	        'Close'
+	      )
+	    )
+	  );
+	};
 	
 	function mapStateToProps(state) {
 	  return {

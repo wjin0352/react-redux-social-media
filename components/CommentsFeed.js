@@ -22,7 +22,7 @@ class CommentsFeed extends Component {
           <Media.Left align="top">
           <Glyphicon glyph="align-left" />
           </Media.Left>
-          <Media.Body>
+          <Media.Body className='comments-feed-body'>
             <Media.Heading>By {`${comment.username}, ${comment.user_email}`}</Media.Heading>
             <p>{comment.comment}</p>
           </Media.Body>
@@ -37,7 +37,7 @@ class CommentsFeed extends Component {
     return (
       <div className="user_comments_feed">
         <div className="comments_feed_wrapper">
-          Comments feed: {comments.map(comment => this.renderComments(comment))}
+          <p className='feed-title'>Comments feed: </p> {comments.map(comment => this.renderComments(comment))}
         </div>
       </div>
     );

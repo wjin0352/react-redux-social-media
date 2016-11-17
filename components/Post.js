@@ -19,7 +19,6 @@ class Post extends Component {
 
   render() {
     var post = this.props.post.current_post;
-    console.log('[][][][][]]][post_id: ', post._id)
     return (
       <div>
         <container className='post-container' key={post._id}>

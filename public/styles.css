@@ -2,6 +2,10 @@ html {
   box-sizing: border-box;
 }
 
+li, ul {
+  list-style-type:none;
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -124,7 +128,6 @@ html {
     width: 80%;
     margin: 2em auto;
     padding: 5em;
-    height: 700px;
     font-family: serif;
   }
 
@@ -136,7 +139,7 @@ html {
   }
 
   p.post-paragraph {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .post-div {
@@ -162,8 +165,27 @@ html {
     margin-right: 7px;
   }
 
-  /* Post Comment Buttons */
-  button.new-post-form {
+  /* post comments feed */
+    .jumbotro p h4 {
+      font-size:18px;
+
+    }
+
+    .jumbotron p {
+      font-size: 20px;
+      margin: 1em 0em;
+    }
+
+    /* create comment form */
+      .new-post-form li {
+        margin: 1em 0em;
+      }
+
+
+
+  /* Post Comment form Buttons */
+  .comment-buttons-container button {
+
   }
 
 /* Post Form */
