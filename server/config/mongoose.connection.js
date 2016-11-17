@@ -6,7 +6,10 @@ const config = require('./variables.express');
 mongoose.Promise = global.Promise;
 // initial connection to mongo database
 // mongoose.connect(config.MONGODB.URI);
-mongoose.connect(process.env.MONGODB_URI, (err, db) => {
+console.log('MONGOLAB_URL: ', process.env.MONGOLAB_URI)
+console.log('process.env.PORT: ', process.env.PORT)
+console.log('process.env.MONGODB_URI: ',process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, (err, database) => {
   if(err) {
     console.log('Error connecting to database');
     process.exit(1);
