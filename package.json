@@ -5,7 +5,9 @@
   "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:js": "webpack --watch"
+    "watch:js": "webpack --watch",
+    "start": "npm watch:js | node server/server.js",
+    "server": "node server/server.js"
   },
   "author": "won",
   "license": "ISC",
