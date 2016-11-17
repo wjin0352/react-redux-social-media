@@ -18,6 +18,7 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(jsonData => {
+          console.log('VIDEO JSONDATA: ', jsonData)
           dispatch(videoSuccess(jsonData))
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
@@ -159,7 +160,7 @@ const PROD_URL = '';
   // create a comment on POST
   export function createComment(commentData) {
     return (dispatch) => {
-      return fetch(`${DEV_URL}/comments`, {
+      return fetch(`${DEV_URL}/posts/${commentData.id}/comments`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -176,8 +177,10 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(comment => {
+          console.log(comment)
           dispatch(commentSuccess(comment))
-          // browserHistory.push(`/my_posts/${commentData.id}`)
+          dispatch(addNewCommentToComments(comment))
+          browserHistory.push(`/my_posts/${comment.postid}`)
         })
         .catch(err => {
           dispatch(commentError(err.message))
@@ -197,6 +200,13 @@ const PROD_URL = '';
       return {
         type: 'COMMENT_ERROR',
         error
+      };
+    }
+
+    export function addNewCommentToComments(comment) {
+      return {
+        type: 'ADD_NEW_COMMENT_TO_COMMENTS',
+        comment
       };
     }
 
@@ -276,6 +286,7 @@ const PROD_URL = '';
       })
         .then(response => response.json())
         .then(userPosts => {
+          console.log('usersPosts from the action: ', userPosts)
         dispatch(fetchUserPostsSuccess(userPosts))
         browserHistory.push('/show_user_posts')
       })
@@ -298,11 +309,10 @@ const PROD_URL = '';
   }
 
 /* GET ALL COMMENTS */
-  export function getComments(id) {
+  export function getPostComments(id) {
     return (dispatch) => {
-      axios.get(`${DEV_URL}/comments/${id}`)
+      axios.get(`${DEV_URL}/posts/${id}/comments`)
       .then(response => {
-        console.log('[][][][]response:', response)
         dispatch(commentsSuccess(response.data))
       })
       .catch(err => dispatch(commentsError(err.message)))
@@ -358,7 +368,7 @@ const PROD_URL = '';
   };
 
 
-/* LOGIN ACTIONS */
+/* LOGIN LOGOUT ACTIONS */
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
       return fetch(url, {
@@ -371,10 +381,15 @@ const PROD_URL = '';
       })
       .then(response => response.json())
       .then(jsonData => {
+        console.log('JSONDATA:',jsonData)
+        var userData = {
+          user: jsonData.username,
+          email: jsonData.email
+        }
+        console.log('userData: => ',userData)
 
-        loginSuccess(jsonData.email, dispatch)
+        loginSuccess(userData, dispatch)
         browserHistory.push('/')
-        jsonData
       })
       .catch(err => {
         dispatch(loginError(err.message))
@@ -383,10 +398,10 @@ const PROD_URL = '';
     )}
     }
 
-  export function loginSuccess (user, dispatch) {
+  export function loginSuccess (userData, dispatch) {
     return dispatch({
       type: 'LOGIN_SUCCESS',
-      user
+      userData
     })
   }
 
@@ -395,4 +410,25 @@ const PROD_URL = '';
       type: 'LOGIN_ERROR',
       error
     }
+  }
+
+  export function logOutUser() {
+    return (dispatch) => {
+      axios.get(`${DEV_URL}/users/log_out`)
+      .then(response => dispatch(loggingOutUser()))
+      .catch(err => dispatch(logOutError(err.message)))
+    }
+  }
+
+  export function loggingOutUser() {
+    return {
+      type: 'LOG_OUT'
+    };
+  }
+
+  export function logOutError(error) {
+    return {
+      type: 'LOG_OUT_ERROR',
+      error
+    };
   }

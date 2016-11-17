@@ -20,6 +20,7 @@ module.exports = function (app) {
                     resave: false,
                     saveUninitialized: false
                   }));
+
   // passport strategy
   passport.use(new LocalStrategy(
     function(username, password, callback) {
@@ -40,6 +41,13 @@ module.exports = function (app) {
       });
     }
   ));
+
+  // global user if logged in
+  app.use(function(req, res, next) { // For get user everywhere
+    res.locals.user = req.user;
+    next();
+  });
+
   // passport sessions support
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -49,6 +57,8 @@ module.exports = function (app) {
       done(err, user);
     });
   });
+
+
 };
 // However, the path that you provide to the express.static function is relative to the directory from where you launch your node process. If you run the express app from another directory, it’s safer to use the absolute path of the directory that you want to serve:
 // app.use(express.static(__dirname + '/public'));

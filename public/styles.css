@@ -6,6 +6,11 @@ html {
   box-sizing: inherit;
 }
 
+/* to zero out css from bootstrap modal grid framework built in */
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 
 /* Header and NavBar */
   header {
@@ -16,13 +21,11 @@ html {
 
   nav {
     text-align: center;
-  }*/
+  }
 
-button {
-  font-family: serif;
-}
-/* Videos feed container */
-
+  button {
+    font-family: serif;
+  }
 
 /* Video */
   .videos {
@@ -37,14 +40,61 @@ button {
     height: 315px;
   }
 
-/* Video Form */
+/* Videos feed container */
+  .video-feed-main-container {
+    border: .01em solid grey;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3em 0em;
+  }
 
+  .grid-container {
+  }
+
+   .video-feed-row .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .video-image-thumbnail {
+    width: 286px;
+    height: 329px;
+    font-family: serif;
+  }
+
+  .video-single-feed {
+    width:25%;
+  }
+
+  .video-image-thumbnail:hover {
+    box-shadow: 0 1px 10px 0 rgba(156, 6, 205, 0.35);
+    z-index: 1;
+  }
+
+/* Video Modal */
+  .video-modal .modal-content {
+    text-align: center;
+  }
+
+  .iframe-video-feed {
+    width: 850px;
+    height: 750px;
+  }
+
+/* Video Form */
 
 
 /* Posts feed container */
   .post_feed_item_grid {
     display: inline-block;
     width: 25%;
+    text-align: center;
+    font-family: serif
+  }
+
+  .post_feed_item_grid .thumbnail:hover {
+    box-shadow: 0 1px 10px 0 rgba(9, 16, 218, 0.35);
+    z-index: 1;
   }
 
   .feed_wrapper {
@@ -60,7 +110,7 @@ button {
   }
 
   .col-post-item {
-    width: 109.3333%;
+    width: 108.3333%;
   }
 
   .col-post-item h3 {
@@ -105,7 +155,6 @@ button {
     be centered */
     text-align: center;
     margin: 20px 0px 75px 0px;
-    border-bottom: 1px solid #e2e2e2;
     padding-bottom: 60px;
   }
 
@@ -144,6 +193,12 @@ button {
   .post-form input {
     display: block;
     margin: 0em auto 2em auto;
+  }
+
+  .new-post-form {
+    padding: 2em 0em;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
   }
 
 /* Login form React-Bootstrap modal */

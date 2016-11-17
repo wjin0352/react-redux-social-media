@@ -10,6 +10,7 @@ import getPost from './getPost';
 import deletePost from './deletePost';
 import comment from './comment';
 import allComments from './commentsReducer';
+import modalReducer from '../modules/ui/modal/modalReducer';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const allReducers = combineReducers({
@@ -24,6 +25,7 @@ const allReducers = combineReducers({
   deletePost,
   comment,
   allComments,
+  modalReducer,
   routing: routerReducer
 });
 

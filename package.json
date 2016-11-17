@@ -29,6 +29,7 @@
     "express-session": "^1.14.1",
     "isomorphic-fetch": "^2.2.1",
     "less": "^2.7.1",
+    "lodash": "^4.16.6",
     "mongoose": "^4.6.1",
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
@@ -47,7 +48,8 @@
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
     "rimraf": "^2.5.4",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "youtube-api-search": "0.0.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",

@@ -3,6 +3,7 @@ import * as actions from '../actions';
 const initialState = {
   userVideo: {
     videolink: '',
+    image: '',
     description: '',
     comments: [],
     userid: null
@@ -15,7 +16,7 @@ const newVideo = (state = initialState, action) => {
     case 'VIDEO_SUCCESS':
       return {
         ...state,
-        userVideo: action.video
+        userVideo: {...action.video}
       }
     case 'VIDEO_ERROR':
       return {

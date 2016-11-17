@@ -19,6 +19,7 @@ class NewComment extends Component {
       id
     };
     this.props.createComment(commentData);
+    form.querySelector('[name="post_comment"]').value = '';
   }
 
   cancelComment(e) {
@@ -29,11 +30,11 @@ class NewComment extends Component {
     return (
       <div>
         <form className='new-post-form' onSubmit={(e) => this.createComment(e)}>
-          <li>Comments: </li>
+          <li>Comment : </li>
           <textarea rows="7" cols="50" type='text' name='post_comment' placeholder="Add a comment..." autoFocus required >
           </textarea><br/>
-          <button type="reset" className="btn btn-sm btn-default">Cancel</button>
-          <button className="btn btn-sm btn-primary" onClick={() => this.cancelComment}>Comment</button>
+          <button type="reset" className="btn btn-default">Cancel</button>
+          <button className="btn btn-primary" onClick={() => this.cancelComment}>Comment</button>
         </form>
       </div>
     );

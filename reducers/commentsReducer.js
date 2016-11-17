@@ -17,6 +17,11 @@ const allComments = (state = initialState, action) => {
         ...state,
         error:action.error
       }
+    case 'ADD_NEW_COMMENT_TO_COMMENTS':
+      return {
+        ...state,
+        comments: [...state.comments, action.comment]
+      }
   default:
     return state;
   }

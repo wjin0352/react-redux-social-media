@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { allVideosAsync } from '../actions';
+import { getModalData, openModal } from '../modules/ui/modal/actions';
+import { Grid, Row, Col, Thumbnail, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import Video from './Video';
+import ModalComponent from '../modules/ui/modal/ModalComponent';
 
 // NO LOGGED IN USER .. All Videos random feed
 class VideosFeed extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
-    const url = "http://localhost:8000/videos"
+    const url = "http://localhost:8000/videos";
     this.props.allVideosAsync(url);
   }
 
+  handleModal(video) {
+    this.props.openModal();
+    this.props.getModalData(video);
+  }
+
   renderVideos(video) {
+
     return (
-      <Link to='/'>
-        <div className='videos'>
-          <h3>{video.description}</h3>
-          <iframe className='iframe-video'
-            src={video.videolink}>
-          </iframe>
-        </div>
-      </Link>
+      <div key={video._id} >
+        <Col xs={4} md={3} className="video-single-feed">
+          <Thumbnail src={video.image} alt="242x200" className="video-image-thumbnail">
+            <h3>{video.title}</h3>
+            <p>
+              <Button bsStyle="primary" onClick={
+                () => this.handleModal(video)}
+                >Watch</Button>&nbsp;
+            </p>
+          </Thumbnail>
+        </Col>
+      </div>
     );
   }
 
   render() {
     const videos = this.props.videos.videos;
     return (
-      <div>
-        <Video />
-        {videos.map(video => this.renderVideos(video))}
+      <div className="video-feed-main-container">
+        <Grid className="grid-container">
+          <Row className="video-feed-row">
+            <div className="video-feed-container">
+              {videos.map(video => this.renderVideos(video))}
+            </div>
+            <ModalComponent />
+          </Row>
+        </Grid>
       </div>
     );
   }
@@ -38,7 +61,7 @@ class VideosFeed extends Component {
 function mapStateToProps(state) {
   return {
     videos: state.allVideos
-  }
+  };
 }
 
-export default connect(mapStateToProps, { allVideosAsync })(VideosFeed);
+export default connect(mapStateToProps, { allVideosAsync, getModalData, openModal })(VideosFeed);

@@ -5,20 +5,34 @@ import { Link } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
 class NewVideo extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { showModal: true };
-    }
+  constructor(props) {
+    super(props);
+    this.state = { showModal: true };
+  }
+
+  parseLink(link) {
+    return link.replace('?v=', '').replace('watch', 'embed/');
+  }
+
+  parseImage(videolink) {
+    var imageInfo = videolink.substr(videolink.lastIndexOf("/")+1);
+    return `http://img.youtube.com/vi/${imageInfo}/0.jpg`;
+  }
 
   createVideo(e) {
     e.preventDefault();
     var form = e.target;
-    var videolink = form.querySelector('[name="url"]').value;
+    var videolink = this.parseLink(form.querySelector('[name="url"]').value);
+    var image = this.parseImage(videolink);
     var description = form.querySelector('[name="description"]').value;
+    var title = form.querySelector('[name="title"]').value;
     var videoData = {
       videolink,
+      image,
+      title,
       description
     }
+    console.log('{}{}{}{}{}{}{ videolink', videolink)
     var url = "http://localhost:8000/videos";
     this.props.newVideoAsync(videoData, url);
   }
@@ -32,11 +46,13 @@ class NewVideo extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className='new-video-form' onSubmit={this.createVideo.bind(this)}>
+            <form className='new-video-form' onSubmit={(e) => this.createVideo(e)}>
               <fieldset>
                 <legend>New Video: </legend>
                 <li>add url:</li>
                   <input type='url' name='url' required autoFocus/><br/>
+                <li>add title:</li>
+                  <input type='title' name='title' required /><br/>
                 <li>description</li>
                   <textarea rows="10" cols="60" type='text' name='description' required >
                   </textarea><br/>
