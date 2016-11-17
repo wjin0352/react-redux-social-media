@@ -6,7 +6,7 @@ import { closeModal } from './actions';
 class ModalComponent extends Component {
   render() {
     return (
-      <Modal show={this.props.modalVideo.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
+      <Modal className="video-modal" show={this.props.modalVideo.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
         <Modal.Header>
           <Modal.Title id="contained-modal-title-lg">{this.props.modalVideo.title}</Modal.Title>
         </Modal.Header>

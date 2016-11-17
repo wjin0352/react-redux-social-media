@@ -6,6 +6,11 @@ html {
   box-sizing: inherit;
 }
 
+/* to zero out css from bootstrap modal grid framework built in */
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 
 /* Header and NavBar */
   header {
@@ -18,9 +23,9 @@ html {
     text-align: center;
   }
 
-button {
-  font-family: serif;
-}
+  button {
+    font-family: serif;
+  }
 
 /* Video */
   .videos {
@@ -36,11 +41,18 @@ button {
   }
 
 /* Videos feed container */
+  .video-feed-main-container {
+    border: .01em solid grey;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3em 0em;
+  }
+
   .grid-container {
   }
 
-   .row {
-    margin-right: 3px;
+   .video-feed-row .row {
+    margin-right: 0px;
     margin-left: 0px;
   }
 
@@ -60,19 +72,14 @@ button {
   }
 
 /* Video Modal */
-    /*.modal-video {
-      width: 800px;
-      height: 700px;
-    }
+  .video-modal .modal-content {
+    text-align: center;
+  }
 
-    .modal-content {
-      text-align: center;
-    }*/
-
-  /*.iframe-video-feed {
-    width: 350px;
-    height: 250px;
-  }*/
+  .iframe-video-feed {
+    width: 850px;
+    height: 750px;
+  }
 
 /* Video Form */
 
@@ -103,7 +110,7 @@ button {
   }
 
   .col-post-item {
-    width: 109.3333%;
+    width: 108.3333%;
   }
 
   .col-post-item h3 {

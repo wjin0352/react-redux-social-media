@@ -132,7 +132,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_user_posts', component: _UserPostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_posts', component: _PostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_post', component: (0, _RequireAuthentication2.default)(_NewPost2.default) }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: _NewVideo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: (0, _RequireAuthentication2.default)(_NewVideo2.default) }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _Registration2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Login2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'my_posts/:id', component: _Post2.default })
@@ -50533,7 +50533,6 @@
 	    _classCallCheck(this, VideosFeed);
 	
 	    return _possibleConstructorReturn(this, (VideosFeed.__proto__ || Object.getPrototypeOf(VideosFeed)).call(this, props));
-	    // this.state = { showModal: false };
 	  }
 	
 	  _createClass(VideosFeed, [{
@@ -50545,8 +50544,6 @@
 	  }, {
 	    key: 'handleModal',
 	    value: function handleModal(video) {
-	      // console.log('handlemodal video: ', video)
-	      // this.state = { showModal: true };
 	      this.props.openModal();
 	      this.props.getModalData(video);
 	    }
@@ -50593,19 +50590,23 @@
 	
 	      var videos = this.props.videos.videos;
 	      return _react2.default.createElement(
-	        _reactBootstrap.Grid,
-	        { className: 'grid-container' },
+	        'div',
+	        { className: 'video-feed-main-container' },
 	        _react2.default.createElement(
-	          _reactBootstrap.Row,
-	          null,
+	          _reactBootstrap.Grid,
+	          { className: 'grid-container' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'video-feed-container' },
-	            videos.map(function (video) {
-	              return _this3.renderVideos(video);
-	            })
-	          ),
-	          _react2.default.createElement(_ModalComponent2.default, null)
+	            _reactBootstrap.Row,
+	            { className: 'video-feed-row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'video-feed-container' },
+	              videos.map(function (video) {
+	                return _this3.renderVideos(video);
+	              })
+	            ),
+	            _react2.default.createElement(_ModalComponent2.default, null)
+	          )
 	        )
 	      );
 	    }
@@ -50756,7 +50757,7 @@
 	
 	      return _react2.default.createElement(
 	        _reactBootstrap.Modal,
-	        { show: this.props.modalVideo.show, bsSize: 'large', 'aria-labelledby': 'contained-modal-title-lg' },
+	        { className: 'video-modal', show: this.props.modalVideo.show, bsSize: 'large', 'aria-labelledby': 'contained-modal-title-lg' },
 	        _react2.default.createElement(
 	          _reactBootstrap.Modal.Header,
 	          null,

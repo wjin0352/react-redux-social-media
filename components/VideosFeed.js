@@ -11,7 +11,6 @@ import ModalComponent from '../modules/ui/modal/ModalComponent';
 class VideosFeed extends Component {
   constructor(props) {
     super(props);
-    // this.state = { showModal: false };
   }
 
   componentWillMount() {
@@ -20,8 +19,6 @@ class VideosFeed extends Component {
   }
 
   handleModal(video) {
-    // console.log('handlemodal video: ', video)
-    // this.state = { showModal: true };
     this.props.openModal();
     this.props.getModalData(video);
   }
@@ -47,14 +44,16 @@ class VideosFeed extends Component {
   render() {
     const videos = this.props.videos.videos;
     return (
-      <Grid className="grid-container">
-        <Row>
-          <div className="video-feed-container">
-            {videos.map(video => this.renderVideos(video))}
-          </div>
-          <ModalComponent />
-        </Row>
-      </Grid>
+      <div className="video-feed-main-container">
+        <Grid className="grid-container">
+          <Row className="video-feed-row">
+            <div className="video-feed-container">
+              {videos.map(video => this.renderVideos(video))}
+            </div>
+            <ModalComponent />
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }
