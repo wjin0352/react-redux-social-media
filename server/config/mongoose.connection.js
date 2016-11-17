@@ -11,7 +11,6 @@ mongoose.connect(process.env.MONGODB_URI, (err, db) => {
     console.log('Error connecting to database');
     process.exit(1);
   }
-  console.log('Successfully connected to database...')
 });
 
 // We have a pending connection to the database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
