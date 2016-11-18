@@ -8,7 +8,7 @@ var session = require('express-session');
 var userController = require('../api/user/user.controller');
 
 module.exports = function (app) {
-  app.use(morgan('dev'));
+  // app.use(morgan('dev'));
   app.use(express.static('public'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));
