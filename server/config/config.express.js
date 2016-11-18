@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 const User = require('../api/user/user.model');
