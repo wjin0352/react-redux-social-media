@@ -6,18 +6,15 @@ const config = require('./variables.express');
 mongoose.Promise = global.Promise;
 // initial connection to mongo database
 // mongoose.connect(config.MONGODB.URI);
-exports.MONGOLAB_URL = process.env.MONGOLAB_URL ||
-                       global.MONGOLAB_URL ||
-                       (process.env.NODE_ENV === 'production' ?
-                            'mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq' :
-                            'mongodb://localhost/blog');
-exports.PORT = process.env.PORT || 8080;
+// exports.MONGOLAB_URL = process.env.MONGOLAB_URL ||
+//                        global.MONGOLAB_URL ||
+//                        (process.env.NODE_ENV === 'production' ?
+//                             'mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq' :
+//                             'mongodb://localhost/blog');
 
-console.log('MONGOLAB_URL: ', process.env.MONGOLAB_URI)
-console.log('process.env.PORT: ', process.env.PORT)
-console.log('process.env.MONGODB_URI: ',process.env.MONGODB_URI)
+exports.MONGOLAB_URL = "mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq";
 
-mongoose.connect(process.env.MONGODB_URI, (err, database) => {
+mongoose.connect(config.MONGOLAB_URL, (err, database) => {
   if(err) {
     console.log('Error connecting to database');
     process.exit(1);

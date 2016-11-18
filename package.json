@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "react redux blog social media app",
   "main": "client.js",
+  "engines": {
+    "node": "5.11.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:js": "webpack --watch",
-    "start": "npm watch:js | node server/server.js",
+    "start": "node server/server.js",
     "server": "node server/server.js"
   },
   "author": "won",
