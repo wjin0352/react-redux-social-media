@@ -339,7 +339,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch('/users/register', {
         credentials: 'include',
         method: 'POST',
         headers: {

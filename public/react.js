@@ -23904,7 +23904,7 @@
 	/* REGISTRATION ACTIONS */
 	function registerUserAsync(formInput, url) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/users/register', {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
