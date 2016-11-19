@@ -3,12 +3,12 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 const DEV_URL = 'http://localhost:8000';
-const PROD_URL = '';
+const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 
 /* VIDEO ACTIONS */
   export function newVideoAsync(videoData, url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -45,7 +45,7 @@ const PROD_URL = '';
 /* NEW POST ACTIONS */
   export function newPostAsync(postData, url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -213,7 +213,7 @@ const PROD_URL = '';
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -245,7 +245,7 @@ const PROD_URL = '';
 /* GET ALL POSTS ACTIONS */
   export function fetchPostsAsync (url) {
     return (dispatch) => {
-      return fetch (url, {
+      return fetch (PROD_URL, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -278,7 +278,7 @@ const PROD_URL = '';
 /* GET ALL USER POSTS  */
   export function fetchUserPostsAsync(url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -336,7 +336,7 @@ const PROD_URL = '';
 /* REGISTRATION ACTIONS */
   export function registerUserAsync(formInput, url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -371,7 +371,7 @@ const PROD_URL = '';
 /* LOGIN LOGOUT ACTIONS */
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
-      return fetch(url, {
+      return fetch(PROD_URL, {
         credentials: 'include',
         method: 'POST',
         headers: {

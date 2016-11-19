@@ -9,8 +9,11 @@ require('./config/config.express')(app);
 // setup app with route end points
 require('./config/routes.express')(app);
 
+
+const PORT = process.env.PORT || 8080;
+
 // application server
 console.log('process.env.PORT: ',variables.EXPRESS_PORT)
-app.listen(process.env.PORT || 8080, function() {
+app.listen(PORT, function() {
   console.log(variables.EXPRESS_LISTEN_MESSAGE + variables.EXPRESS_PORT);
 });
