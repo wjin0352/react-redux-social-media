@@ -14,8 +14,7 @@ class VideosFeed extends Component {
   }
 
   componentWillMount() {
-    const url = "http://localhost:8000/videos";
-    this.props.allVideosAsync(url);
+    this.props.allVideosAsync();
   }
 
   handleModal(video) {

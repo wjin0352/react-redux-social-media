@@ -2,13 +2,13 @@ const fetch = require('isomorphic-fetch');
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const DEV_URL = 'http://localhost:8000';
+// const DEV_URL = 'http://localhost:8000';
 const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 
 /* VIDEO ACTIONS */
-  export function newVideoAsync(videoData, url) {
+  export function newVideoAsync(videoData) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch('/videos', {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -43,9 +43,9 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
   }
 
 /* NEW POST ACTIONS */
-  export function newPostAsync(postData, url) {
+  export function newPostAsync(postData) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch('/posts', {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -103,7 +103,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
   // get a post
   export function fetchPost (id) {
     return (dispatch) => {
-      return fetch(`${DEV_URL}/posts/${id}`, {
+      return fetch(`/posts/${id}`, {
         credentials: 'include',
         method: 'GET',
         headers: {
@@ -134,7 +134,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
   // delete a post
   export function deletePost(id) {
     return (dispatch) => {
-      return fetch(`${DEV_URL}/posts/${id}`, {
+      return fetch(`/posts/${id}`, {
         credentials: 'include',
         method: 'DELETE',
         headers: {
@@ -160,7 +160,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
   // create a comment on POST
   export function createComment(commentData) {
     return (dispatch) => {
-      return fetch(`${DEV_URL}/posts/${commentData.id}/comments`, {
+      return fetch(`/posts/${commentData.id}/comments`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -213,7 +213,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 /* GET ALL VIDEOS ACTIONS */
   export function allVideosAsync(url) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch('/videos', {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -252,7 +252,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
         }
       })
         .then(response => {
-          console.log('HELLLLOOOOO');
           return response.json();
         })
         .then(posts => {
@@ -279,9 +278,9 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
   };
 
 /* GET ALL USER POSTS  */
-  export function fetchUserPostsAsync(url) {
+  export function fetchUserPostsAsync(id) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch(`/posts/users/${id}`, {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
@@ -314,7 +313,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 /* GET ALL COMMENTS */
   export function getPostComments(id) {
     return (dispatch) => {
-      axios.get(`${DEV_URL}/posts/${id}/comments`)
+      axios.get(`/posts/${id}/comments`)
       .then(response => {
         dispatch(commentsSuccess(response.data))
       })
@@ -374,7 +373,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 /* LOGIN LOGOUT ACTIONS */
   export function loginUserAsync (userCred, url) {
     return (dispatch) => {
-      return fetch(PROD_URL, {
+      return fetch('/users/login', {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -417,7 +416,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 
   export function logOutUser() {
     return (dispatch) => {
-      axios.get(`${DEV_URL}/users/log_out`)
+      axios.get(`/users/log_out`)
       .then(response => dispatch(loggingOutUser()))
       .catch(err => dispatch(logOutError(err.message)))
     }

@@ -20,7 +20,6 @@ class PostsFeed extends Component {
             <Col   className="col-post-item">
               <Thumbnail src="" >
                 <h3>{post.title}</h3>
-                <h1>HELLOOOOOO</h1>
                   <Button bsStyle="default" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
               </Thumbnail>
             </Col>

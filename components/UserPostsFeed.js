@@ -9,7 +9,8 @@ class UserPostsFeed extends Component {
   componentWillMount() {
     // console.log('id from params 00000: ', this.userPost)
     const url = `http://localhost:8000/posts/user`;
-    this.props.fetchUserPostsAsync(url);
+    const id = this.props.params.user_id;
+    this.props.fetchUserPostsAsync(id);
   }
 
   renderUserPosts(userPost) {
@@ -26,7 +27,7 @@ class UserPostsFeed extends Component {
           </Row>
         </Grid>
       </Link>
-    )
+    );
     {this.props.userPosts ? this.renderUserPosts() : <h3>No posts: </h3>}
   }
 

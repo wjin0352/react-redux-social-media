@@ -23568,13 +23568,13 @@
 	var fetch = __webpack_require__(288);
 	
 	
-	var DEV_URL = 'http://localhost:8000';
+	// const DEV_URL = 'http://localhost:8000';
 	var PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 	
 	/* VIDEO ACTIONS */
-	function newVideoAsync(videoData, url) {
+	function newVideoAsync(videoData) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/videos', {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23610,9 +23610,9 @@
 	}
 	
 	/* NEW POST ACTIONS */
-	function newPostAsync(postData, url) {
+	function newPostAsync(postData) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/posts', {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23668,7 +23668,7 @@
 	// get a post
 	function fetchPost(id) {
 	  return function (dispatch) {
-	    return fetch(DEV_URL + '/posts/' + id, {
+	    return fetch('/posts/' + id, {
 	      credentials: 'include',
 	      method: 'GET',
 	      headers: {
@@ -23700,7 +23700,7 @@
 	// delete a post
 	function deletePost(id) {
 	  return function (dispatch) {
-	    return fetch(DEV_URL + '/posts/' + id, {
+	    return fetch('/posts/' + id, {
 	      credentials: 'include',
 	      method: 'DELETE',
 	      headers: {
@@ -23726,7 +23726,7 @@
 	// create a comment on POST
 	function createComment(commentData) {
 	  return function (dispatch) {
-	    return fetch(DEV_URL + '/posts/' + commentData.id + '/comments', {
+	    return fetch('/posts/' + commentData.id + '/comments', {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23777,7 +23777,7 @@
 	/* GET ALL VIDEOS ACTIONS */
 	function allVideosAsync(url) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/videos', {
 	      method: 'GET',
 	      headers: {
 	        'content-type': 'application/json'
@@ -23816,7 +23816,6 @@
 	        'content-type': 'application/json'
 	      }
 	    }).then(function (response) {
-	      console.log('HELLLLOOOOO');
 	      return response.json();
 	    }).then(function (posts) {
 	      dispatch(fetchPostsSuccess(posts));
@@ -23843,9 +23842,9 @@
 	};
 	
 	/* GET ALL USER POSTS  */
-	function fetchUserPostsAsync(url) {
+	function fetchUserPostsAsync(id) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/posts/users/' + id, {
 	      method: 'GET',
 	      headers: {
 	        'content-type': 'application/json'
@@ -23879,7 +23878,7 @@
 	/* GET ALL COMMENTS */
 	function getPostComments(id) {
 	  return function (dispatch) {
-	    _axios2.default.get(DEV_URL + '/posts/' + id + '/comments').then(function (response) {
+	    _axios2.default.get('/posts/' + id + '/comments').then(function (response) {
 	      dispatch(commentsSuccess(response.data));
 	    }).catch(function (err) {
 	      return dispatch(commentsError(err.message));
@@ -23940,7 +23939,7 @@
 	/* LOGIN LOGOUT ACTIONS */
 	function loginUserAsync(userCred, url) {
 	  return function (dispatch) {
-	    return fetch(PROD_URL, {
+	    return fetch('/users/login', {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23982,7 +23981,7 @@
 	
 	function logOutUser() {
 	  return function (dispatch) {
-	    _axios2.default.get(DEV_URL + '/users/log_out').then(function (response) {
+	    _axios2.default.get('/users/log_out').then(function (response) {
 	      return dispatch(loggingOutUser());
 	    }).catch(function (err) {
 	      return dispatch(logOutError(err.message));
@@ -50066,11 +50065,6 @@
 	                  post.title
 	                ),
 	                _react2.default.createElement(
-	                  'h1',
-	                  null,
-	                  'HELLOOOOOO'
-	                ),
-	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
 	                  { bsStyle: 'default', onClick: function onClick() {
 	                      return _reactRouter.browserHistory.push('/my_posts/' + post._id);
@@ -50552,8 +50546,7 @@
 	  _createClass(VideosFeed, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var url = "http://localhost:8000/videos";
-	      this.props.allVideosAsync(url);
+	      this.props.allVideosAsync();
 	    }
 	  }, {
 	    key: 'handleModal',
@@ -51456,7 +51449,8 @@
 	    value: function componentWillMount() {
 	      // console.log('id from params 00000: ', this.userPost)
 	      var url = 'http://localhost:8000/posts/user';
-	      this.props.fetchUserPostsAsync(url);
+	      var id = this.props.params.user_id;
+	      this.props.fetchUserPostsAsync(id);
 	    }
 	  }, {
 	    key: 'renderUserPosts',
