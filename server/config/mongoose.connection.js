@@ -9,12 +9,8 @@ mongoose.Promise = global.Promise;
 // exports.MONGOLAB_URL = process.env.MONGOLAB_URL ||
 //                        global.MONGOLAB_URL ||
 //                        (process.env.NODE_ENV === 'production' ?
-//                             'mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq' :
-//                             'mongodb://localhost/blog');
 
-exports.MONGOLAB_URL = "mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq";
-
-mongoose.connect(config.MONGOLAB_URL, (err, database) => {
+mongoose.connect(MONGOLAB_URI, (err, database) => {
   if(err) {
     console.log('Error connecting to database');
     process.exit(1);
