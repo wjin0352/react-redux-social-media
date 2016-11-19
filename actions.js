@@ -245,7 +245,7 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 /* GET ALL POSTS ACTIONS */
   export function fetchPostsAsync (url) {
     return (dispatch) => {
-      return fetch (PROD_URL, {
+      return fetch ('/posts', {
         method: 'GET',
         headers: {
           'content-type': 'application/json'
