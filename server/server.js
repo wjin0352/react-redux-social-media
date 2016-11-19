@@ -10,7 +10,7 @@ require('./config/config.express')(app);
 require('./config/routes.express')(app);
 
 // application server
-console.log('process.env.PORT: ',process.env.PORT)
+console.log('process.env.PORT: ',variables.EXPRESS_PORT)
 app.listen(variables.EXPRESS_PORT || 8080, function() {
-  console.log(variables.EXPRESS_LISTEN_MESSAGE + process.env.PORT);
+  console.log(variables.EXPRESS_LISTEN_MESSAGE + variables.EXPRESS_PORT);
 });

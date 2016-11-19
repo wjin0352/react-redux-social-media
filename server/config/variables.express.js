@@ -5,5 +5,5 @@ module.exports = {
     PORT: '',
     URI: 'mongodb://localhost/blog'
   },
-  MONGOLAB_URL: "mongodb://heroku_l8rqwvtq:g5g32e7t0hdc5v08s7g21gqt0u@ds155727.mlab.com:55727/heroku_l8rqwvtq"
+  MONGOLAB_URI: "mongodb://wjin:myson0352@ds157677.mlab.com:57677/blog"
 };
