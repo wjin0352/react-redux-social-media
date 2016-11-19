@@ -23569,12 +23569,12 @@
 	
 	
 	var DEV_URL = 'http://localhost:8000';
-	var PROD_URL = '';
+	var PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 	
 	/* VIDEO ACTIONS */
 	function newVideoAsync(videoData, url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23612,7 +23612,7 @@
 	/* NEW POST ACTIONS */
 	function newPostAsync(postData, url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23777,7 +23777,7 @@
 	/* GET ALL VIDEOS ACTIONS */
 	function allVideosAsync(url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      method: 'GET',
 	      headers: {
 	        'content-type': 'application/json'
@@ -23810,12 +23810,13 @@
 	/* GET ALL POSTS ACTIONS */
 	function fetchPostsAsync(url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch('/posts', {
 	      method: 'GET',
 	      headers: {
 	        'content-type': 'application/json'
 	      }
 	    }).then(function (response) {
+	      console.log('HELLLLOOOOO');
 	      return response.json();
 	    }).then(function (posts) {
 	      dispatch(fetchPostsSuccess(posts));
@@ -23844,7 +23845,7 @@
 	/* GET ALL USER POSTS  */
 	function fetchUserPostsAsync(url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      method: 'GET',
 	      headers: {
 	        'content-type': 'application/json'
@@ -23903,7 +23904,7 @@
 	/* REGISTRATION ACTIONS */
 	function registerUserAsync(formInput, url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -23939,7 +23940,7 @@
 	/* LOGIN LOGOUT ACTIONS */
 	function loginUserAsync(userCred, url) {
 	  return function (dispatch) {
-	    return fetch(url, {
+	    return fetch(PROD_URL, {
 	      credentials: 'include',
 	      method: 'POST',
 	      headers: {
@@ -50063,6 +50064,11 @@
 	                  'h3',
 	                  null,
 	                  post.title
+	                ),
+	                _react2.default.createElement(
+	                  'h1',
+	                  null,
+	                  'HELLOOOOOO'
 	                ),
 	                _react2.default.createElement(
 	                  _reactBootstrap.Button,
