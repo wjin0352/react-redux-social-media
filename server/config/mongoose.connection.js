@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('./variables.express');
+const heroku_config_var = require('../.env');
 
 // add promises to model objects
 // you setup this only one time before the connexion so after you can work with promise on model instance or class instance
