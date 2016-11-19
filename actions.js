@@ -251,7 +251,10 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
           'content-type': 'application/json'
         }
       })
-        .then(response => response.json())
+        .then(response => {
+          console.log('HELLLLOOOOO');
+          return response.json();
+        })
         .then(posts => {
           dispatch(fetchPostsSuccess(posts))
           // i just made a
