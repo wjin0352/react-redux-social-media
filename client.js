@@ -15,7 +15,6 @@ import requireAuth from './components/RequireAuthentication';
 
 // import onPostsEnter from './route_callbacks/route_callbacks';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store';

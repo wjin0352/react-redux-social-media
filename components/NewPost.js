@@ -12,7 +12,6 @@ class NewPost extends Component {
 
   createPost(e) {
     e.preventDefault();
-    console.log(e.target);
     var form = e.target;
     var title = form.querySelector('[name="title"]').value;
     var post = form.querySelector('[name="blog_post"]').value;
@@ -20,8 +19,7 @@ class NewPost extends Component {
       title,
       content: post,
     }
-    var url = "http://localhost:8000/posts";
-    this.props.newPostAsync(postData, url);
+    this.props.newPostAsync(postData);
   }
 
   render() {

@@ -9,7 +9,6 @@ router.get('/', controller.getUsers)
   .post('/register',  controller.registerUser)
   // login route for redirect if bad login
   .post('/login', passport.authenticate('local'), function (req, res) {
-    console.log('from post /login  req.user: ', req.user)
     res.status(200).json(req.user)
   })
   .get('/logout', controller.logout)

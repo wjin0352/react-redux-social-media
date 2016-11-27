@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -16,11 +15,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-object-rest-spread']
-        }
+        loader: 'babel'
       }
     ]
   },

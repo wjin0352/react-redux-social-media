@@ -2,7 +2,7 @@
   export const getModalData = (video) => ({
     type: 'CREATE_MODAL',
     video
-  });
+  })
 
   export const openModal = () => ({
     type: 'OPEN_MODAL',

@@ -31,7 +31,7 @@ class NewComment extends Component {
       <div>
         <form className='new-post-form' onSubmit={(e) => this.createComment(e)}>
           <li>Comment : </li>
-          <textarea rows="7" cols="50" type='text' name='post_comment' placeholder="Add a comment..." autoFocus required >
+          <textarea rows="7" cols="50" type='text' name='post_comment' placeholder="Add a comment..." required >
           </textarea><br/>
           <div className="comment-buttons-container">
             <button type="reset" className="btn btn-default">Cancel</button>

@@ -48,25 +48,27 @@ class Navigation extends Component {
           <NavItem eventKey={3}>
             <Link className='community_videos' to="/show_videos">Videos</Link>
           </NavItem>
-          <NavItem eventKey={4}>
-            <Link className='posts_link' to='/show_user_posts' >Your Posts</Link>
-          </NavItem>
-          <NavItem eventKey={5}>
-            <Link className='videos_link' to='/show_user_videos' >Your Videos</Link>
-          </NavItem>
           <NavItem eventKey={6}>
             <Link className='new_post_link' to="/new_post">New Post</Link>
           </NavItem>
           <NavItem eventKey={7}>
             <Link className='new_video_link' to="/new_video">New Video</Link>
           </NavItem>
-          { !(this.props.logged_user.user) ? this.loginAndRegistrationDropDown() : console.log(this.props.logged_user.user) }
+          { !(this.props.logged_user.user) ? this.loginAndRegistrationDropDown() : console.log('') }
           { this.props.logged_user.user ? this.logOutButton() : '' }
         </Nav>
       </Navbar>
     );
   }
 }
+
+// adding features later
+// <NavItem eventKey={4}>
+//   <Link className='posts_link' to='/show_user_posts' >Your Posts</Link>
+// </NavItem>
+// <NavItem eventKey={5}>
+//   <Link className='videos_link' to='/show_user_videos' >Your Videos</Link>
+// </NavItem>
 
 function mapStateToProps(state) {
   return {

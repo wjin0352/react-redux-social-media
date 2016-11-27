@@ -37,7 +37,7 @@ class UserPostsFeed extends Component {
     // console.log('logged in user', user)
     return (
       <div className='user_posts_feed'>
-        <h3>Posts Feed</h3>
+        <h4>Posts Feed</h4>
         <div className="feed_wrapper">
           {userPosts.map(userPost => this.renderUserPosts(userPost))}
         </div>

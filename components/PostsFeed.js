@@ -36,7 +36,7 @@ class PostsFeed extends Component {
 
     return (
       <div className='user_posts_feed'>
-        <h3>Posts Feed</h3>
+        <h4>Posts Feed</h4>
         <div className="feed_wrapper">
           {posts.map(post => this.renderPosts(post))}
         </div>

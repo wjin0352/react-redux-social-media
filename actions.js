@@ -2,7 +2,6 @@ const fetch = require('isomorphic-fetch');
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const DEV_URL = 'http://localhost:8000';
 const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
 
 /* VIDEO ACTIONS */
@@ -256,7 +255,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
         })
         .then(posts => {
           dispatch(fetchPostsSuccess(posts))
-          // i just made a
           browserHistory.push('/show_posts')
       })
         .catch(err => dispatch(fetchPostsError(err.message)));

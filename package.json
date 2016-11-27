@@ -7,16 +7,15 @@
     "node": "5.11.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "watch:js": "webpack --watch",
     "start": "node server/server.js",
-    "server": "node server/server.js"
+    "server": "nodemon --watch ./server/server --exec babel-node -- ./server/server.js"
   },
   "author": "won",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.14.0",
-    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
@@ -25,6 +24,8 @@
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.16.0",
+    "babel-register": "^6.18.0",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "eslint": "^3.6.0",
@@ -40,6 +41,7 @@
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "raven-js": "^3.7.0",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",

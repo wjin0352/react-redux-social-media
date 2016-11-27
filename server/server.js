@@ -1,3 +1,5 @@
+require('babel-register');
+require('babel-polyfill');
 const express = require('express');
 var app = express();
 const variables = require('./config/variables.express');
@@ -10,7 +12,7 @@ require('./config/config.express')(app);
 require('./config/routes.express')(app);
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 // application server
 console.log('process.env.PORT: ',variables.EXPRESS_PORT)

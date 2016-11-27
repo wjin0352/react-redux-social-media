@@ -19,7 +19,6 @@ PostController.prototype.getPosts = function(req, res) {
 }
 // User Posts
 PostController.prototype.getUserPosts = function(req, res) {
-  console.log('req.user.id::: ',req.user.id)
   return new Promise (function (resolve, reject) {
     Post.find({"userid": req.user.id}, function(error, posts) {
       if(error) {
@@ -29,7 +28,6 @@ PostController.prototype.getUserPosts = function(req, res) {
       }
     });
   }).then(posts => {
-    // console.log('FROM POSTS CONTROLLER getuserposts USER POSTS: ', posts)
     res.status(200).json(posts)})
     .catch(error => console.log(error))
 }
@@ -44,8 +42,6 @@ PostController.prototype.getCurrentPost = function(req, res) {
       }
     });
   }).then(post => {
-    // console.log('req.params: ', req.params)
-    // console.log('post: ',post)
     res.status(200).json(post)
   }).catch(error => console.log(error))
 }
@@ -67,7 +63,6 @@ PostController.prototype.createPost = function(req, res) {
   }).then(function (post) {
     res.status(200).json(post);
   }).catch(function (error) {
-    console.log('error from post controllers createPost method: ', error);
     return error;
   })
 };
@@ -92,7 +87,6 @@ PostController.prototype.editPost = function(req, res) {
 }
 
 PostController.prototype.deletePost = function(req, res) {
-  console.log(req.params.id);
   return new Promise (function (resolve, reject) {
     Post.remove({ _id: req.params.id }, function (error, post) {
       if (error) {

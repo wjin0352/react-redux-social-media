@@ -10,5 +10,5 @@ module.exports = function(app) {
   app.use('/', postRouter);
   app.use('/videos', videoRouter);
   app.use('/', commentRouter);
-  app.use('/*', mainRouter);
+  app.use('*', mainRouter);
 }

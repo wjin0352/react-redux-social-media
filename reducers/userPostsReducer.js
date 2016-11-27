@@ -20,7 +20,7 @@ const allUserPosts = (state = initialState, action) => {
     case 'ADD_NEW_USER_POSTS_TO_POSTS':
       return {
         ...state,
-        userPosts: [...state.userPosts, action.userPosts]
+        userPosts: [...state.userPosts, action.post]
       }
     default:
       return state;

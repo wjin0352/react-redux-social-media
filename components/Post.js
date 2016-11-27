@@ -17,6 +17,15 @@ class Post extends Component {
     this.props.deletePost(id);
   }
 
+  showButtons(post) {
+    return (
+      <div>
+        <Button bsStyle="primary">edit</Button>
+        <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
+      </div>
+    );
+  }
+
   render() {
     var post = this.props.post.current_post;
     return (
@@ -31,8 +40,9 @@ class Post extends Component {
               </div>
             <h6>{post.likes}</h6>
             <div className="jumbotron-buttons">
-              <Button bsStyle="primary">edit</Button>
-              <Button bsStyle="primary" onClick={() => this.handleDelete(post._id)}>delete</Button>
+            { !(this.props.logged_user.user) ?
+            console.log('not loggedin') :
+            this.showButtons(post)}
             </div>
             <NewComment post_id={post._id}/>
             <CommentsFeed post_id={post._id}/>
@@ -45,7 +55,8 @@ class Post extends Component {
 
 function mapStateToProps(state) {
   return {
-    post: state.getPost
+    post: state.getPost,
+    logged_user: state.login
   };
 }
 
