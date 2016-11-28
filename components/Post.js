@@ -34,7 +34,7 @@ class Post extends Component {
           <Jumbotron bsStyle='post'>
             <h3>{post.title}</h3>
               <div>
-                <p className="post-paragraph">
+                <p className="post_paragraph">
                   {post.content}
                 </p>
               </div>

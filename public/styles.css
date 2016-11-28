@@ -10,6 +10,17 @@ li, ul {
   box-sizing: inherit;
 }
 
+h3 {
+  font-size: 20px;
+}
+
+textarea {
+  width: 100%;
+}
+
+.thumbnail {
+  text-align: center;
+}
 
 /* Header and NavBar */
   header {
@@ -19,7 +30,7 @@ li, ul {
   }
 
   nav {
-    text-align: center;
+    t-align: center;
   }
 
   button {
@@ -42,12 +53,9 @@ li, ul {
 /* Videos feed container */
   .video-feed-main-container {
     border: .01em solid grey;
-    width: 80%;
+    width: 98%;
     margin: 0 auto;
     padding: 3em 0em;
-  }
-
-  .grid-container {
   }
 
    .video-feed-row .row {
@@ -56,13 +64,9 @@ li, ul {
   }
 
   .video-image-thumbnail {
-    width: 286px;
-    height: 329px;
+    /*width: 286px;*/
+    /*height: 329px;*/
     font-family: serif;
-  }
-
-  .video-single-feed {
-    width:25%;
   }
 
   .video-image-thumbnail:hover {
@@ -72,12 +76,12 @@ li, ul {
 
 /* Video Modal */
   .video-modal .modal-content {
-    text-align: center;
+    t-align: center;
   }
 
   .iframe-video-feed {
-    width: 850px;
-    height: 750px;
+    width: 100%;
+    height: 600px;
   }
 
 /* Video Form */
@@ -87,7 +91,7 @@ li, ul {
   .post_feed_item_grid {
     display: inline-block;
     width: 25%;
-    text-align: center;
+    t-align: center;
     font-family: serif
   }
 
@@ -104,19 +108,20 @@ li, ul {
   }
 
   .user_posts_feed h4 {
-    text-align: center;
+    t-align: center;
   }
 
   .user_posts_feed h3 {
     margin: 2em auto;
   }
 
-  .col-post-item h3 {
-    font-size: 1em;
+  h3 {
+    font-size: 16px;
   }
 
   .col-post-item p button {
   }
+
 /* Post */
   .jumbotron-post {
     width: 80%;
@@ -125,14 +130,14 @@ li, ul {
     font-family: serif;
   }
 
-  .post-paragraph {
+  .post_paragraph {
     padding: 2em;
     margin: 3em;
     background-color: white;
     border-radius: 3px;
   }
 
-  p.post-paragraph {
+  p.post_paragraph {
     font-size: 20px;
   }
 
@@ -148,9 +153,9 @@ li, ul {
     /*width: 12%;
     margin: 22em auto;*/
     /*margin-top: 23em;*/
-    /* if this div is 100% width and text-align center the buttons inside it will
+    /* if this div is 100% width and t-align center the buttons inside it will
     be centered */
-    text-align: center;
+    t-align: center;
     margin: 20px 0px 75px 0px;
     padding-bottom: 60px;
   }
@@ -200,7 +205,7 @@ li, ul {
     width: 90%;
   }
 
-  .post-form textarea {
+  .post-form tarea {
     display: block;
     margin: 2em auto;
     padding: 2em;
@@ -212,7 +217,7 @@ li, ul {
   }
 
   .new-post-form {
-    padding: 2em 0em;
+    padding-bottom: 2em;
     border-top: 1px solid #e2e2e2;
     border-bottom: 1px solid #e2e2e2;
   }
@@ -228,12 +233,21 @@ li, ul {
 */
 
 
+
 /* ========== Media Queries ========= */
-/*@media only screen and (min-width: 845px) and (max-width: 1000px) {
+/* post page media queries */
+@media only screen and (min-width: 845px) and (max-width: 1000px) {
   .post_feed_item_grid {
     width: 33%;
   }
-}*/
+}
+@media only screen and (max-width: 991) {
+  h3 {
+    font-size: 16px;
+  }
+
+
+}
 
 @media only screen and (max-width: 800px) {
   .post_feed_item_grid {
@@ -245,5 +259,44 @@ li, ul {
 @media only screen and (max-width: 600px) {
   .post_feed_item_grid {
     width: 50%;
+  }
+
+  .jumbotron-post {
+    width: 100%;
+  }
+}
+
+/* video page media queries */
+
+@media only screen and( min-width: 1045px) {
+  .video-single-feed {
+    width: 25%;
+  }
+}
+
+@media only screen and( max-width: 1044px) {
+  .video-single-feed {
+    width: 33%;
+  }
+
+  .video-modal .modal-content {
+    height: 736px;
+    width: 650px;
+    margin: 0 auto;
+  }
+
+  .iframe-video-feed {
+    width: 550px;
+    height: 550px;
+  }
+}
+
+@media only screen and( max-width: 777px) {
+  .video-single-feed {
+    width: 48%;
+  }
+
+  .video_title h3 {
+    font-size: 16px;
   }
 }

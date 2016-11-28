@@ -26,9 +26,9 @@ class VideosFeed extends Component {
 
     return (
       <div key={video._id} >
-        <Col xs={4} md={3} className="video-single-feed">
+        <Col xs={6} md={4}  className="video-single-feed col-lg-3">
           <Thumbnail src={video.image} alt="242x200" className="video-image-thumbnail">
-            <h3>{video.title}</h3>
+            <h3 className="video_title">{video.title}</h3>
             <p>
               <Button bsStyle="primary" onClick={
                 () => this.handleModal(video)}

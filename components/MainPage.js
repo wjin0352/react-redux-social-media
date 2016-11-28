@@ -5,7 +5,7 @@ import Header from './Header';
 class MainPage extends Component {
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <Header/>
         {this.props.children}
       </div>

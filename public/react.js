@@ -21552,7 +21552,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'container-fluid' },
 	        _react2.default.createElement(_Header2.default, null),
 	        this.props.children
 	      );
@@ -50218,7 +50218,7 @@
 	              null,
 	              _react2.default.createElement(
 	                'p',
-	                { className: 'post-paragraph' },
+	                { className: 'post_paragraph' },
 	                post.content
 	              )
 	            ),
@@ -50562,13 +50562,13 @@
 	        { key: video._id },
 	        _react2.default.createElement(
 	          _reactBootstrap.Col,
-	          { xs: 4, md: 3, className: 'video-single-feed' },
+	          { xs: 6, md: 4, className: 'video-single-feed col-lg-3' },
 	          _react2.default.createElement(
 	            _reactBootstrap.Thumbnail,
 	            { src: video.image, alt: '242x200', className: 'video-image-thumbnail' },
 	            _react2.default.createElement(
 	              'h3',
-	              null,
+	              { className: 'video_title' },
 	              video.title
 	            ),
 	            _react2.default.createElement(
