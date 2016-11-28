@@ -155,7 +155,7 @@ textarea {
     /*margin-top: 23em;*/
     /* if this div is 100% width and t-align center the buttons inside it will
     be centered */
-    t-align: center;
+    text-align: center;
     margin: 20px 0px 75px 0px;
     padding-bottom: 60px;
   }
@@ -239,6 +239,7 @@ textarea {
 @media only screen and (min-width: 845px) and (max-width: 1000px) {
   .post_feed_item_grid {
     width: 33%;
+    transition: width 2s;
   }
 }
 @media only screen and (max-width: 991) {
@@ -252,6 +253,7 @@ textarea {
 @media only screen and (max-width: 800px) {
   .post_feed_item_grid {
     width: 33%;
+    transition: width 2s;
   }
 }
 
@@ -259,10 +261,12 @@ textarea {
 @media only screen and (max-width: 600px) {
   .post_feed_item_grid {
     width: 50%;
+    transition: width 2s;
   }
 
   .jumbotron-post {
     width: 100%;
+    transition: width 2s;
   }
 }
 
@@ -271,18 +275,21 @@ textarea {
 @media only screen and( min-width: 1045px) {
   .video-single-feed {
     width: 25%;
+    transition: width 2s;
   }
 }
 
 @media only screen and( max-width: 1044px) {
   .video-single-feed {
     width: 33%;
+    transition: width 2s;
   }
 
   .video-modal .modal-content {
     height: 736px;
     width: 650px;
     margin: 0 auto;
+    transition: width 2s, height 2s;
   }
 
   .iframe-video-feed {
@@ -294,6 +301,7 @@ textarea {
 @media only screen and( max-width: 777px) {
   .video-single-feed {
     width: 48%;
+    transition: width 2s;
   }
 
   .video_title h3 {
