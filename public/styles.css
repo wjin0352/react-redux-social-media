@@ -108,7 +108,7 @@ textarea {
   }
 
   .user_posts_feed h4 {
-    t-align: center;
+    text-align: center;
   }
 
   .user_posts_feed h3 {
