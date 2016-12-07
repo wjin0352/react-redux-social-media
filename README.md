@@ -1,3 +1,5 @@
+# Social Media Blog
+
 ## Overview
 This is a social media video/blog application that gives the user the ability to
 create video/blog posts and have other users comment on the posts.
