@@ -13,7 +13,6 @@ class Post extends Component {
   }
 
   handleDelete(id) {
-    console.log(id);
     this.props.deletePost(id);
   }
 
@@ -25,9 +24,9 @@ class Post extends Component {
       </div>
     );
   }
-
   render() {
     var post = this.props.post.current_post;
+    console.log(windowLocation)
     return (
       <div>
         <container className='post-container' key={post._id}>

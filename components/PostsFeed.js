@@ -11,8 +11,8 @@ class PostsFeed extends Component {
     const url = 'http://localhost:8000/posts';
     this.props.fetchPostsAsync(url);
   }
-
   renderPosts(post) {
+      console.log(post)
       return (
         <Link to={`/my_posts/${post._id}`} key={post._id}>
           <Grid className="post_feed_item_grid">

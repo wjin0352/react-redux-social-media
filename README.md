@@ -1,9 +1,18 @@
-This is a express/react blog application with the ability to create posts and have other users comment on the posts.  There is user login and registration.
+## Overview
+This is a social media video/blog application that gives the user the ability to
+create video/blog posts and have other users comment on the posts.
 
+If not signed in you can view the video and posts feed.  This feed shows all videos
+and posts made by all users.  You can scroll through and read or watch these posts.
+
+If registered and signed in.  The user can then comment on blog/video posts and
+also create new blog/video posts.  
+
+More features will be added in time.  
+
+## User story and features to think about
 - use mongoose populate
 - ids in mongo is indexed so you want to search or do any operations using the built in ID in MONGO.  essential for performance.
-
-http://legitsoft.org/HypermediawithNode.js.pdf
 
 mock the app UI diagram
 
@@ -13,8 +22,6 @@ design backend completely before coding
   - design model for database
   - design API
     - how to build as efficient API as possible.  (serving data in most efficient way)
-
-
 
 
 User story:
@@ -55,8 +62,12 @@ As a registered user I can delete my account.
 
 As a registered user I can edit my account.
 
+## Technical
+The Front end is built with React.js and Redux.js store.  
+I am using redux as a state manager with react components for UI.
 
-===========================================================================
+Back end is built using Node.js and the Express.js framework.  I am using
+mongo database from mongolab.
 
     Ideas on making server side requests and then client side redux calls.  Just make a dispatch call to an action creator on client side in your event handler.  Your component should be clean.  write the logic in your actions.  where it will return a function so redux thunk will process that.
 
@@ -90,3 +101,7 @@ As a registered user I can edit my account.
        something
      };
      export { submitRegistrationAsync };
+     ```
+
+## Working application
+Please visit [Social Media Blog](https://murmuring-oasis-51784.herokuapp.com/show_videos).

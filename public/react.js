@@ -50032,6 +50032,7 @@
 	  }, {
 	    key: 'renderPosts',
 	    value: function renderPosts(post) {
+	      console.log(post);
 	      return _react2.default.createElement(
 	        _reactRouter.Link,
 	        { to: '/my_posts/' + post._id, key: post._id },
@@ -50170,7 +50171,6 @@
 	  }, {
 	    key: 'handleDelete',
 	    value: function handleDelete(id) {
-	      console.log(id);
 	      this.props.deletePost(id);
 	    }
 	  }, {
@@ -50199,6 +50199,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var post = this.props.post.current_post;
+	      console.log(windowLocation);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
