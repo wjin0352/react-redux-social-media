@@ -10,7 +10,6 @@ class CommentsFeed extends Component {
   }
 
   componentWillMount() {
-    console.log('COMMENT FEED COMPONENT MOUNTING!!!!')
     this.props.getPostComments(this.props.post_id);
   }
 

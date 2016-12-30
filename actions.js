@@ -17,7 +17,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
       })
         .then(response => response.json())
         .then(jsonData => {
-          console.log('VIDEO JSONDATA: ', jsonData)
           dispatch(videoSuccess(jsonData))
           // find video id to redirect to that video
           // client side redirect to '/video/:id'
@@ -176,7 +175,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
       })
         .then(response => response.json())
         .then(comment => {
-          console.log(comment)
           dispatch(commentSuccess(comment))
           dispatch(addNewCommentToComments(comment))
           browserHistory.push(`/my_posts/${comment.postid}`)
@@ -221,7 +219,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
         .then(response => response.json())
         .then(videos => {
           dispatch(allVideosSuccess(videos))
-          browserHistory.push('/show_videos')
         })
         .catch(err => dispatch(allVideosError(err.message)));
     };
@@ -255,7 +252,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
         })
         .then(posts => {
           dispatch(fetchPostsSuccess(posts))
-          browserHistory.push('/show_posts')
       })
         .catch(err => dispatch(fetchPostsError(err.message)));
     };
@@ -286,7 +282,6 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
       })
         .then(response => response.json())
         .then(userPosts => {
-          console.log('usersPosts from the action: ', userPosts)
         dispatch(fetchUserPostsSuccess(userPosts))
         browserHistory.push('/show_user_posts')
       })
@@ -381,13 +376,10 @@ const PROD_URL = 'https://murmuring-oasis-51784.herokuapp.com/';
       })
       .then(response => response.json())
       .then(jsonData => {
-        console.log('JSONDATA:',jsonData)
         var userData = {
           user: jsonData.username,
           email: jsonData.email
         }
-        console.log('userData: => ',userData)
-
         loginSuccess(userData, dispatch)
         browserHistory.push('/')
       })

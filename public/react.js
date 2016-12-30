@@ -96,23 +96,29 @@
 	
 	var _Video2 = _interopRequireDefault(_Video);
 	
-	var _RequireAuthentication = __webpack_require__(553);
+	var _Home = __webpack_require__(553);
+	
+	var _Home2 = _interopRequireDefault(_Home);
+	
+	var _RequireAuthentication = __webpack_require__(555);
 	
 	var _RequireAuthentication2 = _interopRequireDefault(_RequireAuthentication);
 	
-	var _reactRouterRedux = __webpack_require__(554);
+	var _reactRouterRedux = __webpack_require__(556);
 	
 	var _reactRouter = __webpack_require__(227);
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _store = __webpack_require__(559);
+	var _store = __webpack_require__(561);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Create an enhanced history that syncs navigation events with the store
+	// <Route path='show_videos' component={VideosFeed}/>
+	// <Route path='show_posts' component={PostsFeed} />
 	
 	
 	// import onPostsEnter from './route_callbacks/route_callbacks';
@@ -127,10 +133,11 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _MainPage2.default },
-	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _Home2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_videos', component: _VideosFeed2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'show_user_posts', component: _UserPostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'show_posts', component: _PostsFeed2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'show_user_posts', component: _UserPostsFeed2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_post', component: (0, _RequireAuthentication2.default)(_NewPost2.default) }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'new_video', component: (0, _RequireAuthentication2.default)(_NewVideo2.default) }),
 	      _react2.default.createElement(_reactRouter.Route, { path: 'registration', component: _Registration2.default }),
@@ -23573,7 +23580,6 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (jsonData) {
-	      console.log('VIDEO JSONDATA: ', jsonData);
 	      dispatch(videoSuccess(jsonData));
 	      // find video id to redirect to that video
 	      // client side redirect to '/video/:id'
@@ -23731,7 +23737,6 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (comment) {
-	      console.log(comment);
 	      dispatch(commentSuccess(comment));
 	      dispatch(addNewCommentToComments(comment));
 	      _reactRouter.browserHistory.push('/my_posts/' + comment.postid);
@@ -23775,7 +23780,6 @@
 	      return response.json();
 	    }).then(function (videos) {
 	      dispatch(allVideosSuccess(videos));
-	      _reactRouter.browserHistory.push('/show_videos');
 	    }).catch(function (err) {
 	      return dispatch(allVideosError(err.message));
 	    });
@@ -23808,7 +23812,6 @@
 	      return response.json();
 	    }).then(function (posts) {
 	      dispatch(fetchPostsSuccess(posts));
-	      _reactRouter.browserHistory.push('/show_posts');
 	    }).catch(function (err) {
 	      return dispatch(fetchPostsError(err.message));
 	    });
@@ -23840,7 +23843,6 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (userPosts) {
-	      console.log('usersPosts from the action: ', userPosts);
 	      dispatch(fetchUserPostsSuccess(userPosts));
 	      _reactRouter.browserHistory.push('/show_user_posts');
 	    }).catch(function (err) {
@@ -23937,13 +23939,10 @@
 	    }).then(function (response) {
 	      return response.json();
 	    }).then(function (jsonData) {
-	      console.log('JSONDATA:', jsonData);
 	      var userData = {
 	        user: jsonData.username,
 	        email: jsonData.email
 	      };
-	      console.log('userData: => ', userData);
-	
 	      loginSuccess(userData, dispatch);
 	      _reactRouter.browserHistory.push('/');
 	    }).catch(function (err) {
@@ -50032,7 +50031,6 @@
 	  }, {
 	    key: 'renderPosts',
 	    value: function renderPosts(post) {
-	      console.log(post);
 	      return _react2.default.createElement(
 	        _reactRouter.Link,
 	        { to: '/my_posts/' + post._id, key: post._id },
@@ -50058,7 +50056,7 @@
 	                  { bsStyle: 'default', onClick: function onClick() {
 	                      return _reactRouter.browserHistory.push('/my_posts/' + post._id);
 	                    } },
-	                  'See Post'
+	                  'See Article'
 	                )
 	              )
 	            )
@@ -50087,7 +50085,7 @@
 	        _react2.default.createElement(
 	          'h4',
 	          null,
-	          'Posts Feed'
+	          'Articles Feed'
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -50199,7 +50197,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var post = this.props.post.current_post;
-	      console.log(windowLocation);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -50410,7 +50407,6 @@
 	  _createClass(CommentsFeed, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      console.log('COMMENT FEED COMPONENT MOUNTING!!!!');
 	      this.props.getPostComments(this.props.post_id);
 	    }
 	  }, {
@@ -51542,6 +51538,221 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _PostsFeed = __webpack_require__(540);
+	
+	var _PostsFeed2 = _interopRequireDefault(_PostsFeed);
+	
+	var _VideosFeed = __webpack_require__(544);
+	
+	var _VideosFeed2 = _interopRequireDefault(_VideosFeed);
+	
+	var _Header = __webpack_require__(202);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _HomeVideosFeed = __webpack_require__(554);
+	
+	var _HomeVideosFeed2 = _interopRequireDefault(_HomeVideosFeed);
+	
+	var _reactRouter = __webpack_require__(227);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// NO LOGGED IN USER .. All Posts Random feed
+	var Home = function (_Component) {
+	  _inherits(Home, _Component);
+	
+	  function Home() {
+	    _classCallCheck(this, Home);
+	
+	    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+	  }
+	
+	  _createClass(Home, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'home_container' },
+	        _react2.default.createElement(
+	          'h4',
+	          { id: 'videos_title' },
+	          'Videos Feed'
+	        ),
+	        _react2.default.createElement(_VideosFeed2.default, null),
+	        _react2.default.createElement(_PostsFeed2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return Home;
+	}(_react.Component);
+	
+	;
+	
+	exports.default = Home;
+
+/***/ },
+/* 554 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _actions = __webpack_require__(204);
+	
+	var _actions2 = __webpack_require__(545);
+	
+	var _reactBootstrap = __webpack_require__(290);
+	
+	var _reactRouter = __webpack_require__(227);
+	
+	var _Video = __webpack_require__(546);
+	
+	var _Video2 = _interopRequireDefault(_Video);
+	
+	var _ModalComponent = __webpack_require__(547);
+	
+	var _ModalComponent2 = _interopRequireDefault(_ModalComponent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	// NO LOGGED IN USER .. All Videos random feed
+	var HomeVideosFeed = function (_Component) {
+	  _inherits(HomeVideosFeed, _Component);
+	
+	  function HomeVideosFeed(props) {
+	    _classCallCheck(this, HomeVideosFeed);
+	
+	    return _possibleConstructorReturn(this, (HomeVideosFeed.__proto__ || Object.getPrototypeOf(HomeVideosFeed)).call(this, props));
+	  }
+	
+	  _createClass(HomeVideosFeed, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.allVideosAsync();
+	    }
+	  }, {
+	    key: 'handleModal',
+	    value: function handleModal(video) {
+	      this.props.openModal();
+	      this.props.getModalData(video);
+	    }
+	  }, {
+	    key: 'renderVideos',
+	    value: function renderVideos(video) {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { key: video._id },
+	        _react2.default.createElement(
+	          _reactBootstrap.Col,
+	          { xs: 6, md: 4, className: 'video-single-feed col-lg-3' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Thumbnail,
+	            { src: video.image, alt: '242x200', className: 'video-image-thumbnail' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'video_title' },
+	              video.title
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              _react2.default.createElement(
+	                _reactBootstrap.Button,
+	                { bsStyle: 'primary', onClick: function onClick() {
+	                    return _this2.handleModal(video);
+	                  }
+	                },
+	                'Watch'
+	              ),
+	              ' '
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+	
+	      var videos = this.props.videos.videos;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'video-feed-main-container' },
+	        _react2.default.createElement(
+	          _reactBootstrap.Grid,
+	          { className: 'grid-container' },
+	          _react2.default.createElement(
+	            _reactBootstrap.Row,
+	            { className: 'video-feed-row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'video-feed-container' },
+	              videos.map(function (video) {
+	                return _this3.renderVideos(video);
+	              })
+	            ),
+	            _react2.default.createElement(_ModalComponent2.default, null)
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return HomeVideosFeed;
+	}(_react.Component);
+	
+	function mapStateToProps(state) {
+	  return {
+	    videos: state.allVideos
+	  };
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { allVideosAsync: _actions.allVideosAsync, getModalData: _actions2.getModalData, openModal: _actions2.openModal })(HomeVideosFeed);
+
+/***/ },
+/* 555 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	exports.default = function (ComposedComponent) {
 	  var Authenticate = function (_React$Component) {
 	    _inherits(Authenticate, _React$Component);
@@ -51606,7 +51817,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 554 */
+/* 556 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51616,7 +51827,7 @@
 	});
 	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
 	
-	var _reducer = __webpack_require__(555);
+	var _reducer = __webpack_require__(557);
 	
 	Object.defineProperty(exports, 'LOCATION_CHANGE', {
 	  enumerable: true,
@@ -51631,7 +51842,7 @@
 	  }
 	});
 	
-	var _actions = __webpack_require__(556);
+	var _actions = __webpack_require__(558);
 	
 	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
 	  enumerable: true,
@@ -51676,11 +51887,11 @@
 	  }
 	});
 	
-	var _sync = __webpack_require__(557);
+	var _sync = __webpack_require__(559);
 	
 	var _sync2 = _interopRequireDefault(_sync);
 	
-	var _middleware = __webpack_require__(558);
+	var _middleware = __webpack_require__(560);
 	
 	var _middleware2 = _interopRequireDefault(_middleware);
 	
@@ -51690,7 +51901,7 @@
 	exports.routerMiddleware = _middleware2['default'];
 
 /***/ },
-/* 555 */
+/* 557 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51734,7 +51945,7 @@
 	}
 
 /***/ },
-/* 556 */
+/* 558 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51776,7 +51987,7 @@
 	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
 
 /***/ },
-/* 557 */
+/* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51789,7 +52000,7 @@
 	
 	exports['default'] = syncHistoryWithStore;
 	
-	var _reducer = __webpack_require__(555);
+	var _reducer = __webpack_require__(557);
 	
 	var defaultSelectLocationState = function defaultSelectLocationState(state) {
 	  return state.routing;
@@ -51930,7 +52141,7 @@
 	}
 
 /***/ },
-/* 558 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51940,7 +52151,7 @@
 	});
 	exports['default'] = routerMiddleware;
 	
-	var _actions = __webpack_require__(556);
+	var _actions = __webpack_require__(558);
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
@@ -51968,7 +52179,7 @@
 	}
 
 /***/ },
-/* 559 */
+/* 561 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51979,11 +52190,11 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _index = __webpack_require__(560);
+	var _index = __webpack_require__(562);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _reduxLogger = __webpack_require__(573);
+	var _reduxLogger = __webpack_require__(575);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
@@ -51991,7 +52202,7 @@
 	
 	var redux = __webpack_require__(180);
 	
-	var thunk = __webpack_require__(579).default;
+	var thunk = __webpack_require__(581).default;
 	
 	
 	var logger = (0, _reduxLogger2.default)();
@@ -52002,7 +52213,7 @@
 	exports.default = store;
 
 /***/ },
-/* 560 */
+/* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52013,55 +52224,55 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _video = __webpack_require__(561);
+	var _video = __webpack_require__(563);
 	
 	var _video2 = _interopRequireDefault(_video);
 	
-	var _post = __webpack_require__(562);
+	var _post = __webpack_require__(564);
 	
 	var _post2 = _interopRequireDefault(_post);
 	
-	var _register = __webpack_require__(563);
+	var _register = __webpack_require__(565);
 	
 	var _register2 = _interopRequireDefault(_register);
 	
-	var _login = __webpack_require__(564);
+	var _login = __webpack_require__(566);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _postsReducer = __webpack_require__(565);
+	var _postsReducer = __webpack_require__(567);
 	
 	var _postsReducer2 = _interopRequireDefault(_postsReducer);
 	
-	var _videosReducer = __webpack_require__(566);
+	var _videosReducer = __webpack_require__(568);
 	
 	var _videosReducer2 = _interopRequireDefault(_videosReducer);
 	
-	var _userPostsReducer = __webpack_require__(567);
+	var _userPostsReducer = __webpack_require__(569);
 	
 	var _userPostsReducer2 = _interopRequireDefault(_userPostsReducer);
 	
-	var _getPost = __webpack_require__(568);
+	var _getPost = __webpack_require__(570);
 	
 	var _getPost2 = _interopRequireDefault(_getPost);
 	
-	var _deletePost = __webpack_require__(569);
+	var _deletePost = __webpack_require__(571);
 	
 	var _deletePost2 = _interopRequireDefault(_deletePost);
 	
-	var _comment = __webpack_require__(570);
+	var _comment = __webpack_require__(572);
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
-	var _commentsReducer = __webpack_require__(571);
+	var _commentsReducer = __webpack_require__(573);
 	
 	var _commentsReducer2 = _interopRequireDefault(_commentsReducer);
 	
-	var _modalReducer = __webpack_require__(572);
+	var _modalReducer = __webpack_require__(574);
 	
 	var _modalReducer2 = _interopRequireDefault(_modalReducer);
 	
-	var _reactRouterRedux = __webpack_require__(554);
+	var _reactRouterRedux = __webpack_require__(556);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -52084,7 +52295,7 @@
 	exports.default = allReducers;
 
 /***/ },
-/* 561 */
+/* 563 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52133,7 +52344,7 @@
 	exports.default = newVideo;
 
 /***/ },
-/* 562 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52181,7 +52392,7 @@
 	exports.default = newPost;
 
 /***/ },
-/* 563 */
+/* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52228,7 +52439,7 @@
 	exports.default = register;
 
 /***/ },
-/* 564 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52282,7 +52493,7 @@
 	exports.default = login;
 
 /***/ },
-/* 565 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52331,7 +52542,7 @@
 	exports.default = allPosts;
 
 /***/ },
-/* 566 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52374,7 +52585,7 @@
 	exports.default = allVideos;
 
 /***/ },
-/* 567 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52423,7 +52634,7 @@
 	exports.default = allUserPosts;
 
 /***/ },
-/* 568 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52471,7 +52682,7 @@
 	exports.default = getPost;
 
 /***/ },
-/* 569 */
+/* 571 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52509,7 +52720,7 @@
 	exports.default = deletePost;
 
 /***/ },
-/* 570 */
+/* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52552,7 +52763,7 @@
 	exports.default = newComment;
 
 /***/ },
-/* 571 */
+/* 573 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52601,7 +52812,7 @@
 	exports.default = allComments;
 
 /***/ },
-/* 572 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52629,8 +52840,6 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 	  var action = arguments[1];
 	
-	  console.log('action: ', action);
-	  console.log('state: ', state);
 	  switch (action.type) {
 	    case 'CREATE_MODAL':
 	      return _extends({}, state, action.video);
@@ -52650,7 +52859,7 @@
 	exports.default = modalReducer;
 
 /***/ },
-/* 573 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52661,11 +52870,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(574);
+	var _core = __webpack_require__(576);
 	
-	var _helpers = __webpack_require__(575);
+	var _helpers = __webpack_require__(577);
 	
-	var _defaults = __webpack_require__(578);
+	var _defaults = __webpack_require__(580);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -52768,7 +52977,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 574 */
+/* 576 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52778,9 +52987,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(575);
+	var _helpers = __webpack_require__(577);
 	
-	var _diff = __webpack_require__(576);
+	var _diff = __webpack_require__(578);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -52901,7 +53110,7 @@
 	}
 
 /***/ },
-/* 575 */
+/* 577 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -52925,7 +53134,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 576 */
+/* 578 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52935,7 +53144,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(577);
+	var _deepDiff = __webpack_require__(579);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -53021,7 +53230,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 577 */
+/* 579 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -53450,7 +53659,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 578 */
+/* 580 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53501,7 +53710,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 579 */
+/* 581 */
 /***/ function(module, exports) {
 
 	'use strict';

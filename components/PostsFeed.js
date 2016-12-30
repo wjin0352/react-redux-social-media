@@ -12,21 +12,20 @@ class PostsFeed extends Component {
     this.props.fetchPostsAsync(url);
   }
   renderPosts(post) {
-      console.log(post)
-      return (
-        <Link to={`/my_posts/${post._id}`} key={post._id}>
-          <Grid className="post_feed_item_grid">
-            <Row>
-            <Col   className="col-post-item">
-              <Thumbnail src="" >
-                <h3>{post.title}</h3>
-                  <Button bsStyle="default" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Post</Button>
-              </Thumbnail>
-            </Col>
-            </Row>
-          </Grid>
-        </Link>
-      )
+    return (
+      <Link to={`/my_posts/${post._id}`} key={post._id}>
+        <Grid className="post_feed_item_grid">
+          <Row>
+          <Col   className="col-post-item">
+            <Thumbnail src="" >
+              <h3>{post.title}</h3>
+                <Button bsStyle="default" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Article</Button>
+            </Thumbnail>
+          </Col>
+          </Row>
+        </Grid>
+      </Link>
+    )
   {this.props.posts ? this.renderPosts() : <h3>No posts: </h3>}
   }
 
@@ -36,7 +35,7 @@ class PostsFeed extends Component {
 
     return (
       <div className='user_posts_feed'>
-        <h4>Posts Feed</h4>
+        <h4>Articles Feed</h4>
         <div className="feed_wrapper">
           {posts.map(post => this.renderPosts(post))}
         </div>

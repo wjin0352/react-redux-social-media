@@ -26,7 +26,6 @@ class Post extends Component {
   }
   render() {
     var post = this.props.post.current_post;
-    console.log(windowLocation)
     return (
       <div>
         <container className='post-container' key={post._id}>

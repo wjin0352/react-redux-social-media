@@ -55,7 +55,7 @@ textarea {
     border: .01em solid grey;
     width: 98%;
     margin: 0 auto;
-    padding: 3em 0em;
+    padding: 5em 0em;
   }
 
    .video-feed-row .row {
@@ -76,7 +76,7 @@ textarea {
 
 /* Video Modal */
   .video-modal .modal-content {
-    t-align: center;
+    text-align: center;
   }
 
   .iframe-video-feed {
@@ -88,6 +88,11 @@ textarea {
 
 
 /* Posts feed container */
+  #videos_title {
+    text-align: center;
+    margin: 3em;
+  }
+
   .post_feed_item_grid {
     display: inline-block;
     width: 25%;
@@ -104,11 +109,13 @@ textarea {
     border: .01em solid grey;
     width: 98%;
     margin: 2em auto;
-    padding: 2em 2em;
+    padding: 5em 2em;
   }
 
   .user_posts_feed h4 {
     text-align: center;
+    margin: 3em;
+    padding-top: 2em;
   }
 
   .user_posts_feed h3 {
