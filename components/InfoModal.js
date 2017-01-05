@@ -7,11 +7,11 @@ class InfoModal extends Component {
         <div className="content">
           <h3>How do I use this app?</h3>
           <div>
-            <p>This is a Hot or Cold Number Guessing Game. The game goes like this: </p>
+            <p>This is a social media site where you can share videos and blog posts. It was built on Node Express with React Redux for the client side:  Here are some quick directions to get you started on this site! </p>
             <ul>
-              <li>1. I pick a <strong>random secret number</strong> between 1 to 100 and keep it hidden.</li>
-              <li>2. You need to <strong>guess</strong> until you can find the hidden secret number.</li>
-              <li>3. You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
+              <li>1. Start by registering or logging in by clicking on the top right of the navbar under <strong>"sign in"</strong>, create a user name and password ( For now you can use <strong>"user1"</strong> as both username and password for logging in. )</li>
+              <li>2. Once logged in you will have access to the navigation bar so you can create new video posts and blog articles. Click on <strong>New Article</strong> or <strong>New Video</strong> to create a new post.</li>
+              <li>3. The home page where you started has all the community posts and videos available.  This is a social site so all posts are shared.  You may edit only your own posts and you may comment on each others.</li>
             </ul>
             <p>So, Are you ready?</p>
             <a className="close" href="#" >Got It!</a>

@@ -49,7 +49,7 @@ class Navigation extends Component {
             <Link className='community_videos' to="/show_videos">Videos</Link>
           </NavItem>
           <NavItem eventKey={6}>
-            <Link className='new_post_link' to="/new_post">New Post</Link>
+            <Link className='new_post_link' to="/new_post">New Article</Link>
           </NavItem>
           <NavItem eventKey={7}>
             <Link className='new_video_link' to="/new_video">New Video</Link>

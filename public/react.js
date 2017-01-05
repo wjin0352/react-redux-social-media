@@ -23469,7 +23469,7 @@
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { className: 'new_post_link', to: '/new_post' },
-	              'New Post'
+	              'New Article'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -51812,7 +51812,7 @@
 	            _react2.default.createElement(
 	              "p",
 	              null,
-	              "This is a Hot or Cold Number Guessing Game. The game goes like this: "
+	              "This is a social media site where you can share videos and blog posts. It was built on Node Express with React Redux for the client side:  Here are some quick directions to get you started on this site! "
 	            ),
 	            _react2.default.createElement(
 	              "ul",
@@ -51820,35 +51820,41 @@
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "1. I pick a ",
+	                "1. Start by registering or logging in by clicking on the top right of the navbar under ",
 	                _react2.default.createElement(
 	                  "strong",
 	                  null,
-	                  "random secret number"
+	                  "\"sign in\""
 	                ),
-	                " between 1 to 100 and keep it hidden."
+	                ", create a user name and password ( For now you can use ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "\"user1\""
+	                ),
+	                " as both username and password for logging in. )"
 	              ),
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "2. You need to ",
+	                "2. Once logged in you will have access to the navigation bar so you can create new video posts and blog articles. Click on ",
 	                _react2.default.createElement(
 	                  "strong",
 	                  null,
-	                  "guess"
+	                  "New Article"
 	                ),
-	                " until you can find the hidden secret number."
+	                " or ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "New Video"
+	                ),
+	                " to create a new post."
 	              ),
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "3. You will ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "get feedback"
-	                ),
-	                " on how close (\"hot\") or far (\"cold\") your guess is."
+	                "3. The home page where you started has all the community posts and videos available.  This is a social site so all posts are shared.  You may edit only your own posts and you may comment on each others."
 	              )
 	            ),
 	            _react2.default.createElement(
