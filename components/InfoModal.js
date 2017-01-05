@@ -5,7 +5,7 @@ class InfoModal extends Component {
     return (
       <div className="overlay" id="modal">
         <div className="content">
-          <h3>What do I do?</h3>
+          <h3>How do I use this app?</h3>
           <div>
             <p>This is a Hot or Cold Number Guessing Game. The game goes like this: </p>
             <ul>

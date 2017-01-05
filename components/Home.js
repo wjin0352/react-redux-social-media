@@ -12,12 +12,9 @@ class Home extends Component {
     return (
       <div className='home_container'>
         <h4 id="videos_title">Videos Feed</h4>
-        <ul className="clearfix">
-          <li><a className="what" href="#" >What ?</a></li>
-        </ul>
-        <InfoModal />
         <VideosFeed />
         <PostsFeed />
+        <InfoModal />
       </div>
     );
   }

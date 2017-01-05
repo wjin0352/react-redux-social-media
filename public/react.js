@@ -100,17 +100,17 @@
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _RequireAuthentication = __webpack_require__(555);
+	var _RequireAuthentication = __webpack_require__(556);
 	
 	var _RequireAuthentication2 = _interopRequireDefault(_RequireAuthentication);
 	
-	var _reactRouterRedux = __webpack_require__(556);
+	var _reactRouterRedux = __webpack_require__(557);
 	
 	var _reactRouter = __webpack_require__(227);
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _store = __webpack_require__(561);
+	var _store = __webpack_require__(562);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -23482,7 +23482,20 @@
 	            )
 	          ),
 	          !this.props.logged_user.user ? this.loginAndRegistrationDropDown() : console.log(''),
-	          this.props.logged_user.user ? this.logOutButton() : ''
+	          this.props.logged_user.user ? this.logOutButton() : '',
+	          _react2.default.createElement(
+	            _reactBootstrap.NavItem,
+	            { eventKey: 8 },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'what', href: '#' },
+	                'Help'
+	              )
+	            )
+	          )
 	        )
 	      );
 	    }
@@ -51558,7 +51571,7 @@
 	
 	var _HomeVideosFeed2 = _interopRequireDefault(_HomeVideosFeed);
 	
-	var _InfoModal = __webpack_require__(582);
+	var _InfoModal = __webpack_require__(555);
 	
 	var _InfoModal2 = _interopRequireDefault(_InfoModal);
 	
@@ -51593,22 +51606,9 @@
 	          { id: 'videos_title' },
 	          'Videos Feed'
 	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'clearfix' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'what', href: '#' },
-	              'What ?'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(_InfoModal2.default, null),
 	        _react2.default.createElement(_VideosFeed2.default, null),
-	        _react2.default.createElement(_PostsFeed2.default, null)
+	        _react2.default.createElement(_PostsFeed2.default, null),
+	        _react2.default.createElement(_InfoModal2.default, null)
 	      );
 	    }
 	  }]);
@@ -51763,6 +51763,121 @@
 /* 555 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var InfoModal = function (_Component) {
+	  _inherits(InfoModal, _Component);
+	
+	  function InfoModal() {
+	    _classCallCheck(this, InfoModal);
+	
+	    return _possibleConstructorReturn(this, (InfoModal.__proto__ || Object.getPrototypeOf(InfoModal)).apply(this, arguments));
+	  }
+	
+	  _createClass(InfoModal, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "overlay", id: "modal" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "content" },
+	          _react2.default.createElement(
+	            "h3",
+	            null,
+	            "How do I use this app?"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	              "p",
+	              null,
+	              "This is a Hot or Cold Number Guessing Game. The game goes like this: "
+	            ),
+	            _react2.default.createElement(
+	              "ul",
+	              null,
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "1. I pick a ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "random secret number"
+	                ),
+	                " between 1 to 100 and keep it hidden."
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "2. You need to ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "guess"
+	                ),
+	                " until you can find the hidden secret number."
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "3. You will ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "get feedback"
+	                ),
+	                " on how close (\"hot\") or far (\"cold\") your guess is."
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "p",
+	              null,
+	              "So, Are you ready?"
+	            ),
+	            _react2.default.createElement(
+	              "a",
+	              { className: "close", href: "#" },
+	              "Got It!"
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return InfoModal;
+	}(_react.Component);
+	
+	;
+	
+	exports.default = InfoModal;
+
+/***/ },
+/* 556 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -51835,7 +51950,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /***/ },
-/* 556 */
+/* 557 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51845,7 +51960,7 @@
 	});
 	exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
 	
-	var _reducer = __webpack_require__(557);
+	var _reducer = __webpack_require__(558);
 	
 	Object.defineProperty(exports, 'LOCATION_CHANGE', {
 	  enumerable: true,
@@ -51860,7 +51975,7 @@
 	  }
 	});
 	
-	var _actions = __webpack_require__(558);
+	var _actions = __webpack_require__(559);
 	
 	Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
 	  enumerable: true,
@@ -51905,11 +52020,11 @@
 	  }
 	});
 	
-	var _sync = __webpack_require__(559);
+	var _sync = __webpack_require__(560);
 	
 	var _sync2 = _interopRequireDefault(_sync);
 	
-	var _middleware = __webpack_require__(560);
+	var _middleware = __webpack_require__(561);
 	
 	var _middleware2 = _interopRequireDefault(_middleware);
 	
@@ -51919,7 +52034,7 @@
 	exports.routerMiddleware = _middleware2['default'];
 
 /***/ },
-/* 557 */
+/* 558 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51963,7 +52078,7 @@
 	}
 
 /***/ },
-/* 558 */
+/* 559 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -52005,7 +52120,7 @@
 	var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
 
 /***/ },
-/* 559 */
+/* 560 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52018,7 +52133,7 @@
 	
 	exports['default'] = syncHistoryWithStore;
 	
-	var _reducer = __webpack_require__(557);
+	var _reducer = __webpack_require__(558);
 	
 	var defaultSelectLocationState = function defaultSelectLocationState(state) {
 	  return state.routing;
@@ -52159,7 +52274,7 @@
 	}
 
 /***/ },
-/* 560 */
+/* 561 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52169,7 +52284,7 @@
 	});
 	exports['default'] = routerMiddleware;
 	
-	var _actions = __webpack_require__(558);
+	var _actions = __webpack_require__(559);
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
@@ -52197,40 +52312,6 @@
 	}
 
 /***/ },
-/* 561 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(180);
-	
-	var _index = __webpack_require__(562);
-	
-	var _index2 = _interopRequireDefault(_index);
-	
-	var _reduxLogger = __webpack_require__(575);
-	
-	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var redux = __webpack_require__(180);
-	
-	var thunk = __webpack_require__(581).default;
-	
-	
-	var logger = (0, _reduxLogger2.default)();
-	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	  return f;
-	}));
-	
-	exports.default = store;
-
-/***/ },
 /* 562 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52242,55 +52323,89 @@
 	
 	var _redux = __webpack_require__(180);
 	
-	var _video = __webpack_require__(563);
+	var _index = __webpack_require__(563);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	var _reduxLogger = __webpack_require__(576);
+	
+	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var redux = __webpack_require__(180);
+	
+	var thunk = __webpack_require__(582).default;
+	
+	
+	var logger = (0, _reduxLogger2.default)();
+	var store = (0, _redux.createStore)(_index2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(thunk, logger), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  return f;
+	}));
+	
+	exports.default = store;
+
+/***/ },
+/* 563 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(180);
+	
+	var _video = __webpack_require__(564);
 	
 	var _video2 = _interopRequireDefault(_video);
 	
-	var _post = __webpack_require__(564);
+	var _post = __webpack_require__(565);
 	
 	var _post2 = _interopRequireDefault(_post);
 	
-	var _register = __webpack_require__(565);
+	var _register = __webpack_require__(566);
 	
 	var _register2 = _interopRequireDefault(_register);
 	
-	var _login = __webpack_require__(566);
+	var _login = __webpack_require__(567);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _postsReducer = __webpack_require__(567);
+	var _postsReducer = __webpack_require__(568);
 	
 	var _postsReducer2 = _interopRequireDefault(_postsReducer);
 	
-	var _videosReducer = __webpack_require__(568);
+	var _videosReducer = __webpack_require__(569);
 	
 	var _videosReducer2 = _interopRequireDefault(_videosReducer);
 	
-	var _userPostsReducer = __webpack_require__(569);
+	var _userPostsReducer = __webpack_require__(570);
 	
 	var _userPostsReducer2 = _interopRequireDefault(_userPostsReducer);
 	
-	var _getPost = __webpack_require__(570);
+	var _getPost = __webpack_require__(571);
 	
 	var _getPost2 = _interopRequireDefault(_getPost);
 	
-	var _deletePost = __webpack_require__(571);
+	var _deletePost = __webpack_require__(572);
 	
 	var _deletePost2 = _interopRequireDefault(_deletePost);
 	
-	var _comment = __webpack_require__(572);
+	var _comment = __webpack_require__(573);
 	
 	var _comment2 = _interopRequireDefault(_comment);
 	
-	var _commentsReducer = __webpack_require__(573);
+	var _commentsReducer = __webpack_require__(574);
 	
 	var _commentsReducer2 = _interopRequireDefault(_commentsReducer);
 	
-	var _modalReducer = __webpack_require__(574);
+	var _modalReducer = __webpack_require__(575);
 	
 	var _modalReducer2 = _interopRequireDefault(_modalReducer);
 	
-	var _reactRouterRedux = __webpack_require__(556);
+	var _reactRouterRedux = __webpack_require__(557);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -52313,7 +52428,7 @@
 	exports.default = allReducers;
 
 /***/ },
-/* 563 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52362,7 +52477,7 @@
 	exports.default = newVideo;
 
 /***/ },
-/* 564 */
+/* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52410,7 +52525,7 @@
 	exports.default = newPost;
 
 /***/ },
-/* 565 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52457,7 +52572,7 @@
 	exports.default = register;
 
 /***/ },
-/* 566 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52511,7 +52626,7 @@
 	exports.default = login;
 
 /***/ },
-/* 567 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52560,7 +52675,7 @@
 	exports.default = allPosts;
 
 /***/ },
-/* 568 */
+/* 569 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52603,7 +52718,7 @@
 	exports.default = allVideos;
 
 /***/ },
-/* 569 */
+/* 570 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52652,7 +52767,7 @@
 	exports.default = allUserPosts;
 
 /***/ },
-/* 570 */
+/* 571 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52700,7 +52815,7 @@
 	exports.default = getPost;
 
 /***/ },
-/* 571 */
+/* 572 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52738,7 +52853,7 @@
 	exports.default = deletePost;
 
 /***/ },
-/* 572 */
+/* 573 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52781,7 +52896,7 @@
 	exports.default = newComment;
 
 /***/ },
-/* 573 */
+/* 574 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52830,7 +52945,7 @@
 	exports.default = allComments;
 
 /***/ },
-/* 574 */
+/* 575 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52877,7 +52992,7 @@
 	exports.default = modalReducer;
 
 /***/ },
-/* 575 */
+/* 576 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52888,11 +53003,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(576);
+	var _core = __webpack_require__(577);
 	
-	var _helpers = __webpack_require__(577);
+	var _helpers = __webpack_require__(578);
 	
-	var _defaults = __webpack_require__(580);
+	var _defaults = __webpack_require__(581);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -52995,7 +53110,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 576 */
+/* 577 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53005,9 +53120,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(577);
+	var _helpers = __webpack_require__(578);
 	
-	var _diff = __webpack_require__(578);
+	var _diff = __webpack_require__(579);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -53128,7 +53243,7 @@
 	}
 
 /***/ },
-/* 577 */
+/* 578 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53152,7 +53267,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 578 */
+/* 579 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53162,7 +53277,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(579);
+	var _deepDiff = __webpack_require__(580);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -53248,7 +53363,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 579 */
+/* 580 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -53677,7 +53792,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 580 */
+/* 581 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53728,7 +53843,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 581 */
+/* 582 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53754,121 +53869,6 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
-
-/***/ },
-/* 582 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var InfoModal = function (_Component) {
-	  _inherits(InfoModal, _Component);
-	
-	  function InfoModal() {
-	    _classCallCheck(this, InfoModal);
-	
-	    return _possibleConstructorReturn(this, (InfoModal.__proto__ || Object.getPrototypeOf(InfoModal)).apply(this, arguments));
-	  }
-	
-	  _createClass(InfoModal, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "overlay", id: "modal" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "content" },
-	          _react2.default.createElement(
-	            "h3",
-	            null,
-	            "What do I do?"
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            null,
-	            _react2.default.createElement(
-	              "p",
-	              null,
-	              "This is a Hot or Cold Number Guessing Game. The game goes like this: "
-	            ),
-	            _react2.default.createElement(
-	              "ul",
-	              null,
-	              _react2.default.createElement(
-	                "li",
-	                null,
-	                "1. I pick a ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "random secret number"
-	                ),
-	                " between 1 to 100 and keep it hidden."
-	              ),
-	              _react2.default.createElement(
-	                "li",
-	                null,
-	                "2. You need to ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "guess"
-	                ),
-	                " until you can find the hidden secret number."
-	              ),
-	              _react2.default.createElement(
-	                "li",
-	                null,
-	                "3. You will ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "get feedback"
-	                ),
-	                " on how close (\"hot\") or far (\"cold\") your guess is."
-	              )
-	            ),
-	            _react2.default.createElement(
-	              "p",
-	              null,
-	              "So, Are you ready?"
-	            ),
-	            _react2.default.createElement(
-	              "a",
-	              { className: "close", href: "#" },
-	              "Got It!"
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return InfoModal;
-	}(_react.Component);
-	
-	;
-	
-	exports.default = InfoModal;
 
 /***/ }
 /******/ ]);
