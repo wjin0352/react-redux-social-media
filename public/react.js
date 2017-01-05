@@ -51558,6 +51558,10 @@
 	
 	var _HomeVideosFeed2 = _interopRequireDefault(_HomeVideosFeed);
 	
+	var _InfoModal = __webpack_require__(582);
+	
+	var _InfoModal2 = _interopRequireDefault(_InfoModal);
+	
 	var _reactRouter = __webpack_require__(227);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51589,6 +51593,20 @@
 	          { id: 'videos_title' },
 	          'Videos Feed'
 	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'clearfix' },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { className: 'what', href: '#' },
+	              'What ?'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(_InfoModal2.default, null),
 	        _react2.default.createElement(_VideosFeed2.default, null),
 	        _react2.default.createElement(_PostsFeed2.default, null)
 	      );
@@ -53736,6 +53754,121 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
+
+/***/ },
+/* 582 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var InfoModal = function (_Component) {
+	  _inherits(InfoModal, _Component);
+	
+	  function InfoModal() {
+	    _classCallCheck(this, InfoModal);
+	
+	    return _possibleConstructorReturn(this, (InfoModal.__proto__ || Object.getPrototypeOf(InfoModal)).apply(this, arguments));
+	  }
+	
+	  _createClass(InfoModal, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "overlay", id: "modal" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "content" },
+	          _react2.default.createElement(
+	            "h3",
+	            null,
+	            "What do I do?"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	              "p",
+	              null,
+	              "This is a Hot or Cold Number Guessing Game. The game goes like this: "
+	            ),
+	            _react2.default.createElement(
+	              "ul",
+	              null,
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "1. I pick a ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "random secret number"
+	                ),
+	                " between 1 to 100 and keep it hidden."
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "2. You need to ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "guess"
+	                ),
+	                " until you can find the hidden secret number."
+	              ),
+	              _react2.default.createElement(
+	                "li",
+	                null,
+	                "3. You will ",
+	                _react2.default.createElement(
+	                  "strong",
+	                  null,
+	                  "get feedback"
+	                ),
+	                " on how close (\"hot\") or far (\"cold\") your guess is."
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "p",
+	              null,
+	              "So, Are you ready?"
+	            ),
+	            _react2.default.createElement(
+	              "a",
+	              { className: "close", href: "#" },
+	              "Got It!"
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return InfoModal;
+	}(_react.Component);
+	
+	;
+	
+	exports.default = InfoModal;
 
 /***/ }
 /******/ ]);
