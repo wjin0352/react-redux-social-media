@@ -57,7 +57,7 @@ class Navigation extends Component {
           { !(this.props.logged_user.user) ? this.loginAndRegistrationDropDown() : console.log('') }
           { this.props.logged_user.user ? this.logOutButton() : '' }
           <NavItem eventKey={8}>
-            <li><a className="what" href="#" >Help</a></li>
+            <li><a className="what" id="what" href="#" >Start Here!</a></li>
           </NavItem>
         </Nav>
       </Navbar>

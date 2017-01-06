@@ -37,6 +37,13 @@ textarea {
     font-family: serif;
   }
 
+  .info {
+    width:50%;
+    margin:0 auto;
+    text-align: center;
+    padding:10em;
+  }
+
 /*  INFOMODAL OVERLAY */
   .overlay {
     width: 100%;

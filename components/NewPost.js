@@ -27,16 +27,16 @@ class NewPost extends Component {
       <Modal show={this.state.showModal} bsSize="large" >
           <Modal.Header>
             <Modal.Title>
-              Add a post
+              Add an article
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form className='new-post-form' onSubmit={(e) => this.createPost(e)}>
               <fieldset>
-                <legend>New Post: </legend>
+                <legend>New Article: </legend>
                 <li>title</li>
                   <input type='text' name='title' required autoFocus /><br/>
-                <li>Blog Post</li>
+                <li>Blog Article</li>
                   <textarea rows="30" cols="100" type='text' name='blog_post' required >
                   </textarea><br/>
                 <button type="submit" value="done">Finished</button>

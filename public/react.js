@@ -23491,8 +23491,8 @@
 	              null,
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'what', href: '#' },
-	                'Help'
+	                { className: 'what', id: 'what', href: '#' },
+	                'Start Here!'
 	              )
 	            )
 	          )
@@ -51168,7 +51168,7 @@
 	          _react2.default.createElement(
 	            _reactBootstrap.Modal.Title,
 	            null,
-	            'Add a post'
+	            'Add an article'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -51185,7 +51185,7 @@
 	              _react2.default.createElement(
 	                'legend',
 	                null,
-	                'New Post: '
+	                'New Article: '
 	              ),
 	              _react2.default.createElement(
 	                'li',
@@ -51197,7 +51197,7 @@
 	              _react2.default.createElement(
 	                'li',
 	                null,
-	                'Blog Post'
+	                'Blog Article'
 	              ),
 	              _react2.default.createElement('textarea', { rows: '30', cols: '100', type: 'text', name: 'blog_post', required: true }),
 	              _react2.default.createElement('br', null),
@@ -51602,6 +51602,22 @@
 	        'div',
 	        { className: 'home_container' },
 	        _react2.default.createElement(
+	          'div',
+	          { className: 'info' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Social Media Blog'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Post videos and articles to share with our community. Start by creating an account and then posting your first Article or Video from the top menu. To demo this application sign in at the top with',
+	            _react2.default.createElement('br', null),
+	            'username: user1 password: user1'
+	          )
+	        ),
+	        _react2.default.createElement(
 	          'h4',
 	          { id: 'videos_title' },
 	          'Videos Feed'
@@ -51812,7 +51828,7 @@
 	            _react2.default.createElement(
 	              "p",
 	              null,
-	              "This is a social media site where you can share videos and blog posts. It was built on Node Express with React Redux for the client side:  Here are some quick directions to get you started on this site! "
+	              "This is a social media site where you can share videos and blog posts with the whole community. It was built on Node and Express.js along  with React and Redux for the client side.  Here are some quick directions to get you started on this site! "
 	            ),
 	            _react2.default.createElement(
 	              "ul",
@@ -51820,41 +51836,23 @@
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "1. Start by registering or logging in by clicking on the top right of the navbar under ",
+	                "1. Start by creating an account or signing in on the navbar ",
 	                _react2.default.createElement(
 	                  "strong",
 	                  null,
 	                  "\"sign in\""
 	                ),
-	                ", create a user name and password ( For now you can use ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "\"user1\""
-	                ),
-	                " as both username and password for logging in. )"
+	                ".  For a quick demo just sign in at the top with username: user1 password: user1"
 	              ),
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "2. Once logged in you will have access to the navigation bar so you can create new video posts and blog articles. Click on ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "New Article"
-	                ),
-	                " or ",
-	                _react2.default.createElement(
-	                  "strong",
-	                  null,
-	                  "New Video"
-	                ),
-	                " to create a new post."
+	                "2. Once logged you can create new article or video posts for all to see."
 	              ),
 	              _react2.default.createElement(
 	                "li",
 	                null,
-	                "3. The home page where you started has all the community posts and videos available.  This is a social site so all posts are shared.  You may edit only your own posts and you may comment on each others."
+	                "3. The home page where you started has all the community posts and videos available.  This is a social site so all posts are shared.  You may edit only your own posts but you can comment on each others."
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -51864,7 +51862,7 @@
 	            ),
 	            _react2.default.createElement(
 	              "a",
-	              { className: "close", href: "#" },
+	              { className: "close", id: "close", href: "#" },
 	              "Got It!"
 	            )
 	          )
