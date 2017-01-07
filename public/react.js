@@ -21537,6 +21537,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _InfoModal = __webpack_require__(555);
+	
+	var _InfoModal2 = _interopRequireDefault(_InfoModal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21555,13 +21559,28 @@
 	  }
 	
 	  _createClass(MainPage, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      $(document).ready(function () {
+	        console.log('ready');
+	        $(".what").click(function () {
+	          $("div.overlay").fadeIn(1000);
+	        });
+	
+	        $("a.close").click(function () {
+	          $("div.overlay").fadeOut(1000);
+	        });
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container-fluid' },
 	        _react2.default.createElement(_Header2.default, null),
-	        this.props.children
+	        this.props.children,
+	        _react2.default.createElement(_InfoModal2.default, null)
 	      );
 	    }
 	  }]);
@@ -51571,10 +51590,6 @@
 	
 	var _HomeVideosFeed2 = _interopRequireDefault(_HomeVideosFeed);
 	
-	var _InfoModal = __webpack_require__(555);
-	
-	var _InfoModal2 = _interopRequireDefault(_InfoModal);
-	
 	var _reactRouter = __webpack_require__(227);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51623,8 +51638,7 @@
 	          'Videos Feed'
 	        ),
 	        _react2.default.createElement(_VideosFeed2.default, null),
-	        _react2.default.createElement(_PostsFeed2.default, null),
-	        _react2.default.createElement(_InfoModal2.default, null)
+	        _react2.default.createElement(_PostsFeed2.default, null)
 	      );
 	    }
 	  }]);
