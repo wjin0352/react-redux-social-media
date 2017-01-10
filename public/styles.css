@@ -38,10 +38,9 @@ textarea {
   }
 
   .info {
-    width:50%;
+    width:40%;
     margin:0 auto;
     text-align: center;
-    padding:10em;
   }
 
 /*  INFOMODAL OVERLAY */
@@ -352,6 +351,80 @@ textarea {
 
 
 
+/* FOOTER */
+  footer {
+    height: 250px;
+    color: #CCC;
+  }
+
+  footer a {
+    color: #CCC;
+  }
+
+  .footer-container {
+    text-align: center;
+  }
+
+  .page-foot .btm-bar {
+    background-color: #323232;
+  }
+
+  .page-foot .btm-bar  {
+    padding: 2em 3em;
+  }
+
+  .footer-container > li {
+    display: inline-block;
+  }
+
+  footer a:hover {
+    opacity: .5;
+  }
+
+  .page-foot {
+    background-color: #323232;
+    text-align: center;
+  }
+
+  .btn-linkedin {
+    color: #fff;
+    background-color: #007bb6;
+    border-color: rgba(0,0,0,0.2);
+    position: relative;
+  }
+
+  .foot .fa-linkedin:before {
+    content: "\f0e1";
+    font-size: 1.7em;
+  }
+
+  .btn-github {
+    color: #444;
+    background-color: #fff;
+    border-color: rgba(0,0,0,0.2);
+    position: relative;
+    font-size:12px;
+  }
+
+  .foot .fa-github:before {
+    content: "\f09b";
+    font-size: 1.9em;
+  }
+
+  #email {
+    font-size: 13px;
+  }
+
+  a#top {
+    font-size: 12px;
+  }
+
+  a#top:hover {
+    color: #d9f0ee;
+  }
+
+
+
 /* ========== Media Queries ========= */
 /* post page media queries */
 @media only screen and (min-width: 845px) and (max-width: 1000px) {
@@ -392,12 +465,6 @@ textarea {
   .content {
     width:95%;
     font-size: 13px;
-  }
-}
-
-@media only screen and (max-width: 1110px) {
-  .info {
-    padding: 10em 0em;
   }
 }
 

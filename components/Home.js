@@ -24,7 +24,6 @@ class Home extends Component {
         <h4 id="videos_title">Videos Feed</h4>
         <VideosFeed />
         <PostsFeed />
-
       </div>
     );
   }

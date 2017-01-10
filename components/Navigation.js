@@ -32,7 +32,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar bsStyle='inverse'>
+      <Navbar bsStyle='inverse' id="top">
         <Navbar.Header>
           <Navbar.Brand>
             Social Media Blog
