@@ -10,9 +10,9 @@
     "watch:js": "webpack --watch",
     "start": "node server/server.js",
     "server": "nodemon --watch ./server/server --exec babel-node -- ./server/server.js",
-    "test": "mocha ./server/tests/"
+    "test": "nodemon --exec 'mocha ./server/tests/'"
   },
-  "author": "won",
+  "author": "won", 
   "license": "ISC",
   "dependencies": {
     "axios": "^0.14.0",
