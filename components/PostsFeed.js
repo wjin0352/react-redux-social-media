@@ -16,7 +16,7 @@ class PostsFeed extends Component {
       <Link to={`/my_posts/${post._id}`} key={post._id}>
         <Grid className="post_feed_item_grid">
           <Row>
-          <Col   className="col-post-item">
+          <Col className="col-post-item">
             <Thumbnail src="" >
               <h3>{post.title}</h3>
                 <Button bsStyle="default" onClick={() => browserHistory.push(`/my_posts/${post._id}`)}>See Article</Button>

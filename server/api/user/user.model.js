@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }]
 });
+
 userSchema.methods.validatePassword = function (password, callback) {
   bcrypt.compare(password, this.password, function(err, isValid) {
     if (err) {

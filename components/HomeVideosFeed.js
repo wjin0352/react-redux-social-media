@@ -23,7 +23,6 @@ class HomeVideosFeed extends Component {
   }
 
   renderVideos(video) {
-
     return (
       <div key={video._id} >
         <Col xs={6} md={4}  className="video-single-feed col-lg-3">

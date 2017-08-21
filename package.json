@@ -9,7 +9,8 @@
   "scripts": {
     "watch:js": "webpack --watch",
     "start": "node server/server.js",
-    "server": "nodemon --watch ./server/server --exec babel-node -- ./server/server.js"
+    "server": "nodemon --watch ./server/server --exec babel-node -- ./server/server.js",
+    "test": "mocha ./server/tests/"
   },
   "author": "won",
   "license": "ISC",
