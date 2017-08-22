@@ -1,7 +1,7 @@
 const assert = require('assert');
 const User = require('../api/user/user.model');
 
-describe('creating user record', function() {
+describe('Creating user record', function() {
   it('saves a user', function(done) {
     const user = new User({username: 'dave', email: 'dave@gmail.com', password: '123'})
     user.save()
