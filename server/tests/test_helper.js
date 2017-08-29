@@ -19,7 +19,12 @@ before((done) => {
 
 // before each test drop collection users
 beforeEach(function(done) {
-  mongoose.connection.collections.users.drop(function() {
-    done();
+  const { users, comments, posts } = mongoose.connection.collections;
+  users.drop(function() {
+    comments.drop(() => {
+      posts.drop(() => {
+        done();
+      });
+    });
   });
 });

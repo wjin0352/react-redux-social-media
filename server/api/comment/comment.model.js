@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../user/user.model');
 
 const commentSchema = mongoose.Schema({
   comment: { type: String, required: true },
